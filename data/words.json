@@ -1,0 +1,2690 @@
+[
+  {
+    "word": "What",
+    "slug": "what",
+    "category": "general",
+    "gif": "assets/gifs/what.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Who",
+    "slug": "who",
+    "category": "general",
+    "gif": "assets/gifs/who.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Where",
+    "slug": "where",
+    "category": "general",
+    "gif": "assets/gifs/where.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Name",
+    "slug": "name",
+    "category": "general",
+    "gif": "assets/gifs/name.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Copy me",
+    "slug": "copy-me",
+    "category": "general",
+    "gif": "assets/gifs/copy-me.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Letter",
+    "slug": "letter",
+    "category": "general",
+    "gif": "assets/gifs/letter.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Same",
+    "slug": "same",
+    "category": "general",
+    "gif": "assets/gifs/same.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Different",
+    "slug": "different",
+    "category": "general",
+    "gif": "assets/gifs/different.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Shape",
+    "slug": "shape",
+    "category": "general",
+    "gif": "assets/gifs/shape.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Number",
+    "slug": "number",
+    "category": "general",
+    "gif": "assets/gifs/number.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Again",
+    "slug": "again",
+    "category": "general",
+    "gif": "assets/gifs/again.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Hello",
+    "slug": "hello",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/hello.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Nice",
+    "slug": "nice",
+    "category": "general",
+    "gif": "assets/gifs/nice.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Meet",
+    "slug": "meet",
+    "category": "general",
+    "gif": "assets/gifs/meet.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Remember",
+    "slug": "remember",
+    "category": "general",
+    "gif": "assets/gifs/remember.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Forget",
+    "slug": "forget",
+    "category": "general",
+    "gif": "assets/gifs/forget.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell",
+    "slug": "fingerspell",
+    "category": "education",
+    "gif": "assets/gifs/fingerspell.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Homework",
+    "slug": "homework",
+    "category": "education",
+    "gif": "assets/gifs/homework.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Nice to meet you",
+    "slug": "nice-to-meet-you",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/nice-to-meet-you.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Man",
+    "slug": "man",
+    "category": "family",
+    "gif": "assets/gifs/man.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Woman",
+    "slug": "woman",
+    "category": "family",
+    "gif": "assets/gifs/woman.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Person / Individual",
+    "slug": "person-individual",
+    "category": "general",
+    "gif": "assets/gifs/person-individual.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Shirt",
+    "slug": "shirt",
+    "category": "clothing",
+    "gif": "assets/gifs/shirt.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Pants",
+    "slug": "pants",
+    "category": "clothing",
+    "gif": "assets/gifs/pants.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Jacket",
+    "slug": "jacket",
+    "category": "clothing",
+    "gif": "assets/gifs/jacket.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Dress",
+    "slug": "dress",
+    "category": "clothing",
+    "gif": "assets/gifs/dress.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Skirt",
+    "slug": "skirt",
+    "category": "clothing",
+    "gif": "assets/gifs/skirt.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Shoes",
+    "slug": "shoes",
+    "category": "clothing",
+    "gif": "assets/gifs/shoes.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Hat",
+    "slug": "hat",
+    "category": "clothing",
+    "gif": "assets/gifs/hat.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Glasses",
+    "slug": "glasses",
+    "category": "clothing",
+    "gif": "assets/gifs/glasses.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Clothes",
+    "slug": "clothes",
+    "category": "clothing",
+    "gif": "assets/gifs/clothes.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Hair",
+    "slug": "hair",
+    "category": "general",
+    "gif": "assets/gifs/hair.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Mustache",
+    "slug": "mustache",
+    "category": "general",
+    "gif": "assets/gifs/mustache.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Beard",
+    "slug": "beard",
+    "category": "general",
+    "gif": "assets/gifs/beard.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Black",
+    "slug": "black",
+    "category": "colors",
+    "gif": "assets/gifs/black.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Grey",
+    "slug": "grey",
+    "category": "colors",
+    "gif": "assets/gifs/grey.gif",
+    "hasGif": true
+  },
+  {
+    "word": "White",
+    "slug": "white",
+    "category": "colors",
+    "gif": "assets/gifs/white.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Pink",
+    "slug": "pink",
+    "category": "colors",
+    "gif": "assets/gifs/pink.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Red",
+    "slug": "red",
+    "category": "colors",
+    "gif": "assets/gifs/red.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Orange",
+    "slug": "orange",
+    "category": "colors",
+    "gif": "assets/gifs/orange.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Yellow",
+    "slug": "yellow",
+    "category": "colors",
+    "gif": "assets/gifs/yellow.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Green",
+    "slug": "green",
+    "category": "colors",
+    "gif": "assets/gifs/green.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Blue",
+    "slug": "blue",
+    "category": "colors",
+    "gif": "assets/gifs/blue.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Purple",
+    "slug": "purple",
+    "category": "colors",
+    "gif": "assets/gifs/purple.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Brown",
+    "slug": "brown",
+    "category": "colors",
+    "gif": "assets/gifs/brown.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Colors",
+    "slug": "colors",
+    "category": "colors",
+    "gif": "assets/gifs/colors.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Stand",
+    "slug": "stand",
+    "category": "actions",
+    "gif": "assets/gifs/stand.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Jump",
+    "slug": "jump",
+    "category": "actions",
+    "gif": "assets/gifs/jump.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Dance",
+    "slug": "dance",
+    "category": "actions",
+    "gif": "assets/gifs/dance.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Turn Around",
+    "slug": "turn-around",
+    "category": "general",
+    "gif": "assets/gifs/turn-around.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Door",
+    "slug": "door",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/door.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Open Door",
+    "slug": "open-door",
+    "category": "general",
+    "gif": "assets/gifs/open-door.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Close Door",
+    "slug": "close-door",
+    "category": "general",
+    "gif": "assets/gifs/close-door.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Window",
+    "slug": "window",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/window.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Window Open",
+    "slug": "window-open",
+    "category": "general",
+    "gif": "assets/gifs/window-open.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Window Close",
+    "slug": "window-close",
+    "category": "general",
+    "gif": "assets/gifs/window-close.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Light",
+    "slug": "light",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/light.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Light On",
+    "slug": "light-on",
+    "category": "general",
+    "gif": "assets/gifs/light-on.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Light Off",
+    "slug": "light-off",
+    "category": "general",
+    "gif": "assets/gifs/light-off.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Book",
+    "slug": "book",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/book.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Book Open",
+    "slug": "book-open",
+    "category": "general",
+    "gif": "assets/gifs/book-open.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Book Close",
+    "slug": "book-close",
+    "category": "general",
+    "gif": "assets/gifs/book-close.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Book Read",
+    "slug": "book-read",
+    "category": "general",
+    "gif": "assets/gifs/book-read.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Paper",
+    "slug": "paper",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/paper.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Paper Fold",
+    "slug": "paper-fold",
+    "category": "general",
+    "gif": "assets/gifs/paper-fold.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Paper Crumble",
+    "slug": "paper-crumble",
+    "category": "general",
+    "gif": "assets/gifs/paper-crumble.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Paper Throw",
+    "slug": "paper-throw",
+    "category": "general",
+    "gif": "assets/gifs/paper-throw.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Paper Look At",
+    "slug": "paper-look-at",
+    "category": "general",
+    "gif": "assets/gifs/paper-look-at.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Chair",
+    "slug": "chair",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/chair.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Chair There You Sit",
+    "slug": "chair-there-you-sit",
+    "category": "general",
+    "gif": "assets/gifs/chair-there-you-sit.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Draw",
+    "slug": "draw",
+    "category": "actions",
+    "gif": "assets/gifs/draw.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Write",
+    "slug": "write",
+    "category": "actions",
+    "gif": "assets/gifs/write.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Jot-down",
+    "slug": "jot-down",
+    "category": "general",
+    "gif": "assets/gifs/jot-down.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Right/Correct",
+    "slug": "rightcorrect",
+    "category": "general",
+    "gif": "assets/gifs/rightcorrect.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Wrong",
+    "slug": "wrong",
+    "category": "general",
+    "gif": "assets/gifs/wrong.gif",
+    "hasGif": true
+  },
+  {
+    "word": "ASL",
+    "slug": "asl",
+    "category": "education",
+    "gif": "assets/gifs/asl.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Class",
+    "slug": "class",
+    "category": "education",
+    "gif": "assets/gifs/class.gif",
+    "hasGif": true
+  },
+  {
+    "word": "College",
+    "slug": "college",
+    "category": "education",
+    "gif": "assets/gifs/college.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Deaf",
+    "slug": "deaf",
+    "category": "general",
+    "gif": "assets/gifs/deaf.gif",
+    "hasGif": true
+  },
+  {
+    "word": "English",
+    "slug": "english",
+    "category": "education",
+    "gif": "assets/gifs/english.gif",
+    "hasGif": true
+  },
+  {
+    "word": "French",
+    "slug": "french",
+    "category": "education",
+    "gif": "assets/gifs/french.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Oh I see",
+    "slug": "oh-i-see",
+    "category": "general",
+    "gif": "assets/gifs/oh-i-see.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Gallaudet",
+    "slug": "gallaudet",
+    "category": "general",
+    "gif": "assets/gifs/gallaudet.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Hearing",
+    "slug": "hearing",
+    "category": "general",
+    "gif": "assets/gifs/hearing.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Here",
+    "slug": "here",
+    "category": "general",
+    "gif": "assets/gifs/here.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Language",
+    "slug": "language",
+    "category": "education",
+    "gif": "assets/gifs/language.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Learn",
+    "slug": "learn",
+    "category": "education",
+    "gif": "assets/gifs/learn.gif",
+    "hasGif": true
+  },
+  {
+    "word": "No",
+    "slug": "no",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/no.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Spanish",
+    "slug": "spanish",
+    "category": "education",
+    "gif": "assets/gifs/spanish.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Student",
+    "slug": "student",
+    "category": "education",
+    "gif": "assets/gifs/student.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Teach",
+    "slug": "teach",
+    "category": "education",
+    "gif": "assets/gifs/teach.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Teacher",
+    "slug": "teacher",
+    "category": "education",
+    "gif": "assets/gifs/teacher.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Yes",
+    "slug": "yes",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/yes.gif",
+    "hasGif": true
+  },
+  {
+    "word": "16",
+    "slug": "16",
+    "category": "numbers",
+    "gif": "assets/gifs/16.gif",
+    "hasGif": true
+  },
+  {
+    "word": "17",
+    "slug": "17",
+    "category": "numbers",
+    "gif": "assets/gifs/17.gif",
+    "hasGif": true
+  },
+  {
+    "word": "18",
+    "slug": "18",
+    "category": "numbers",
+    "gif": "assets/gifs/18.gif",
+    "hasGif": true
+  },
+  {
+    "word": "19",
+    "slug": "19",
+    "category": "numbers",
+    "gif": "assets/gifs/19.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Start",
+    "slug": "start",
+    "category": "general",
+    "gif": "assets/gifs/start.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Head",
+    "slug": "head",
+    "category": "general",
+    "gif": "assets/gifs/head.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Tail",
+    "slug": "tail",
+    "category": "general",
+    "gif": "assets/gifs/tail.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Win",
+    "slug": "win",
+    "category": "general",
+    "gif": "assets/gifs/win.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Lose",
+    "slug": "lose",
+    "category": "general",
+    "gif": "assets/gifs/lose.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Equal",
+    "slug": "equal",
+    "category": "general",
+    "gif": "assets/gifs/equal.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Which",
+    "slug": "which",
+    "category": "general",
+    "gif": "assets/gifs/which.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Remember most",
+    "slug": "remember-most",
+    "category": "general",
+    "gif": "assets/gifs/remember-most.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Remember some",
+    "slug": "remember-some",
+    "category": "general",
+    "gif": "assets/gifs/remember-some.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Remember a little bit",
+    "slug": "remember-a-little-bit",
+    "category": "general",
+    "gif": "assets/gifs/remember-a-little-bit.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Forget all",
+    "slug": "forget-all",
+    "category": "general",
+    "gif": "assets/gifs/forget-all.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Still speak",
+    "slug": "still-speak",
+    "category": "general",
+    "gif": "assets/gifs/still-speak.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Sign",
+    "slug": "sign",
+    "category": "actions",
+    "gif": "assets/gifs/sign.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Speak",
+    "slug": "speak",
+    "category": "actions",
+    "gif": "assets/gifs/speak.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fine",
+    "slug": "fine",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/fine.gif",
+    "hasGif": true
+  },
+  {
+    "word": "So-so",
+    "slug": "so-so",
+    "category": "feelings",
+    "gif": "assets/gifs/so-so.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Tired",
+    "slug": "tired",
+    "category": "feelings",
+    "gif": "assets/gifs/tired.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Sick",
+    "slug": "sick",
+    "category": "feelings",
+    "gif": "assets/gifs/sick.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Grow up",
+    "slug": "grow-up",
+    "category": "general",
+    "gif": "assets/gifs/grow-up.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Both",
+    "slug": "both",
+    "category": "general",
+    "gif": "assets/gifs/both.gif",
+    "hasGif": true
+  },
+  {
+    "word": "High school",
+    "slug": "high-school",
+    "category": "education",
+    "gif": "assets/gifs/high-school.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Year",
+    "slug": "year",
+    "category": "general",
+    "gif": "assets/gifs/year.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Easy",
+    "slug": "easy",
+    "category": "general",
+    "gif": "assets/gifs/easy.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Sort of easy",
+    "slug": "sort-of-easy",
+    "category": "general",
+    "gif": "assets/gifs/sort-of-easy.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Sort of hard",
+    "slug": "sort-of-hard",
+    "category": "general",
+    "gif": "assets/gifs/sort-of-hard.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Hard",
+    "slug": "hard",
+    "category": "general",
+    "gif": "assets/gifs/hard.gif",
+    "hasGif": true
+  },
+  {
+    "word": "How are you?",
+    "slug": "how-are-you",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/how-are-you.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Now",
+    "slug": "now",
+    "category": "general",
+    "gif": "assets/gifs/now.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Walk",
+    "slug": "walk",
+    "category": "actions",
+    "gif": "assets/gifs/walk.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Take a picture",
+    "slug": "take-a-picture",
+    "category": "general",
+    "gif": "assets/gifs/take-a-picture.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Watch",
+    "slug": "watch",
+    "category": "general",
+    "gif": "assets/gifs/watch.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Play with a dog",
+    "slug": "play-with-a-dog",
+    "category": "general",
+    "gif": "assets/gifs/play-with-a-dog.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Sewing",
+    "slug": "sewing",
+    "category": "actions",
+    "gif": "assets/gifs/sewing.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Chat on the phone",
+    "slug": "chat-on-the-phone",
+    "category": "general",
+    "gif": "assets/gifs/chat-on-the-phone.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fishing",
+    "slug": "fishing",
+    "category": "actions",
+    "gif": "assets/gifs/fishing.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Run",
+    "slug": "run",
+    "category": "actions",
+    "gif": "assets/gifs/run.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Travel",
+    "slug": "travel",
+    "category": "actions",
+    "gif": "assets/gifs/travel.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Paint",
+    "slug": "paint",
+    "category": "actions",
+    "gif": "assets/gifs/paint.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Camping",
+    "slug": "camping",
+    "category": "actions",
+    "gif": "assets/gifs/camping.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Exercise",
+    "slug": "exercise",
+    "category": "actions",
+    "gif": "assets/gifs/exercise.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Cook",
+    "slug": "cook",
+    "category": "food-drink",
+    "gif": "assets/gifs/cook.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Play",
+    "slug": "play",
+    "category": "actions",
+    "gif": "assets/gifs/play.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Shop",
+    "slug": "shop",
+    "category": "actions",
+    "gif": "assets/gifs/shop.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Bicycling",
+    "slug": "bicycling",
+    "category": "actions",
+    "gif": "assets/gifs/bicycling.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Bowling",
+    "slug": "bowling",
+    "category": "actions",
+    "gif": "assets/gifs/bowling.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Movie",
+    "slug": "movie",
+    "category": "general",
+    "gif": "assets/gifs/movie.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Game",
+    "slug": "game",
+    "category": "general",
+    "gif": "assets/gifs/game.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Like",
+    "slug": "like",
+    "category": "feelings",
+    "gif": "assets/gifs/like.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Detest",
+    "slug": "detest",
+    "category": "feelings",
+    "gif": "assets/gifs/detest.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Favorite",
+    "slug": "favorite",
+    "category": "feelings",
+    "gif": "assets/gifs/favorite.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Pay attention",
+    "slug": "pay-attention",
+    "category": "general",
+    "gif": "assets/gifs/pay-attention.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Not pay attention",
+    "slug": "not-pay-attention",
+    "category": "general",
+    "gif": "assets/gifs/not-pay-attention.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Chat",
+    "slug": "chat",
+    "category": "general",
+    "gif": "assets/gifs/chat.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Sleep",
+    "slug": "sleep",
+    "category": "actions",
+    "gif": "assets/gifs/sleep.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Read",
+    "slug": "read",
+    "category": "actions",
+    "gif": "assets/gifs/read.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Apple",
+    "slug": "apple",
+    "category": "food-drink",
+    "gif": "assets/gifs/apple.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Eat",
+    "slug": "eat",
+    "category": "food-drink",
+    "gif": "assets/gifs/eat.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Candy",
+    "slug": "candy",
+    "category": "food-drink",
+    "gif": "assets/gifs/candy.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Music",
+    "slug": "music",
+    "category": "general",
+    "gif": "assets/gifs/music.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Listen",
+    "slug": "listen",
+    "category": "general",
+    "gif": "assets/gifs/listen.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Computer",
+    "slug": "computer",
+    "category": "general",
+    "gif": "assets/gifs/computer.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Type",
+    "slug": "type",
+    "category": "actions",
+    "gif": "assets/gifs/type.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Look at the time",
+    "slug": "look-at-the-time",
+    "category": "general",
+    "gif": "assets/gifs/look-at-the-time.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Tie shoes",
+    "slug": "tie-shoes",
+    "category": "general",
+    "gif": "assets/gifs/tie-shoes.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Drink",
+    "slug": "drink",
+    "category": "food-drink",
+    "gif": "assets/gifs/drink.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Coffee",
+    "slug": "coffee",
+    "category": "food-drink",
+    "gif": "assets/gifs/coffee.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Soda",
+    "slug": "soda",
+    "category": "food-drink",
+    "gif": "assets/gifs/soda.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Water",
+    "slug": "water",
+    "category": "food-drink",
+    "gif": "assets/gifs/water.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Tea",
+    "slug": "tea",
+    "category": "food-drink",
+    "gif": "assets/gifs/tea.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Milk",
+    "slug": "milk",
+    "category": "food-drink",
+    "gif": "assets/gifs/milk.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Orange juice",
+    "slug": "orange-juice",
+    "category": "food-drink",
+    "gif": "assets/gifs/orange-juice.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Hot chocolate",
+    "slug": "hot-chocolate",
+    "category": "food-drink",
+    "gif": "assets/gifs/hot-chocolate.gif",
+    "hasGif": true
+  },
+  {
+    "word": "See",
+    "slug": "see",
+    "category": "general",
+    "gif": "assets/gifs/see.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Live / to reside",
+    "slug": "live-to-reside",
+    "category": "general",
+    "gif": "assets/gifs/live-to-reside.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Close by/in proximity",
+    "slug": "close-byin-proximity",
+    "category": "general",
+    "gif": "assets/gifs/close-byin-proximity.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Over there / in that direction",
+    "slug": "over-there-in-that-direction",
+    "category": "general",
+    "gif": "assets/gifs/over-there-in-that-direction.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Here / in this area",
+    "slug": "here-in-this-area",
+    "category": "general",
+    "gif": "assets/gifs/here-in-this-area.gif",
+    "hasGif": true
+  },
+  {
+    "word": "San Francisco",
+    "slug": "san-francisco",
+    "category": "places",
+    "gif": "assets/gifs/san-francisco.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Oakland",
+    "slug": "oakland",
+    "category": "places",
+    "gif": "assets/gifs/oakland.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Berkeley",
+    "slug": "berkeley",
+    "category": "places",
+    "gif": "assets/gifs/berkeley.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fremont",
+    "slug": "fremont",
+    "category": "places",
+    "gif": "assets/gifs/fremont.gif",
+    "hasGif": true
+  },
+  {
+    "word": "City",
+    "slug": "city",
+    "category": "places",
+    "gif": "assets/gifs/city.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Area/region",
+    "slug": "arearegion",
+    "category": "general",
+    "gif": "assets/gifs/arearegion.gif",
+    "hasGif": true
+  },
+  {
+    "word": "House",
+    "slug": "house",
+    "category": "places",
+    "gif": "assets/gifs/house.gif",
+    "hasGif": true
+  },
+  {
+    "word": "H-I-L-L-S",
+    "slug": "h-i-l-l-s",
+    "category": "general",
+    "gif": "assets/gifs/h-i-l-l-s.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Mountain",
+    "slug": "mountain",
+    "category": "general",
+    "gif": "assets/gifs/mountain.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Near Water",
+    "slug": "near-water",
+    "category": "general",
+    "gif": "assets/gifs/near-water.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Near Park",
+    "slug": "near-park",
+    "category": "general",
+    "gif": "assets/gifs/near-park.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Shopping Mall",
+    "slug": "shopping-mall",
+    "category": "general",
+    "gif": "assets/gifs/shopping-mall.gif",
+    "hasGif": true
+  },
+  {
+    "word": "North",
+    "slug": "north",
+    "category": "directions",
+    "gif": "assets/gifs/north.gif",
+    "hasGif": true
+  },
+  {
+    "word": "South",
+    "slug": "south",
+    "category": "directions",
+    "gif": "assets/gifs/south.gif",
+    "hasGif": true
+  },
+  {
+    "word": "West",
+    "slug": "west",
+    "category": "directions",
+    "gif": "assets/gifs/west.gif",
+    "hasGif": true
+  },
+  {
+    "word": "East",
+    "slug": "east",
+    "category": "directions",
+    "gif": "assets/gifs/east.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Floor",
+    "slug": "floor",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/floor.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Table",
+    "slug": "table",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/table.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Shelves",
+    "slug": "shelves",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/shelves.gif",
+    "hasGif": true
+  },
+  {
+    "word": "TV",
+    "slug": "tv",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/tv.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Trash Can",
+    "slug": "trash-can",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/trash-can.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Box",
+    "slug": "box",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/box.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Cup",
+    "slug": "cup",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/cup.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Backpack",
+    "slug": "backpack",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/backpack.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Photo",
+    "slug": "photo",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/photo.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Phone",
+    "slug": "phone",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/phone.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Candy / Sweets",
+    "slug": "candy-sweets",
+    "category": "general",
+    "gif": "assets/gifs/candy-sweets.gif",
+    "hasGif": true
+  },
+  {
+    "word": "To put something on something",
+    "slug": "to-put-something-on-something",
+    "category": "general",
+    "gif": "assets/gifs/to-put-something-on-something.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Apartment",
+    "slug": "apartment",
+    "category": "places",
+    "gif": "assets/gifs/apartment.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Dorm",
+    "slug": "dorm",
+    "category": "places",
+    "gif": "assets/gifs/dorm.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Large",
+    "slug": "large",
+    "category": "sizes",
+    "gif": "assets/gifs/large.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Medium Large",
+    "slug": "medium-large",
+    "category": "general",
+    "gif": "assets/gifs/medium-large.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Small Medium",
+    "slug": "small-medium",
+    "category": "general",
+    "gif": "assets/gifs/small-medium.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Small",
+    "slug": "small",
+    "category": "sizes",
+    "gif": "assets/gifs/small.gif",
+    "hasGif": true
+  },
+  {
+    "word": "New",
+    "slug": "new",
+    "category": "sizes",
+    "gif": "assets/gifs/new.gif",
+    "hasGif": true
+  },
+  {
+    "word": "New So-So",
+    "slug": "new-so-so",
+    "category": "general",
+    "gif": "assets/gifs/new-so-so.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Old So-So",
+    "slug": "old-so-so",
+    "category": "general",
+    "gif": "assets/gifs/old-so-so.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Old",
+    "slug": "old",
+    "category": "sizes",
+    "gif": "assets/gifs/old.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Color",
+    "slug": "color",
+    "category": "colors",
+    "gif": "assets/gifs/color.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Classroom",
+    "slug": "classroom",
+    "category": "places",
+    "gif": "assets/gifs/classroom.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Room",
+    "slug": "room",
+    "category": "places",
+    "gif": "assets/gifs/room.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Bathroom",
+    "slug": "bathroom",
+    "category": "places",
+    "gif": "assets/gifs/bathroom.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Front",
+    "slug": "front",
+    "category": "directions",
+    "gif": "assets/gifs/front.gif",
+    "hasGif": true
+  },
+  {
+    "word": "fs OFFICE",
+    "slug": "fs-office",
+    "category": "general",
+    "gif": "assets/gifs/fs-office.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Library",
+    "slug": "library",
+    "category": "places",
+    "gif": "assets/gifs/library.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Store",
+    "slug": "store",
+    "category": "places",
+    "gif": "assets/gifs/store.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Food Room / Food Court",
+    "slug": "food-room-food-court",
+    "category": "general",
+    "gif": "assets/gifs/food-room-food-court.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Soda Machine",
+    "slug": "soda-machine",
+    "category": "general",
+    "gif": "assets/gifs/soda-machine.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Food Machine",
+    "slug": "food-machine",
+    "category": "general",
+    "gif": "assets/gifs/food-machine.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Candy Machine",
+    "slug": "candy-machine",
+    "category": "general",
+    "gif": "assets/gifs/candy-machine.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Sweets Machine",
+    "slug": "sweets-machine",
+    "category": "general",
+    "gif": "assets/gifs/sweets-machine.gif",
+    "hasGif": true
+  },
+  {
+    "word": "fs ATM",
+    "slug": "fs-atm",
+    "category": "general",
+    "gif": "assets/gifs/fs-atm.gif",
+    "hasGif": true
+  },
+  {
+    "word": "fs LAB",
+    "slug": "fs-lab",
+    "category": "general",
+    "gif": "assets/gifs/fs-lab.gif",
+    "hasGif": true
+  },
+  {
+    "word": "fs LOBBY",
+    "slug": "fs-lobby",
+    "category": "general",
+    "gif": "assets/gifs/fs-lobby.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Place",
+    "slug": "place",
+    "category": "general",
+    "gif": "assets/gifs/place.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Enter",
+    "slug": "enter",
+    "category": "general",
+    "gif": "assets/gifs/enter.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Exit / Go Out",
+    "slug": "exit-go-out",
+    "category": "general",
+    "gif": "assets/gifs/exit-go-out.gif",
+    "hasGif": true
+  },
+  {
+    "word": "On the right side",
+    "slug": "on-the-right-side",
+    "category": "directions",
+    "gif": "assets/gifs/on-the-right-side.gif",
+    "hasGif": true
+  },
+  {
+    "word": "On the left side",
+    "slug": "on-the-left-side",
+    "category": "directions",
+    "gif": "assets/gifs/on-the-left-side.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Over there near",
+    "slug": "over-there-near",
+    "category": "general",
+    "gif": "assets/gifs/over-there-near.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Hallway",
+    "slug": "hallway",
+    "category": "places",
+    "gif": "assets/gifs/hallway.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Upstairs",
+    "slug": "upstairs",
+    "category": "directions",
+    "gif": "assets/gifs/upstairs.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Downstairs",
+    "slug": "downstairs",
+    "category": "directions",
+    "gif": "assets/gifs/downstairs.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Elevator",
+    "slug": "elevator",
+    "category": "places",
+    "gif": "assets/gifs/elevator.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Thank you",
+    "slug": "thank-you",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/thank-you.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Please",
+    "slug": "please",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/please.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Cooking",
+    "slug": "cooking",
+    "category": "food-drink",
+    "gif": "assets/gifs/cooking.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Your",
+    "slug": "your",
+    "category": "general",
+    "gif": "assets/gifs/your.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Bye",
+    "slug": "bye",
+    "category": "greetings-basics",
+    "gif": "assets/gifs/bye.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Male",
+    "slug": "male",
+    "category": "family",
+    "gif": "assets/gifs/male.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Female",
+    "slug": "female",
+    "category": "family",
+    "gif": "assets/gifs/female.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Mom",
+    "slug": "mom",
+    "category": "family",
+    "gif": "assets/gifs/mom.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Dad",
+    "slug": "dad",
+    "category": "family",
+    "gif": "assets/gifs/dad.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Grandma",
+    "slug": "grandma",
+    "category": "family",
+    "gif": "assets/gifs/grandma.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Middle",
+    "slug": "middle",
+    "category": "general",
+    "gif": "assets/gifs/middle.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Medium",
+    "slug": "medium",
+    "category": "sizes",
+    "gif": "assets/gifs/medium.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Cabinet",
+    "slug": "cabinet",
+    "category": "furniture-objects",
+    "gif": "assets/gifs/cabinet.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Prep",
+    "slug": "prep",
+    "category": "general",
+    "gif": "assets/gifs/prep.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Relieve",
+    "slug": "relieve",
+    "category": "general",
+    "gif": "assets/gifs/relieve.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Boots",
+    "slug": "boots",
+    "category": "clothing",
+    "gif": "assets/gifs/boots.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Left",
+    "slug": "left",
+    "category": "directions",
+    "gif": "assets/gifs/left.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Lunch",
+    "slug": "lunch",
+    "category": "food-drink",
+    "gif": "assets/gifs/lunch.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Later",
+    "slug": "later",
+    "category": "general",
+    "gif": "assets/gifs/later.gif",
+    "hasGif": true
+  },
+  {
+    "word": "License",
+    "slug": "license",
+    "category": "general",
+    "gif": "assets/gifs/license.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Expired",
+    "slug": "expired",
+    "category": "general",
+    "gif": "assets/gifs/expired.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Retired",
+    "slug": "retired",
+    "category": "general",
+    "gif": "assets/gifs/retired.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Lincoln",
+    "slug": "lincoln",
+    "category": "general",
+    "gif": "assets/gifs/lincoln.gif",
+    "hasGif": true
+  },
+  {
+    "word": "I second",
+    "slug": "i-second",
+    "category": "general",
+    "gif": "assets/gifs/i-second.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Live alone",
+    "slug": "live-alone",
+    "category": "general",
+    "gif": "assets/gifs/live-alone.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Live with",
+    "slug": "live-with",
+    "category": "general",
+    "gif": "assets/gifs/live-with.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Mother",
+    "slug": "mother",
+    "category": "family",
+    "gif": "assets/gifs/mother.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Father",
+    "slug": "father",
+    "category": "family",
+    "gif": "assets/gifs/father.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Daughter",
+    "slug": "daughter",
+    "category": "family",
+    "gif": "assets/gifs/daughter.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Son",
+    "slug": "son",
+    "category": "family",
+    "gif": "assets/gifs/son.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Husband",
+    "slug": "husband",
+    "category": "family",
+    "gif": "assets/gifs/husband.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Wife",
+    "slug": "wife",
+    "category": "family",
+    "gif": "assets/gifs/wife.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Parents",
+    "slug": "parents",
+    "category": "family",
+    "gif": "assets/gifs/parents.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Children",
+    "slug": "children",
+    "category": "family",
+    "gif": "assets/gifs/children.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Family",
+    "slug": "family",
+    "category": "family",
+    "gif": "assets/gifs/family.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Boy friend",
+    "slug": "boy-friend",
+    "category": "family",
+    "gif": "assets/gifs/boy-friend.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Girl friend",
+    "slug": "girl-friend",
+    "category": "family",
+    "gif": "assets/gifs/girl-friend.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Roommate",
+    "slug": "roommate",
+    "category": "family",
+    "gif": "assets/gifs/roommate.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Cat",
+    "slug": "cat",
+    "category": "animals",
+    "gif": "assets/gifs/cat.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Dog",
+    "slug": "dog",
+    "category": "animals",
+    "gif": "assets/gifs/dog.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Bird",
+    "slug": "bird",
+    "category": "animals",
+    "gif": "assets/gifs/bird.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fish",
+    "slug": "fish",
+    "category": "animals",
+    "gif": "assets/gifs/fish.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Turtle",
+    "slug": "turtle",
+    "category": "animals",
+    "gif": "assets/gifs/turtle.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Rat",
+    "slug": "rat",
+    "category": "animals",
+    "gif": "assets/gifs/rat.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Rabbit",
+    "slug": "rabbit",
+    "category": "animals",
+    "gif": "assets/gifs/rabbit.gif",
+    "hasGif": true
+  },
+  {
+    "word": "People",
+    "slug": "people",
+    "category": "general",
+    "gif": "assets/gifs/people.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Pet",
+    "slug": "pet",
+    "category": "animals",
+    "gif": "assets/gifs/pet.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Have",
+    "slug": "have",
+    "category": "general",
+    "gif": "assets/gifs/have.gif",
+    "hasGif": true
+  },
+  {
+    "word": "None",
+    "slug": "none",
+    "category": "general",
+    "gif": "assets/gifs/none.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Need",
+    "slug": "need",
+    "category": "general",
+    "gif": "assets/gifs/need.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Money",
+    "slug": "money",
+    "category": "general",
+    "gif": "assets/gifs/money.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Practice",
+    "slug": "practice",
+    "category": "general",
+    "gif": "assets/gifs/practice.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Buy",
+    "slug": "buy",
+    "category": "general",
+    "gif": "assets/gifs/buy.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Wash hands",
+    "slug": "wash-hands",
+    "category": "general",
+    "gif": "assets/gifs/wash-hands.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Patience",
+    "slug": "patience",
+    "category": "feelings",
+    "gif": "assets/gifs/patience.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Hurry",
+    "slug": "hurry",
+    "category": "feelings",
+    "gif": "assets/gifs/hurry.gif",
+    "hasGif": true
+  },
+  {
+    "word": "To be caught in an embarrassing situation; to feel like an idiot",
+    "slug": "to-be-caught-in-an-embarrassing-situation-to-feel-like-an-idiot",
+    "category": "general",
+    "gif": "assets/gifs/to-be-caught-in-an-embarrassing-situation-to-feel-like-an-idiot.gif",
+    "hasGif": true
+  },
+  {
+    "word": "\"gotta go!\" (to the bathroom)",
+    "slug": "gotta-go-to-the-bathroom",
+    "category": "general",
+    "gif": "assets/gifs/gotta-go-to-the-bathroom.gif",
+    "hasGif": true
+  },
+  {
+    "word": "1",
+    "slug": "1",
+    "category": "numbers",
+    "gif": "assets/gifs/1.gif",
+    "hasGif": true
+  },
+  {
+    "word": "2",
+    "slug": "2",
+    "category": "numbers",
+    "gif": "assets/gifs/2.gif",
+    "hasGif": true
+  },
+  {
+    "word": "3",
+    "slug": "3",
+    "category": "numbers",
+    "gif": "assets/gifs/3.gif",
+    "hasGif": true
+  },
+  {
+    "word": "4",
+    "slug": "4",
+    "category": "numbers",
+    "gif": "assets/gifs/4.gif",
+    "hasGif": true
+  },
+  {
+    "word": "5",
+    "slug": "5",
+    "category": "numbers",
+    "gif": "assets/gifs/5.gif",
+    "hasGif": true
+  },
+  {
+    "word": "6",
+    "slug": "6",
+    "category": "numbers",
+    "gif": "assets/gifs/6.gif",
+    "hasGif": true
+  },
+  {
+    "word": "7",
+    "slug": "7",
+    "category": "numbers",
+    "gif": "assets/gifs/7.gif",
+    "hasGif": true
+  },
+  {
+    "word": "8",
+    "slug": "8",
+    "category": "numbers",
+    "gif": "assets/gifs/8.gif",
+    "hasGif": true
+  },
+  {
+    "word": "9",
+    "slug": "9",
+    "category": "numbers",
+    "gif": "assets/gifs/9.gif",
+    "hasGif": true
+  },
+  {
+    "word": "10",
+    "slug": "10",
+    "category": "numbers",
+    "gif": "assets/gifs/10.gif",
+    "hasGif": true
+  },
+  {
+    "word": "11",
+    "slug": "11",
+    "category": "numbers",
+    "gif": "assets/gifs/11.gif",
+    "hasGif": true
+  },
+  {
+    "word": "12",
+    "slug": "12",
+    "category": "numbers",
+    "gif": "assets/gifs/12.gif",
+    "hasGif": true
+  },
+  {
+    "word": "13",
+    "slug": "13",
+    "category": "numbers",
+    "gif": "assets/gifs/13.gif",
+    "hasGif": true
+  },
+  {
+    "word": "14",
+    "slug": "14",
+    "category": "numbers",
+    "gif": "assets/gifs/14.gif",
+    "hasGif": true
+  },
+  {
+    "word": "15",
+    "slug": "15",
+    "category": "numbers",
+    "gif": "assets/gifs/15.gif",
+    "hasGif": true
+  },
+  {
+    "word": "20",
+    "slug": "20",
+    "category": "numbers",
+    "gif": "assets/gifs/20.gif",
+    "hasGif": true
+  },
+  {
+    "word": "21",
+    "slug": "21",
+    "category": "numbers",
+    "gif": "assets/gifs/21.gif",
+    "hasGif": true
+  },
+  {
+    "word": "22",
+    "slug": "22",
+    "category": "numbers",
+    "gif": "assets/gifs/22.gif",
+    "hasGif": true
+  },
+  {
+    "word": "23",
+    "slug": "23",
+    "category": "numbers",
+    "gif": "assets/gifs/23.gif",
+    "hasGif": true
+  },
+  {
+    "word": "24",
+    "slug": "24",
+    "category": "numbers",
+    "gif": "assets/gifs/24.gif",
+    "hasGif": true
+  },
+  {
+    "word": "25",
+    "slug": "25",
+    "category": "numbers",
+    "gif": "assets/gifs/25.gif",
+    "hasGif": true
+  },
+  {
+    "word": "26",
+    "slug": "26",
+    "category": "numbers",
+    "gif": "assets/gifs/26.gif",
+    "hasGif": true
+  },
+  {
+    "word": "27",
+    "slug": "27",
+    "category": "numbers",
+    "gif": "assets/gifs/27.gif",
+    "hasGif": true
+  },
+  {
+    "word": "28",
+    "slug": "28",
+    "category": "numbers",
+    "gif": "assets/gifs/28.gif",
+    "hasGif": true
+  },
+  {
+    "word": "29",
+    "slug": "29",
+    "category": "numbers",
+    "gif": "assets/gifs/29.gif",
+    "hasGif": true
+  },
+  {
+    "word": "30",
+    "slug": "30",
+    "category": "numbers",
+    "gif": "assets/gifs/30.gif",
+    "hasGif": true
+  },
+  {
+    "word": "31",
+    "slug": "31",
+    "category": "numbers",
+    "gif": "assets/gifs/31.gif",
+    "hasGif": true
+  },
+  {
+    "word": "32",
+    "slug": "32",
+    "category": "numbers",
+    "gif": "assets/gifs/32.gif",
+    "hasGif": true
+  },
+  {
+    "word": "33",
+    "slug": "33",
+    "category": "numbers",
+    "gif": "assets/gifs/33.gif",
+    "hasGif": true
+  },
+  {
+    "word": "34",
+    "slug": "34",
+    "category": "numbers",
+    "gif": "assets/gifs/34.gif",
+    "hasGif": true
+  },
+  {
+    "word": "35",
+    "slug": "35",
+    "category": "numbers",
+    "gif": "assets/gifs/35.gif",
+    "hasGif": true
+  },
+  {
+    "word": "36",
+    "slug": "36",
+    "category": "numbers",
+    "gif": "assets/gifs/36.gif",
+    "hasGif": true
+  },
+  {
+    "word": "37",
+    "slug": "37",
+    "category": "numbers",
+    "gif": "assets/gifs/37.gif",
+    "hasGif": true
+  },
+  {
+    "word": "38",
+    "slug": "38",
+    "category": "numbers",
+    "gif": "assets/gifs/38.gif",
+    "hasGif": true
+  },
+  {
+    "word": "39",
+    "slug": "39",
+    "category": "numbers",
+    "gif": "assets/gifs/39.gif",
+    "hasGif": true
+  },
+  {
+    "word": "40",
+    "slug": "40",
+    "category": "numbers",
+    "gif": "assets/gifs/40.gif",
+    "hasGif": true
+  },
+  {
+    "word": "41",
+    "slug": "41",
+    "category": "numbers",
+    "gif": "assets/gifs/41.gif",
+    "hasGif": true
+  },
+  {
+    "word": "42",
+    "slug": "42",
+    "category": "numbers",
+    "gif": "assets/gifs/42.gif",
+    "hasGif": true
+  },
+  {
+    "word": "43",
+    "slug": "43",
+    "category": "numbers",
+    "gif": "assets/gifs/43.gif",
+    "hasGif": true
+  },
+  {
+    "word": "44",
+    "slug": "44",
+    "category": "numbers",
+    "gif": "assets/gifs/44.gif",
+    "hasGif": true
+  },
+  {
+    "word": "45",
+    "slug": "45",
+    "category": "numbers",
+    "gif": "assets/gifs/45.gif",
+    "hasGif": true
+  },
+  {
+    "word": "46",
+    "slug": "46",
+    "category": "numbers",
+    "gif": "assets/gifs/46.gif",
+    "hasGif": true
+  },
+  {
+    "word": "47",
+    "slug": "47",
+    "category": "numbers",
+    "gif": "assets/gifs/47.gif",
+    "hasGif": true
+  },
+  {
+    "word": "48",
+    "slug": "48",
+    "category": "numbers",
+    "gif": "assets/gifs/48.gif",
+    "hasGif": true
+  },
+  {
+    "word": "49",
+    "slug": "49",
+    "category": "numbers",
+    "gif": "assets/gifs/49.gif",
+    "hasGif": true
+  },
+  {
+    "word": "50",
+    "slug": "50",
+    "category": "numbers",
+    "gif": "assets/gifs/50.gif",
+    "hasGif": true
+  },
+  {
+    "word": "51",
+    "slug": "51",
+    "category": "numbers",
+    "gif": "assets/gifs/51.gif",
+    "hasGif": true
+  },
+  {
+    "word": "52",
+    "slug": "52",
+    "category": "numbers",
+    "gif": "assets/gifs/52.gif",
+    "hasGif": true
+  },
+  {
+    "word": "53",
+    "slug": "53",
+    "category": "numbers",
+    "gif": "assets/gifs/53.gif",
+    "hasGif": true
+  },
+  {
+    "word": "54",
+    "slug": "54",
+    "category": "numbers",
+    "gif": "assets/gifs/54.gif",
+    "hasGif": true
+  },
+  {
+    "word": "55",
+    "slug": "55",
+    "category": "numbers",
+    "gif": "assets/gifs/55.gif",
+    "hasGif": true
+  },
+  {
+    "word": "56",
+    "slug": "56",
+    "category": "numbers",
+    "gif": "assets/gifs/56.gif",
+    "hasGif": true
+  },
+  {
+    "word": "57",
+    "slug": "57",
+    "category": "numbers",
+    "gif": "assets/gifs/57.gif",
+    "hasGif": true
+  },
+  {
+    "word": "58",
+    "slug": "58",
+    "category": "numbers",
+    "gif": "assets/gifs/58.gif",
+    "hasGif": true
+  },
+  {
+    "word": "59",
+    "slug": "59",
+    "category": "numbers",
+    "gif": "assets/gifs/59.gif",
+    "hasGif": true
+  },
+  {
+    "word": "60",
+    "slug": "60",
+    "category": "numbers",
+    "gif": "assets/gifs/60.gif",
+    "hasGif": true
+  },
+  {
+    "word": "61",
+    "slug": "61",
+    "category": "numbers",
+    "gif": "assets/gifs/61.gif",
+    "hasGif": true
+  },
+  {
+    "word": "62",
+    "slug": "62",
+    "category": "numbers",
+    "gif": "assets/gifs/62.gif",
+    "hasGif": true
+  },
+  {
+    "word": "63",
+    "slug": "63",
+    "category": "numbers",
+    "gif": "assets/gifs/63.gif",
+    "hasGif": true
+  },
+  {
+    "word": "64",
+    "slug": "64",
+    "category": "numbers",
+    "gif": "assets/gifs/64.gif",
+    "hasGif": true
+  },
+  {
+    "word": "65",
+    "slug": "65",
+    "category": "numbers",
+    "gif": "assets/gifs/65.gif",
+    "hasGif": true
+  },
+  {
+    "word": "66",
+    "slug": "66",
+    "category": "numbers",
+    "gif": "assets/gifs/66.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell A",
+    "slug": "fingerspell-a",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-a.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell B",
+    "slug": "fingerspell-b",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-b.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell C",
+    "slug": "fingerspell-c",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-c.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell D",
+    "slug": "fingerspell-d",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-d.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell E",
+    "slug": "fingerspell-e",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-e.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell F",
+    "slug": "fingerspell-f",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-f.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell G",
+    "slug": "fingerspell-g",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-g.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell H",
+    "slug": "fingerspell-h",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-h.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell I",
+    "slug": "fingerspell-i",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-i.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell J",
+    "slug": "fingerspell-j",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-j.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell K",
+    "slug": "fingerspell-k",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-k.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell L",
+    "slug": "fingerspell-l",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-l.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell M",
+    "slug": "fingerspell-m",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-m.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell N",
+    "slug": "fingerspell-n",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-n.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell O",
+    "slug": "fingerspell-o",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-o.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell P",
+    "slug": "fingerspell-p",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-p.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell Q",
+    "slug": "fingerspell-q",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-q.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell R",
+    "slug": "fingerspell-r",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-r.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell S",
+    "slug": "fingerspell-s",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-s.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell T",
+    "slug": "fingerspell-t",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-t.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell U",
+    "slug": "fingerspell-u",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-u.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell V",
+    "slug": "fingerspell-v",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-v.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell W",
+    "slug": "fingerspell-w",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-w.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell X",
+    "slug": "fingerspell-x",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-x.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell Y",
+    "slug": "fingerspell-y",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-y.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Fingerspell Z",
+    "slug": "fingerspell-z",
+    "category": "fingerspelling",
+    "gif": "assets/gifs/fingerspell-z.gif",
+    "hasGif": true
+  }
+]

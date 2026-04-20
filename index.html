@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="SignSpark - Learn ASL with interactive flashcards">
+    <title>SignSpark — Learn ASL</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤟</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <button id="btn-home" class="icon-btn" title="Home" aria-label="Go to home screen">🏠</button>
+            </div>
+            <h1 class="app-title">🤟 SignSpark</h1>
+            <div class="header-right">
+                <button id="btn-dark-mode" class="icon-btn" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container" id="progress-container" style="display:none;">
+            <div class="progress-bar" id="progress-bar"></div>
+            <span class="progress-text" id="progress-text">0 / 0</span>
+        </div>
+
+        <!-- Home Screen -->
+        <main id="screen-home" class="screen active">
+            <div class="home-hero">
+                <div class="hero-emoji">🤟</div>
+                <h2>Spark your signing skills</h2>
+                <p class="subtitle">Learn ASL with interactive flashcards</p>
+            </div>
+
+            <div class="mode-cards">
+                <button class="mode-card" id="btn-mode-sign" aria-label="Start How Do You Sign This mode">
+                    <span class="mode-icon">📝</span>
+                    <span class="mode-title">How Do You Sign This?</span>
+                    <span class="mode-desc">See a word, try to sign it, then check</span>
+                </button>
+                <button class="mode-card" id="btn-mode-word" aria-label="Start What Is This Sign mode">
+                    <span class="mode-icon">🎬</span>
+                    <span class="mode-title">What Is This Sign?</span>
+                    <span class="mode-desc">Watch a sign, guess the word</span>
+                </button>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="category-section">
+                <h3>Filter by Category</h3>
+                <div class="category-chips" id="category-chips"></div>
+            </div>
+
+            <!-- Session Stats -->
+            <div class="stats-section" id="stats-section" style="display:none;">
+                <h3>Session Stats</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-studied">0</span>
+                        <span class="stat-label">Studied</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-correct">0</span>
+                        <span class="stat-label">Correct</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-incorrect">0</span>
+                        <span class="stat-label">Incorrect</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-accuracy">0%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Words -->
+            <div class="manage-section">
+                <h3>Manage Words</h3>
+                <div class="manage-actions">
+                    <button class="btn btn-outline" id="btn-add-word">+ Add Word</button>
+                    <button class="btn btn-outline" id="btn-import">📥 Import</button>
+                    <button class="btn btn-outline" id="btn-export">📤 Export</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Mode 1: Word → Sign -->
+        <main id="screen-word-to-sign" class="screen">
+            <div class="quiz-container">
+                <div class="card-wrapper">
+                    <div class="flashcard" id="card-wts">
+                        <div class="card-front">
+                            <span class="card-category" id="wts-category"></span>
+                            <h2 class="card-word" id="wts-word"></h2>
+                            <p class="card-hint">Try to sign this word!</p>
+                            <button class="btn btn-primary btn-reveal" id="wts-reveal">Reveal Sign 👀</button>
+                        </div>
+                        <div class="card-back">
+                            <span class="card-category" id="wts-category-back"></span>
+                            <div class="gif-container">
+                                <img id="wts-gif" class="sign-gif" alt="ASL sign" loading="lazy">
+                            </div>
+                            <h3 class="card-word-small" id="wts-word-back"></h3>
+                            <div class="rate-buttons">
+                                <button class="btn btn-success" id="wts-got-it">Got it ✓</button>
+                                <button class="btn btn-danger" id="wts-need-practice">Need practice ✗</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Mode 2: Sign → Word -->
+        <main id="screen-sign-to-word" class="screen">
+            <div class="quiz-container">
+                <div class="card-wrapper">
+                    <div class="sign-display">
+                        <div class="gif-container">
+                            <img id="stw-gif" class="sign-gif" alt="ASL sign" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="answer-mode-toggle">
+                        <button class="btn btn-sm active" id="btn-mc-mode">Multiple Choice</button>
+                        <button class="btn btn-sm" id="btn-text-mode">Type Answer</button>
+                    </div>
+                    <!-- Multiple Choice -->
+                    <div class="answer-section" id="mc-section">
+                        <div class="mc-options" id="mc-options"></div>
+                    </div>
+                    <!-- Free Text -->
+                    <div class="answer-section" id="text-section" style="display:none;">
+                        <div class="text-input-group">
+                            <input type="text" id="text-answer" class="text-input" placeholder="Type your answer..." autocomplete="off">
+                            <button class="btn btn-primary" id="btn-check-answer">Check</button>
+                        </div>
+                    </div>
+                    <!-- Feedback -->
+                    <div class="feedback" id="stw-feedback" style="display:none;">
+                        <div class="feedback-content" id="stw-feedback-content"></div>
+                        <button class="btn btn-primary" id="stw-next">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Add Word Modal -->
+        <div class="modal-overlay" id="modal-add-word" style="display:none;">
+            <div class="modal">
+                <h3>Add New Word</h3>
+                <input type="text" id="input-new-word" class="text-input" placeholder="Enter word or phrase...">
+                <select id="select-category" class="text-input">
+                    <option value="general">General</option>
+                    <option value="colors">Colors</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="family">Family</option>
+                    <option value="animals">Animals</option>
+                    <option value="food-drink">Food & Drink</option>
+                    <option value="places">Places</option>
+                    <option value="actions">Actions</option>
+                    <option value="furniture-objects">Furniture & Objects</option>
+                    <option value="directions">Directions</option>
+                    <option value="greetings-basics">Greetings & Basics</option>
+                    <option value="education">Education</option>
+                    <option value="feelings">Feelings</option>
+                    <option value="numbers">Numbers</option>
+                    <option value="fingerspelling">Fingerspelling</option>
+                </select>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="btn-cancel-add">Cancel</button>
+                    <button class="btn btn-primary" id="btn-confirm-add">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Import Modal -->
+        <div class="modal-overlay" id="modal-import" style="display:none;">
+            <div class="modal">
+                <h3>Import Words</h3>
+                <p class="modal-hint">Paste words, one per line:</p>
+                <textarea id="import-textarea" class="text-input" rows="8" placeholder="Hello&#10;Thank you&#10;Please"></textarea>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="btn-cancel-import">Cancel</button>
+                    <button class="btn btn-primary" id="btn-confirm-import">Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/flashcards.js"></script>
+    <script src="js/quiz-sign.js"></script>
+    <script src="js/quiz-word.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
