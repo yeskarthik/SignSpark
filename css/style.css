@@ -478,37 +478,24 @@ body {
     object-fit: contain;
 }
 
-.text-guide {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
+.text-guide-inline {
+    width: 100%;
+    max-width: 280px;
+    margin: 8px auto 0;
+    padding: 10px 16px;
+    background: var(--bg-secondary, #1a1a2e);
     border-radius: var(--radius-sm);
-    padding: 20px;
+    border: 1px solid var(--border-color, #6c5ce7);
     text-align: center;
 }
 
-.text-guide-emoji {
-    font-size: 48px;
-    margin-bottom: 12px;
-}
-
-.text-guide-desc {
-    color: #e0e0e0;
-    font-size: 15px;
+.text-guide-inline .text-guide-desc {
+    color: var(--text-secondary, #ccc);
+    font-size: 13px;
     line-height: 1.5;
     white-space: pre-line;
-    margin: 0 0 12px 0;
-}
-
-.text-guide-label {
-    color: #6c5ce7;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin: 0;
+    font-family: monospace;
 }
 
 /* --- Sign Display (Mode 2) --- */

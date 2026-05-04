@@ -1,3 +1,5 @@
+Numbers 1 - 100
+Fingerspelling A - Z
 What
 Who
 Where
@@ -115,27 +117,6 @@ Fine
 Ok
 So-so
 Tired
-
-Claudia  to  Everyone 6:52 PM
-Im going to need help lol
-
-Nicholas Bolger  to  Everyone 6:53 PM
-I know from ur face
-I mean I can read ur face
-FORGET #FS ALL
-Claudia, go right
-
-Nicholas Bolger  to  Everyone 6:54 PM
-Teachers LOVE to sign/yell and say ALL!!!
-
-Nicholas Bolger  to  Everyone 6:54 PM
-ALL YOU WORK NOW!!
-
-You  to  Everyone 6:54 PM
-students forget all
-You deleted a message
-
-Nicholas Bolger  to  Everyone 6:55 PM
 Remember most
 Remember some
 Remember a little bit
@@ -377,3 +358,102 @@ Hurry
 Please
 To be caught in an embarrassing situation; to feel like an idiot
 "gotta go!" (to the bathroom)
+1 minute
+2 minutes
+3 minutes
+4 minutes
+5 minutes
+6 minutes
+7 minutes
+8 minutes
+9 minutes
+10 minutes
+11 minutes
+15 minutes
+20 minutes
+1 hour
+2 hours
+3 hours
+4 hours
+5 hours
+6 hours
+7 hours
+8 hours
+9 hours
+10 hours
+12 hours
+24 hours
+How many minutes?
+How many hours?
+Drive
+Bike
+Motorcycle
+Bus
+Train
+Walk
+To ride in
+To go someplace
+To come here
+Class
+Home
+Work
+Always / constantly
+Never
+Sometimes
+Male / boy
+Female / girl
+Mom
+Dad
+Parents / mom & dad
+Daughter
+Son
+Children
+Twins
+Sister
+Brother
+Siblings / brother & sister
+Family
+To become pregnant / conceive a child
+To be pregnant
+To give birth to a child
+To fall in love
+To go out on a date
+To exclusively date one person
+Boyfriend
+Girlfriend
+Propose marriage
+Engaged
+To wed or marry
+Husband
+Wife
+In the future
+To desire something / want
+To not desire something / don’t want
+Perhaps / a possibility of
+NO 
+NOT 
+NONE
+Have
+Like
+Want
+Need
+Older / First born among siblings
+Youngest / Last / The last born among siblings
+The two of you
+The two of us
+To be close / To have a strong bond
+Interesting / Fascinating
+So-so
+Brother
+Sister
+6th
+7th
+8th
+None
+LESS THAN ONE YEAR OLD
+1-5 YEARS OLD
+6-9 YEARS OLD
+10 YEARS OLD
+11-15 YEARS OLD
+16-19 YEARS OLD
+20 YEARS OLD AND OLDER

@@ -69,13 +69,15 @@ const QuizWord = (() => {
         const gifPath = FlashcardEngine.getGifPath(currentCard);
         elements.gif.src = '';
         elements.gif.alt = 'ASL sign — guess the word';
-        elements.textGuide.style.display = 'none';
         elements.gif.style.display = '';
         elements.gif.onerror = () => {
             elements.gif.onerror = null;
-            showTextGuide(currentCard);
+            elements.gif.style.display = 'none';
         };
         elements.gif.src = gifPath;
+
+        // Always show text guide below image
+        showTextGuide(currentCard);
 
         // Reset UI
         elements.feedback.style.display = 'none';
@@ -197,14 +199,13 @@ const QuizWord = (() => {
     }
 
     function showTextGuide(card) {
-        elements.gif.style.display = 'none';
-        elements.textGuide.style.display = '';
         const guide = FlashcardEngine.getTextGuide(card);
         const desc = elements.textGuide.querySelector('.text-guide-desc');
         if (guide) {
             desc.textContent = guide;
+            elements.textGuide.style.display = '';
         } else {
-            desc.textContent = `Practice signing:\n${card.word}\n(Reference your class notes)`;
+            elements.textGuide.style.display = 'none';
         }
     }
 
