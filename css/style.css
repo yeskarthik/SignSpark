@@ -469,12 +469,46 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .sign-gif {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.text-guide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    text-align: center;
+}
+
+.text-guide-emoji {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.text-guide-desc {
+    color: #e0e0e0;
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: pre-line;
+    margin: 0 0 12px 0;
+}
+
+.text-guide-label {
+    color: #6c5ce7;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* --- Sign Display (Mode 2) --- */

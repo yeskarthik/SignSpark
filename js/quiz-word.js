@@ -12,6 +12,7 @@ const QuizWord = (() => {
 
     function init() {
         elements.gif = document.getElementById('stw-gif');
+        elements.textGuide = document.getElementById('stw-text-guide');
         elements.mcSection = document.getElementById('mc-section');
         elements.textSection = document.getElementById('text-section');
         elements.mcOptions = document.getElementById('mc-options');
@@ -68,9 +69,11 @@ const QuizWord = (() => {
         const gifPath = FlashcardEngine.getGifPath(currentCard);
         elements.gif.src = '';
         elements.gif.alt = 'ASL sign — guess the word';
+        elements.textGuide.style.display = 'none';
+        elements.gif.style.display = '';
         elements.gif.onerror = () => {
             elements.gif.onerror = null;
-            elements.gif.src = FlashcardEngine.getSvgFallback(currentCard);
+            showTextGuide(currentCard);
         };
         elements.gif.src = gifPath;
 
@@ -190,6 +193,18 @@ const QuizWord = (() => {
             elements.feedbackContent.textContent = '✓ Correct!';
         } else {
             elements.feedbackContent.textContent = `✗ The answer is: ${currentCard.word}`;
+        }
+    }
+
+    function showTextGuide(card) {
+        elements.gif.style.display = 'none';
+        elements.textGuide.style.display = '';
+        const guide = FlashcardEngine.getTextGuide(card);
+        const desc = elements.textGuide.querySelector('.text-guide-desc');
+        if (guide) {
+            desc.textContent = guide;
+        } else {
+            desc.textContent = `Practice signing:\n${card.word}\n(Reference your class notes)`;
         }
     }
 

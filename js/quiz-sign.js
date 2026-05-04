@@ -16,6 +16,7 @@ const QuizSign = (() => {
         elements.category = document.getElementById('wts-category');
         elements.categoryBack = document.getElementById('wts-category-back');
         elements.gif = document.getElementById('wts-gif');
+        elements.textGuide = document.getElementById('wts-text-guide');
         elements.revealBtn = document.getElementById('wts-reveal');
         elements.gotItBtn = document.getElementById('wts-got-it');
         elements.needPracticeBtn = document.getElementById('wts-need-practice');
@@ -66,11 +67,13 @@ const QuizSign = (() => {
         const gifPath = FlashcardEngine.getGifPath(currentCard);
         elements.gif.src = '';
         elements.gif.alt = `ASL sign for "${currentCard.word}"`;
+        elements.textGuide.style.display = 'none';
+        elements.gif.style.display = '';
 
-        // Try GIF, fallback to SVG
+        // Show text guide when image fails to load
         elements.gif.onerror = () => {
             elements.gif.onerror = null;
-            elements.gif.src = FlashcardEngine.getSvgFallback(currentCard);
+            showTextGuide(currentCard);
         };
         elements.gif.src = gifPath;
 
@@ -83,6 +86,18 @@ const QuizSign = (() => {
     function reveal() {
         isRevealed = true;
         elements.card.classList.add('flipped');
+    }
+
+    function showTextGuide(card) {
+        elements.gif.style.display = 'none';
+        elements.textGuide.style.display = '';
+        const guide = FlashcardEngine.getTextGuide(card);
+        const desc = elements.textGuide.querySelector('.text-guide-desc');
+        if (guide) {
+            desc.textContent = guide;
+        } else {
+            desc.textContent = `Practice signing:\n${card.word}\n(Reference your class notes)`;
+        }
     }
 
     function rate(gotIt) {

@@ -1,5 +1,20 @@
 [
   {
+    "word": "Numbers 1 - 100",
+    "slug": "numbers-1-100",
+    "category": "general",
+    "gif": "assets/gifs/numbers-1-100.gif",
+    "hasGif": true,
+    "textGuide": "Both hands touch\nfingertips, then twist\napart and together"
+  },
+  {
+    "word": "Fingerspelling A - Z",
+    "slug": "fingerspelling-a-z",
+    "category": "general",
+    "gif": "assets/gifs/fingerspelling-a-z.gif",
+    "hasGif": true
+  },
+  {
     "word": "What",
     "slug": "what",
     "category": "general",
@@ -32,7 +47,8 @@
     "slug": "copy-me",
     "category": "general",
     "gif": "assets/gifs/copy-me.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand pulls toward\ncurled hand\n(copying/mimicking)"
   },
   {
     "word": "Letter",
@@ -46,14 +62,16 @@
     "slug": "same",
     "category": "general",
     "gif": "assets/gifs/same.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Y-hand moves\nback and forth\nbetween two points"
   },
   {
     "word": "Different",
     "slug": "different",
     "category": "general",
     "gif": "assets/gifs/different.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Crossed index fingers\npull apart\n(separating)"
   },
   {
     "word": "Shape",
@@ -67,49 +85,56 @@
     "slug": "number",
     "category": "general",
     "gif": "assets/gifs/number.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Both hands touch\nfingertips, then twist\napart and together"
   },
   {
     "word": "Again",
     "slug": "again",
     "category": "general",
     "gif": "assets/gifs/again.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Bent hand arcs\ninto flat palm\n(repeat motion)"
   },
   {
     "word": "Hello",
     "slug": "hello",
     "category": "greetings-basics",
     "gif": "assets/gifs/hello.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Wave open hand\nside to side\nnear forehead"
   },
   {
     "word": "Nice",
     "slug": "nice",
     "category": "general",
     "gif": "assets/gifs/nice.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Nice sign + meet\n(flat hands come\ntogether pointing up)"
   },
   {
     "word": "Meet",
     "slug": "meet",
     "category": "general",
     "gif": "assets/gifs/meet.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Nice sign + meet\n(flat hands come\ntogether pointing up)"
   },
   {
     "word": "Remember",
     "slug": "remember",
     "category": "general",
     "gif": "assets/gifs/remember.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Thumb from forehead\ntouches other thumb\n(know + continue)"
   },
   {
     "word": "Forget",
     "slug": "forget",
     "category": "general",
     "gif": "assets/gifs/forget.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand wipes\nacross forehead\nand drops away"
   },
   {
     "word": "Fingerspell",
@@ -130,14 +155,16 @@
     "slug": "nice-to-meet-you",
     "category": "greetings-basics",
     "gif": "assets/gifs/nice-to-meet-you.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Nice sign + meet\n(flat hands come\ntogether pointing up)"
   },
   {
     "word": "Man",
     "slug": "man",
     "category": "family",
     "gif": "assets/gifs/man.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "WH-face + how-many\n+ minute sign\n(Eyebrows down)"
   },
   {
     "word": "Woman",
@@ -151,7 +178,8 @@
     "slug": "person-individual",
     "category": "general",
     "gif": "assets/gifs/person-individual.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "P-hands slide\ndown sides of body\n(outlining person)"
   },
   {
     "word": "Shirt",
@@ -200,7 +228,8 @@
     "slug": "hat",
     "category": "clothing",
     "gif": "assets/gifs/hat.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Point index finger\nin direction\n(indicating place)"
   },
   {
     "word": "Glasses",
@@ -221,21 +250,24 @@
     "slug": "hair",
     "category": "general",
     "gif": "assets/gifs/hair.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Pinch strand of\nhair with thumb\nand index finger"
   },
   {
     "word": "Mustache",
     "slug": "mustache",
     "category": "general",
     "gif": "assets/gifs/mustache.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Pinch fingers trace\nline above upper lip\n(drawing mustache)"
   },
   {
     "word": "Beard",
     "slug": "beard",
     "category": "general",
     "gif": "assets/gifs/beard.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand grasps chin\nand pulls down\n(showing beard)"
   },
   {
     "word": "Black",
@@ -270,7 +302,8 @@
     "slug": "red",
     "category": "colors",
     "gif": "assets/gifs/red.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand flips\nover (time passed)\nPalm up → down"
   },
   {
     "word": "Orange",
@@ -347,147 +380,168 @@
     "slug": "turn-around",
     "category": "general",
     "gif": "assets/gifs/turn-around.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index finger draws\ncircle in air\n(rotation gesture)"
   },
   {
     "word": "Door",
     "slug": "door",
     "category": "furniture-objects",
     "gif": "assets/gifs/door.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "B-hands pivot open\nlike a door swinging\n(hinge motion)"
   },
   {
     "word": "Open Door",
     "slug": "open-door",
     "category": "general",
     "gif": "assets/gifs/open-door.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "B-hands pivot open\nlike a door swinging\n(hinge motion)"
   },
   {
     "word": "Close Door",
     "slug": "close-door",
     "category": "general",
     "gif": "assets/gifs/close-door.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "B-hands pivot shut\nlike door closing\n(hinge motion)"
   },
   {
     "word": "Window",
     "slug": "window",
     "category": "furniture-objects",
     "gif": "assets/gifs/window.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "B-hand slides up\nfrom other B-hand\n(opening window)"
   },
   {
     "word": "Window Open",
     "slug": "window-open",
     "category": "general",
     "gif": "assets/gifs/window-open.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "B-hand slides up\nfrom other B-hand\n(opening window)"
   },
   {
     "word": "Window Close",
     "slug": "window-close",
     "category": "general",
     "gif": "assets/gifs/window-close.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "B-hand slides down\nonto other B-hand\n(closing window)"
   },
   {
     "word": "Light",
     "slug": "light",
     "category": "furniture-objects",
     "gif": "assets/gifs/light.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat-O opens to\n5-hand under chin\n(light appears)"
   },
   {
     "word": "Light On",
     "slug": "light-on",
     "category": "general",
     "gif": "assets/gifs/light-on.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat-O opens to\n5-hand under chin\n(light appears)"
   },
   {
     "word": "Light Off",
     "slug": "light-off",
     "category": "general",
     "gif": "assets/gifs/light-off.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand closes to\nflat-O under chin\n(light disappears)"
   },
   {
     "word": "Book",
     "slug": "book",
     "category": "furniture-objects",
     "gif": "assets/gifs/book.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hands open\nlike a book\n(palms up, apart)"
   },
   {
     "word": "Book Open",
     "slug": "book-open",
     "category": "general",
     "gif": "assets/gifs/book-open.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hands open\nlike a book\n(palms up, apart)"
   },
   {
     "word": "Book Close",
     "slug": "book-close",
     "category": "general",
     "gif": "assets/gifs/book-close.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hands close\nlike shutting book\n(palms together)"
   },
   {
     "word": "Book Read",
     "slug": "book-read",
     "category": "general",
     "gif": "assets/gifs/book-read.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "V-hand scans across\nflat palm (eyes\nreading a page)"
   },
   {
     "word": "Paper",
     "slug": "paper",
     "category": "furniture-objects",
     "gif": "assets/gifs/paper.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hands fold\nover each other\n(folding paper)"
   },
   {
     "word": "Paper Fold",
     "slug": "paper-fold",
     "category": "general",
     "gif": "assets/gifs/paper-fold.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hands fold\nover each other\n(folding paper)"
   },
   {
     "word": "Paper Crumble",
     "slug": "paper-crumble",
     "category": "general",
     "gif": "assets/gifs/paper-crumble.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Both hands crush\nimaginary paper\ninto a ball"
   },
   {
     "word": "Paper Throw",
     "slug": "paper-throw",
     "category": "general",
     "gif": "assets/gifs/paper-throw.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "S-hand opens and\nmoves forward\n(tossing away)"
   },
   {
     "word": "Paper Look At",
     "slug": "paper-look-at",
     "category": "general",
     "gif": "assets/gifs/paper-look-at.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "V-hand (eyes) looks\ndown at flat palm\n(examining paper)"
   },
   {
     "word": "Chair",
     "slug": "chair",
     "category": "furniture-objects",
     "gif": "assets/gifs/chair.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Pinch strand of\nhair with thumb\nand index finger"
   },
   {
     "word": "Chair There You Sit",
     "slug": "chair-there-you-sit",
     "category": "general",
     "gif": "assets/gifs/chair-there-you-sit.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "C-hand sits on\nflat hand + point\n(sit there)"
   },
   {
     "word": "Draw",
@@ -508,21 +562,24 @@
     "slug": "jot-down",
     "category": "general",
     "gif": "assets/gifs/jot-down.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Modified write sign\nquick small motion\n(quick note)"
   },
   {
     "word": "Right/Correct",
     "slug": "rightcorrect",
     "category": "general",
     "gif": "assets/gifs/rightcorrect.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Both 1-hands stack\nhorizontally\n(right/correct)"
   },
   {
     "word": "Wrong",
     "slug": "wrong",
     "category": "general",
     "gif": "assets/gifs/wrong.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Y-hand hits chin\nfingers toward you\n(wrong/mistake)"
   },
   {
     "word": "ASL",
@@ -548,7 +605,7 @@
   {
     "word": "Deaf",
     "slug": "deaf",
-    "category": "general",
+    "category": "education",
     "gif": "assets/gifs/deaf.gif",
     "hasGif": true
   },
@@ -571,19 +628,20 @@
     "slug": "oh-i-see",
     "category": "general",
     "gif": "assets/gifs/oh-i-see.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index taps near\neye then nods\n(understanding)"
   },
   {
     "word": "Gallaudet",
     "slug": "gallaudet",
-    "category": "general",
+    "category": "education",
     "gif": "assets/gifs/gallaudet.gif",
     "hasGif": true
   },
   {
     "word": "Hearing",
     "slug": "hearing",
-    "category": "general",
+    "category": "education",
     "gif": "assets/gifs/hearing.gif",
     "hasGif": true
   },
@@ -592,7 +650,8 @@
     "slug": "here",
     "category": "general",
     "gif": "assets/gifs/here.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index fingers curl\ntoward body\n(beckoning motion)"
   },
   {
     "word": "Language",
@@ -613,7 +672,8 @@
     "slug": "no",
     "category": "greetings-basics",
     "gif": "assets/gifs/no.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index + middle finger\nsnap to thumb\n(quick close)"
   },
   {
     "word": "Spanish",
@@ -655,112 +715,128 @@
     "slug": "16",
     "category": "numbers",
     "gif": "assets/gifs/16.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "A-hand → 6-hand\nTwist wrist\nPalm ends facing out"
   },
   {
     "word": "17",
     "slug": "17",
     "category": "numbers",
     "gif": "assets/gifs/17.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "A-hand → 7-hand\nTwist wrist\nPalm ends facing out"
   },
   {
     "word": "18",
     "slug": "18",
     "category": "numbers",
     "gif": "assets/gifs/18.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "A-hand → 8-hand\nTwist wrist\nPalm ends facing out"
   },
   {
     "word": "19",
     "slug": "19",
     "category": "numbers",
     "gif": "assets/gifs/19.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "A-hand → 9-hand\nTwist wrist\nPalm ends facing out"
   },
   {
     "word": "Start",
     "slug": "start",
     "category": "general",
     "gif": "assets/gifs/start.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "1-hand twists in\nother V-hand\n(turning key)"
   },
   {
     "word": "Head",
     "slug": "head",
     "category": "general",
     "gif": "assets/gifs/head.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Bent hand touches\ntemple then chin\n(top of head)"
   },
   {
     "word": "Tail",
     "slug": "tail",
     "category": "general",
     "gif": "assets/gifs/tail.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "1-hand behind back\nwags like a tail\n(animal tail)"
   },
   {
     "word": "Win",
     "slug": "win",
     "category": "general",
     "gif": "assets/gifs/win.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "S-hand grabs from\nother fist upward\n(seizing victory)"
   },
   {
     "word": "Lose",
     "slug": "lose",
     "category": "general",
     "gif": "assets/gifs/lose.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "V-hand drops onto\nflat palm\n(dropping/loss)"
   },
   {
     "word": "Equal",
     "slug": "equal",
     "category": "general",
     "gif": "assets/gifs/equal.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Bent hands tap\ntogether twice\n(parallel/equal)"
   },
   {
     "word": "Which",
     "slug": "which",
     "category": "general",
     "gif": "assets/gifs/which.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "A-hands alternate\nup and down\n(weighing options)"
   },
   {
     "word": "Remember most",
     "slug": "remember-most",
     "category": "general",
     "gif": "assets/gifs/remember-most.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Remember sign with\nstrong emphasis\n(firm hold)"
   },
   {
     "word": "Remember some",
     "slug": "remember-some",
     "category": "general",
     "gif": "assets/gifs/remember-some.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Remember sign\nnormal motion\n(moderate hold)"
   },
   {
     "word": "Remember a little bit",
     "slug": "remember-a-little-bit",
     "category": "general",
     "gif": "assets/gifs/remember-a-little-bit.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Remember sign\nsmall/weak motion\n(slight hold)"
   },
   {
     "word": "Forget all",
     "slug": "forget-all",
     "category": "general",
     "gif": "assets/gifs/forget-all.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Wipe forehead sign\nwith emphasis\n(complete wipe)"
   },
   {
     "word": "Still speak",
     "slug": "still-speak",
     "category": "general",
     "gif": "assets/gifs/still-speak.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Keep-sign + speak\n(ongoing motion\n+ index from chin)"
   },
   {
     "word": "Sign",
@@ -774,7 +850,8 @@
     "slug": "speak",
     "category": "actions",
     "gif": "assets/gifs/speak.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Keep-sign + speak\n(ongoing motion\n+ index from chin)"
   },
   {
     "word": "Fine",
@@ -788,14 +865,16 @@
     "slug": "so-so",
     "category": "feelings",
     "gif": "assets/gifs/so-so.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Open hand tilts\nside to side\n(palm down, wobble)"
   },
   {
     "word": "Tired",
     "slug": "tired",
     "category": "feelings",
     "gif": "assets/gifs/tired.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "R-hands pull\nback to chest\n(step back gesture)"
   },
   {
     "word": "Sick",
@@ -809,56 +888,64 @@
     "slug": "grow-up",
     "category": "general",
     "gif": "assets/gifs/grow-up.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand rises\nfrom waist up\n(growing taller)"
   },
   {
     "word": "Both",
     "slug": "both",
     "category": "general",
     "gif": "assets/gifs/both.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "V-hand draws down\ninto flat hand\n(two together)"
   },
   {
     "word": "High school",
     "slug": "high-school",
     "category": "education",
     "gif": "assets/gifs/high-school.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "H-S fingerspell\nor school sign +\nhigh (elevated)"
   },
   {
     "word": "Year",
     "slug": "year",
-    "category": "general",
+    "category": "time",
     "gif": "assets/gifs/year.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Baby sign (rock arms)\n+ under + 1 + year\n(compound phrase)"
   },
   {
     "word": "Easy",
     "slug": "easy",
     "category": "general",
     "gif": "assets/gifs/easy.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Curved hand brushes\nup other fingers\nrepeatedly (smooth)"
   },
   {
     "word": "Sort of easy",
     "slug": "sort-of-easy",
     "category": "general",
     "gif": "assets/gifs/sort-of-easy.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Easy sign with\nso-so face/motion\n(somewhat easy)"
   },
   {
     "word": "Sort of hard",
     "slug": "sort-of-hard",
     "category": "general",
     "gif": "assets/gifs/sort-of-hard.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Hard sign with\nso-so face/motion\n(somewhat hard)"
   },
   {
     "word": "Hard",
     "slug": "hard",
     "category": "general",
     "gif": "assets/gifs/hard.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Bent-V hands clash\nknuckles together\n(difficulty)"
   },
   {
     "word": "How are you?",
@@ -870,9 +957,10 @@
   {
     "word": "Now",
     "slug": "now",
-    "category": "general",
+    "category": "time",
     "gif": "assets/gifs/now.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index + middle finger\nsnap to thumb\n(quick close)"
   },
   {
     "word": "Walk",
@@ -884,21 +972,21 @@
   {
     "word": "Take a picture",
     "slug": "take-a-picture",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/take-a-picture.gif",
     "hasGif": true
   },
   {
     "word": "Watch",
     "slug": "watch",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/watch.gif",
     "hasGif": true
   },
   {
     "word": "Play with a dog",
     "slug": "play-with-a-dog",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/play-with-a-dog.gif",
     "hasGif": true
   },
@@ -907,12 +995,13 @@
     "slug": "sewing",
     "category": "actions",
     "gif": "assets/gifs/sewing.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "S-hand grabs from\nother fist upward\n(seizing victory)"
   },
   {
     "word": "Chat on the phone",
     "slug": "chat-on-the-phone",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/chat-on-the-phone.gif",
     "hasGif": true
   },
@@ -963,7 +1052,8 @@
     "slug": "cook",
     "category": "food-drink",
     "gif": "assets/gifs/cook.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand flips\non other palm\n(like flipping food)"
   },
   {
     "word": "Play",
@@ -1012,14 +1102,16 @@
     "slug": "like",
     "category": "feelings",
     "gif": "assets/gifs/like.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Middle finger + thumb\npull from chest\n(drawing out liking)"
   },
   {
     "word": "Detest",
     "slug": "detest",
     "category": "feelings",
     "gif": "assets/gifs/detest.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flick middle finger\noff thumb, away\nfrom body (strong)"
   },
   {
     "word": "Favorite",
@@ -1031,21 +1123,22 @@
   {
     "word": "Pay attention",
     "slug": "pay-attention",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/pay-attention.gif",
     "hasGif": true
   },
   {
     "word": "Not pay attention",
     "slug": "not-pay-attention",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/not-pay-attention.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index + middle finger\nsnap to thumb\n(quick close)"
   },
   {
     "word": "Chat",
     "slug": "chat",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/chat.gif",
     "hasGif": true
   },
@@ -1061,7 +1154,8 @@
     "slug": "read",
     "category": "actions",
     "gif": "assets/gifs/read.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "V-hand scans across\nflat palm (eyes\nreading a page)"
   },
   {
     "word": "Apple",
@@ -1082,7 +1176,8 @@
     "slug": "candy",
     "category": "food-drink",
     "gif": "assets/gifs/candy.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index twists on\ncheek + machine\n(candy + box motion)"
   },
   {
     "word": "Music",
@@ -1115,14 +1210,14 @@
   {
     "word": "Look at the time",
     "slug": "look-at-the-time",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/look-at-the-time.gif",
     "hasGif": true
   },
   {
     "word": "Tie shoes",
     "slug": "tie-shoes",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/tie-shoes.gif",
     "hasGif": true
   },
@@ -1145,14 +1240,16 @@
     "slug": "soda",
     "category": "food-drink",
     "gif": "assets/gifs/soda.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Middle finger flicks\noff palm + machine\n(soda + box motion)"
   },
   {
     "word": "Water",
     "slug": "water",
     "category": "food-drink",
     "gif": "assets/gifs/water.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "W-hand taps chin\n+ point nearby\n(water + near)"
   },
   {
     "word": "Tea",
@@ -1185,37 +1282,42 @@
   {
     "word": "See",
     "slug": "see",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/see.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index taps near\neye then nods\n(understanding)"
   },
   {
     "word": "Live / to reside",
     "slug": "live-to-reside",
     "category": "general",
     "gif": "assets/gifs/live-to-reside.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hands move up\nchest (living in\na place)"
   },
   {
     "word": "Close by/in proximity",
     "slug": "close-byin-proximity",
-    "category": "general",
+    "category": "directions",
     "gif": "assets/gifs/close-byin-proximity.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Both flat hands\nnear each other\n(closeness)"
   },
   {
     "word": "Over there / in that direction",
     "slug": "over-there-in-that-direction",
-    "category": "general",
+    "category": "directions",
     "gif": "assets/gifs/over-there-in-that-direction.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Point index finger\nin direction\n(indicating place)"
   },
   {
     "word": "Here / in this area",
     "slug": "here-in-this-area",
-    "category": "general",
+    "category": "directions",
     "gif": "assets/gifs/here-in-this-area.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Both flat hands\ncircle in front\n(this area/here)"
   },
   {
     "word": "San Francisco",
@@ -1255,9 +1357,10 @@
   {
     "word": "Area/region",
     "slug": "arearegion",
-    "category": "general",
+    "category": "places",
     "gif": "assets/gifs/arearegion.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand circles\nin front of body\npalm down"
   },
   {
     "word": "House",
@@ -1271,12 +1374,13 @@
     "slug": "h-i-l-l-s",
     "category": "general",
     "gif": "assets/gifs/h-i-l-l-s.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Fingerspell\nH-I-L-L-S\n(Proper noun)"
   },
   {
     "word": "Mountain",
     "slug": "mountain",
-    "category": "general",
+    "category": "places",
     "gif": "assets/gifs/mountain.gif",
     "hasGif": true
   },
@@ -1285,19 +1389,21 @@
     "slug": "near-water",
     "category": "general",
     "gif": "assets/gifs/near-water.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "W-hand taps chin\n+ point nearby\n(water + near)"
   },
   {
     "word": "Near Park",
     "slug": "near-park",
     "category": "general",
     "gif": "assets/gifs/near-park.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Bent-V hand on\nback of other hand\n+ point nearby"
   },
   {
     "word": "Shopping Mall",
     "slug": "shopping-mall",
-    "category": "general",
+    "category": "places",
     "gif": "assets/gifs/shopping-mall.gif",
     "hasGif": true
   },
@@ -1306,7 +1412,8 @@
     "slug": "north",
     "category": "directions",
     "gif": "assets/gifs/north.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index + middle finger\nsnap to thumb\n(quick close)"
   },
   {
     "word": "South",
@@ -1348,7 +1455,8 @@
     "slug": "shelves",
     "category": "furniture-objects",
     "gif": "assets/gifs/shelves.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Both flat hands\nheld parallel,\nstack vertically"
   },
   {
     "word": "TV",
@@ -1362,7 +1470,8 @@
     "slug": "trash-can",
     "category": "furniture-objects",
     "gif": "assets/gifs/trash-can.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "T-hand tosses\nforward (throw away)\ninto container"
   },
   {
     "word": "Box",
@@ -1411,7 +1520,8 @@
     "slug": "to-put-something-on-something",
     "category": "general",
     "gif": "assets/gifs/to-put-something-on-something.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand places\ndown on surface\n(placement gesture)"
   },
   {
     "word": "Apartment",
@@ -1465,23 +1575,26 @@
   {
     "word": "New So-So",
     "slug": "new-so-so",
-    "category": "general",
+    "category": "sizes",
     "gif": "assets/gifs/new-so-so.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Open hand tilts\nside to side\n(palm down, wobble)"
   },
   {
     "word": "Old So-So",
     "slug": "old-so-so",
-    "category": "general",
+    "category": "sizes",
     "gif": "assets/gifs/old-so-so.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Open hand tilts\nside to side\n(palm down, wobble)"
   },
   {
     "word": "Old",
     "slug": "old",
     "category": "sizes",
     "gif": "assets/gifs/old.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index rises from\nfist upward\n(first/oldest)"
   },
   {
     "word": "Color",
@@ -1502,14 +1615,16 @@
     "slug": "room",
     "category": "places",
     "gif": "assets/gifs/room.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Shake T-hand\nside to side\n(toilet/urgent)"
   },
   {
     "word": "Bathroom",
     "slug": "bathroom",
     "category": "places",
     "gif": "assets/gifs/bathroom.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Shake T-hand\nside to side\n(toilet/urgent)"
   },
   {
     "word": "Front",
@@ -1523,7 +1638,8 @@
     "slug": "fs-office",
     "category": "general",
     "gif": "assets/gifs/fs-office.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Fingerspell\nO-F-F-I-C-E\n(Office)"
   },
   {
     "word": "Library",
@@ -1542,107 +1658,121 @@
   {
     "word": "Food Room / Food Court",
     "slug": "food-room-food-court",
-    "category": "general",
+    "category": "food-drink",
     "gif": "assets/gifs/food-room-food-court.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat-O at mouth\n+ room sign\n(eat + room)"
   },
   {
     "word": "Soda Machine",
     "slug": "soda-machine",
-    "category": "general",
+    "category": "furniture-objects",
     "gif": "assets/gifs/soda-machine.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Middle finger flicks\noff palm + machine\n(soda + box motion)"
   },
   {
     "word": "Food Machine",
     "slug": "food-machine",
-    "category": "general",
+    "category": "furniture-objects",
     "gif": "assets/gifs/food-machine.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat-O at mouth\n+ machine sign\n(food + box motion)"
   },
   {
     "word": "Candy Machine",
     "slug": "candy-machine",
-    "category": "general",
+    "category": "furniture-objects",
     "gif": "assets/gifs/candy-machine.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index twists on\ncheek + machine\n(candy + box motion)"
   },
   {
     "word": "Sweets Machine",
     "slug": "sweets-machine",
-    "category": "general",
+    "category": "furniture-objects",
     "gif": "assets/gifs/sweets-machine.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Candy sign +\nmachine sign\n(Two-part compound)"
   },
   {
     "word": "fs ATM",
     "slug": "fs-atm",
     "category": "general",
     "gif": "assets/gifs/fs-atm.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Fingerspell\nA-T-M\n(ATM machine)"
   },
   {
     "word": "fs LAB",
     "slug": "fs-lab",
     "category": "general",
     "gif": "assets/gifs/fs-lab.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Fingerspell\nL-A-B\n(Laboratory)"
   },
   {
     "word": "fs LOBBY",
     "slug": "fs-lobby",
     "category": "general",
     "gif": "assets/gifs/fs-lobby.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Fingerspell\nL-O-B-B-Y\n(Lobby)"
   },
   {
     "word": "Place",
     "slug": "place",
-    "category": "general",
+    "category": "places",
     "gif": "assets/gifs/place.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index finger points\nforward and moves\naway from body"
   },
   {
     "word": "Enter",
     "slug": "enter",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/enter.gif",
     "hasGif": true
   },
   {
     "word": "Exit / Go Out",
     "slug": "exit-go-out",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/exit-go-out.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand pulls out\nof C-hand\n(leaving/exiting)"
   },
   {
     "word": "On the right side",
     "slug": "on-the-right-side",
     "category": "directions",
     "gif": "assets/gifs/on-the-right-side.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "R-hand moves right\n(indicating right)\nPalm facing out"
   },
   {
     "word": "On the left side",
     "slug": "on-the-left-side",
     "category": "directions",
     "gif": "assets/gifs/on-the-left-side.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand moves left\n(indicating left)\nPalm facing out"
   },
   {
     "word": "Over there near",
     "slug": "over-there-near",
-    "category": "general",
+    "category": "directions",
     "gif": "assets/gifs/over-there-near.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Point + near sign\n(over there + flat\nhands close)"
   },
   {
     "word": "Hallway",
     "slug": "hallway",
     "category": "places",
     "gif": "assets/gifs/hallway.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Both flat hands\nparallel, move\nforward (corridor)"
   },
   {
     "word": "Upstairs",
@@ -1684,12 +1814,13 @@
     "slug": "cooking",
     "category": "food-drink",
     "gif": "assets/gifs/cooking.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand flips\non other palm\n(like flipping food)"
   },
   {
     "word": "Your",
     "slug": "your",
-    "category": "general",
+    "category": "greetings-basics",
     "gif": "assets/gifs/your.gif",
     "hasGif": true
   },
@@ -1698,35 +1829,40 @@
     "slug": "bye",
     "category": "greetings-basics",
     "gif": "assets/gifs/bye.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Wave hand open\nand close fingers\nrepeatedly"
   },
   {
     "word": "Male",
     "slug": "male",
     "category": "family",
     "gif": "assets/gifs/male.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand at\nforehead (boy area)\nGrasp brim of cap"
   },
   {
     "word": "Female",
     "slug": "female",
     "category": "family",
     "gif": "assets/gifs/female.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand at\nforehead (boy area)\nGrasp brim of cap"
   },
   {
     "word": "Mom",
     "slug": "mom",
     "category": "family",
     "gif": "assets/gifs/mom.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Mom sign + dad sign\n(chin then forehead)\n(compound)"
   },
   {
     "word": "Dad",
     "slug": "dad",
     "category": "family",
     "gif": "assets/gifs/dad.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Mom sign + dad sign\n(chin then forehead)\n(compound)"
   },
   {
     "word": "Grandma",
@@ -1761,14 +1897,16 @@
     "slug": "prep",
     "category": "general",
     "gif": "assets/gifs/prep.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "P-hands move\nforward together\n(prepare/ready)"
   },
   {
     "word": "Relieve",
     "slug": "relieve",
     "category": "general",
     "gif": "assets/gifs/relieve.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Both flat hands\nbrush down chest\n(relief gesture)"
   },
   {
     "word": "Boots",
@@ -1782,7 +1920,8 @@
     "slug": "left",
     "category": "directions",
     "gif": "assets/gifs/left.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand moves left\n(indicating left)\nPalm facing out"
   },
   {
     "word": "Lunch",
@@ -1794,7 +1933,7 @@
   {
     "word": "Later",
     "slug": "later",
-    "category": "general",
+    "category": "time",
     "gif": "assets/gifs/later.gif",
     "hasGif": true
   },
@@ -1803,49 +1942,56 @@
     "slug": "license",
     "category": "general",
     "gif": "assets/gifs/license.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hands stamp\nonto palm\n(like stamping card)"
   },
   {
     "word": "Expired",
     "slug": "expired",
     "category": "general",
     "gif": "assets/gifs/expired.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand flips\nover (time passed)\nPalm up → down"
   },
   {
     "word": "Retired",
     "slug": "retired",
     "category": "general",
     "gif": "assets/gifs/retired.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "R-hands pull\nback to chest\n(step back gesture)"
   },
   {
     "word": "Lincoln",
     "slug": "lincoln",
     "category": "general",
     "gif": "assets/gifs/lincoln.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand on\nforehead/temple\n(Proper noun)"
   },
   {
     "word": "I second",
     "slug": "i-second",
     "category": "general",
     "gif": "assets/gifs/i-second.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "I-hand (pinky up)\n+ 2nd sign\n(I agree)"
   },
   {
     "word": "Live alone",
     "slug": "live-alone",
     "category": "general",
     "gif": "assets/gifs/live-alone.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hands up chest\n+ alone sign\n(1-hand circles)"
   },
   {
     "word": "Live with",
     "slug": "live-with",
     "category": "general",
     "gif": "assets/gifs/live-with.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hands up chest\n+ with sign\n(A-hands together)"
   },
   {
     "word": "Mother",
@@ -1873,7 +2019,8 @@
     "slug": "son",
     "category": "family",
     "gif": "assets/gifs/son.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "1-hands face each\nother, move together\n(exclusive pair)"
   },
   {
     "word": "Husband",
@@ -1894,7 +2041,8 @@
     "slug": "parents",
     "category": "family",
     "gif": "assets/gifs/parents.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Mom sign + dad sign\n(chin then forehead)\n(compound)"
   },
   {
     "word": "Children",
@@ -1983,7 +2131,7 @@
   {
     "word": "People",
     "slug": "people",
-    "category": "general",
+    "category": "greetings-basics",
     "gif": "assets/gifs/people.gif",
     "hasGif": true
   },
@@ -1997,512 +2145,1457 @@
   {
     "word": "Have",
     "slug": "have",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/have.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Bent hands touch\nchest (possessing)\nPalm faces in"
   },
   {
     "word": "None",
     "slug": "none",
     "category": "general",
     "gif": "assets/gifs/none.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "O-hands move\noutward (nothing)\nHead shakes"
   },
   {
     "word": "Need",
     "slug": "need",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/need.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "X-hand bends down\nrepeatedly\n(nodding X motion)"
   },
   {
     "word": "Money",
     "slug": "money",
     "category": "general",
     "gif": "assets/gifs/money.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flat hand taps\nother palm twice\n(bills in hand)"
   },
   {
     "word": "Practice",
     "slug": "practice",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/practice.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "A-hand rubs back\nand forth on\nindex finger"
   },
   {
     "word": "Buy",
     "slug": "buy",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/buy.gif",
     "hasGif": true
   },
   {
     "word": "Wash hands",
     "slug": "wash-hands",
-    "category": "general",
+    "category": "actions",
     "gif": "assets/gifs/wash-hands.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Rub hands together\nas if washing\n(scrubbing motion)"
   },
   {
     "word": "Patience",
     "slug": "patience",
     "category": "feelings",
     "gif": "assets/gifs/patience.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "A-hand thumb drags\ndown chin slowly\n(patient/wait)"
   },
   {
     "word": "Hurry",
     "slug": "hurry",
     "category": "feelings",
     "gif": "assets/gifs/hurry.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "H-hands shake up\nand down rapidly\n(urgency)"
   },
   {
     "word": "To be caught in an embarrassing situation; to feel like an idiot",
     "slug": "to-be-caught-in-an-embarrassing-situation-to-feel-like-an-idiot",
     "category": "general",
     "gif": "assets/gifs/to-be-caught-in-an-embarrassing-situation-to-feel-like-an-idiot.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index finger\ncircles near ear\n(embarrassment)"
   },
   {
     "word": "\"gotta go!\" (to the bathroom)",
     "slug": "gotta-go-to-the-bathroom",
     "category": "general",
     "gif": "assets/gifs/gotta-go-to-the-bathroom.gif",
+    "hasGif": true,
+    "textGuide": "Shake T-hand\nside to side\n(toilet/urgent)"
+  },
+  {
+    "word": "1 minute",
+    "slug": "1-minute",
+    "category": "time",
+    "gif": "assets/gifs/1-minute.gif",
+    "hasGif": true,
+    "textGuide": "1-hand + minute sign\nIndex moves forward\non flat palm"
+  },
+  {
+    "word": "2 minutes",
+    "slug": "2-minutes",
+    "category": "time",
+    "gif": "assets/gifs/2-minutes.gif",
+    "hasGif": true,
+    "textGuide": "2-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "3 minutes",
+    "slug": "3-minutes",
+    "category": "time",
+    "gif": "assets/gifs/3-minutes.gif",
+    "hasGif": true,
+    "textGuide": "3-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "4 minutes",
+    "slug": "4-minutes",
+    "category": "time",
+    "gif": "assets/gifs/4-minutes.gif",
+    "hasGif": true,
+    "textGuide": "4-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "5 minutes",
+    "slug": "5-minutes",
+    "category": "time",
+    "gif": "assets/gifs/5-minutes.gif",
+    "hasGif": true,
+    "textGuide": "5-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "6 minutes",
+    "slug": "6-minutes",
+    "category": "time",
+    "gif": "assets/gifs/6-minutes.gif",
+    "hasGif": true,
+    "textGuide": "6-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "7 minutes",
+    "slug": "7-minutes",
+    "category": "time",
+    "gif": "assets/gifs/7-minutes.gif",
+    "hasGif": true,
+    "textGuide": "7-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "8 minutes",
+    "slug": "8-minutes",
+    "category": "time",
+    "gif": "assets/gifs/8-minutes.gif",
+    "hasGif": true,
+    "textGuide": "8-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "9 minutes",
+    "slug": "9-minutes",
+    "category": "time",
+    "gif": "assets/gifs/9-minutes.gif",
+    "hasGif": true,
+    "textGuide": "9-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "10 minutes",
+    "slug": "10-minutes",
+    "category": "time",
+    "gif": "assets/gifs/10-minutes.gif",
+    "hasGif": true,
+    "textGuide": "10-hand + minute sign\nFingers move forward\non flat palm"
+  },
+  {
+    "word": "11 minutes",
+    "slug": "11-minutes",
+    "category": "time",
+    "gif": "assets/gifs/11-minutes.gif",
+    "hasGif": true,
+    "textGuide": "11-hand + minute sign\nFlick index finger\non flat palm"
+  },
+  {
+    "word": "15 minutes",
+    "slug": "15-minutes",
+    "category": "time",
+    "gif": "assets/gifs/15-minutes.gif",
+    "hasGif": true,
+    "textGuide": "15-hand + minute sign\n(Quarter hour)\non flat palm"
+  },
+  {
+    "word": "20 minutes",
+    "slug": "20-minutes",
+    "category": "time",
+    "gif": "assets/gifs/20-minutes.gif",
+    "hasGif": true,
+    "textGuide": "20-hand (G-pinch)\n+ minute sign\non flat palm"
+  },
+  {
+    "word": "1 hour",
+    "slug": "1-hour",
+    "category": "time",
+    "gif": "assets/gifs/1-hour.gif",
+    "hasGif": true,
+    "textGuide": "1-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "2 hours",
+    "slug": "2-hours",
+    "category": "time",
+    "gif": "assets/gifs/2-hours.gif",
+    "hasGif": true,
+    "textGuide": "2-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "3 hours",
+    "slug": "3-hours",
+    "category": "time",
+    "gif": "assets/gifs/3-hours.gif",
+    "hasGif": true,
+    "textGuide": "3-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "4 hours",
+    "slug": "4-hours",
+    "category": "time",
+    "gif": "assets/gifs/4-hours.gif",
+    "hasGif": true,
+    "textGuide": "4-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "5 hours",
+    "slug": "5-hours",
+    "category": "time",
+    "gif": "assets/gifs/5-hours.gif",
+    "hasGif": true,
+    "textGuide": "5-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "6 hours",
+    "slug": "6-hours",
+    "category": "time",
+    "gif": "assets/gifs/6-hours.gif",
+    "hasGif": true,
+    "textGuide": "6-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "7 hours",
+    "slug": "7-hours",
+    "category": "time",
+    "gif": "assets/gifs/7-hours.gif",
+    "hasGif": true,
+    "textGuide": "7-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "8 hours",
+    "slug": "8-hours",
+    "category": "time",
+    "gif": "assets/gifs/8-hours.gif",
+    "hasGif": true,
+    "textGuide": "8-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "9 hours",
+    "slug": "9-hours",
+    "category": "time",
+    "gif": "assets/gifs/9-hours.gif",
+    "hasGif": true,
+    "textGuide": "9-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "10 hours",
+    "slug": "10-hours",
+    "category": "time",
+    "gif": "assets/gifs/10-hours.gif",
+    "hasGif": true,
+    "textGuide": "10-hand circles once\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "12 hours",
+    "slug": "12-hours",
+    "category": "time",
+    "gif": "assets/gifs/12-hours.gif",
+    "hasGif": true,
+    "textGuide": "1-2 hand circles\naround flat palm\n(clock motion)"
+  },
+  {
+    "word": "24 hours",
+    "slug": "24-hours",
+    "category": "time",
+    "gif": "assets/gifs/24-hours.gif",
+    "hasGif": true,
+    "textGuide": "Flat hand circles\nfully around fist\n(full day rotation)"
+  },
+  {
+    "word": "How many minutes?",
+    "slug": "how-many-minutes",
+    "category": "time",
+    "gif": "assets/gifs/how-many-minutes.gif",
+    "hasGif": true,
+    "textGuide": "WH-face + how-many\n+ minute sign\n(Eyebrows down)"
+  },
+  {
+    "word": "How many hours?",
+    "slug": "how-many-hours",
+    "category": "time",
+    "gif": "assets/gifs/how-many-hours.gif",
+    "hasGif": true,
+    "textGuide": "WH-face + how-many\n+ hour sign\n(Eyebrows down)"
+  },
+  {
+    "word": "Drive",
+    "slug": "drive",
+    "category": "transport",
+    "gif": "assets/gifs/drive.gif",
+    "hasGif": true,
+    "textGuide": "Both hands grip\nimaginary steering\nwheel and turn"
+  },
+  {
+    "word": "Bike",
+    "slug": "bike",
+    "category": "transport",
+    "gif": "assets/gifs/bike.gif",
+    "hasGif": true,
+    "textGuide": "S-hands pedal\nin circles\n(like feet on pedals)"
+  },
+  {
+    "word": "Motorcycle",
+    "slug": "motorcycle",
+    "category": "transport",
+    "gif": "assets/gifs/motorcycle.gif",
+    "hasGif": true,
+    "textGuide": "Both hands grip\nhandlebars, twist\nthrottle motion"
+  },
+  {
+    "word": "Bus",
+    "slug": "bus",
+    "category": "transport",
+    "gif": "assets/gifs/bus.gif",
+    "hasGif": true,
+    "textGuide": "Both hands pull\nimaginary cord\n(like bus bell pull)"
+  },
+  {
+    "word": "Train",
+    "slug": "train",
+    "category": "transport",
+    "gif": "assets/gifs/train.gif",
+    "hasGif": true,
+    "textGuide": "H-fingers slide\nalong back of\nother H-hand"
+  },
+  {
+    "word": "To ride in",
+    "slug": "to-ride-in",
+    "category": "transport",
+    "gif": "assets/gifs/to-ride-in.gif",
+    "hasGif": true,
+    "textGuide": "Bent fingers hook\ninto C-hand\n(seated in vehicle)"
+  },
+  {
+    "word": "To go someplace",
+    "slug": "to-go-someplace",
+    "category": "transport",
+    "gif": "assets/gifs/to-go-someplace.gif",
+    "hasGif": true,
+    "textGuide": "Index finger points\nforward and moves\naway from body"
+  },
+  {
+    "word": "To come here",
+    "slug": "to-come-here",
+    "category": "transport",
+    "gif": "assets/gifs/to-come-here.gif",
+    "hasGif": true,
+    "textGuide": "Index fingers curl\ntoward body\n(beckoning motion)"
+  },
+  {
+    "word": "Home",
+    "slug": "home",
+    "category": "general",
+    "gif": "assets/gifs/home.gif",
     "hasGif": true
+  },
+  {
+    "word": "Work",
+    "slug": "work",
+    "category": "general",
+    "gif": "assets/gifs/work.gif",
+    "hasGif": true
+  },
+  {
+    "word": "Always / constantly",
+    "slug": "always-constantly",
+    "category": "time",
+    "gif": "assets/gifs/always-constantly.gif",
+    "hasGif": true,
+    "textGuide": "Index finger circles\ncontinuously forward\n(ongoing motion)"
+  },
+  {
+    "word": "Never",
+    "slug": "never",
+    "category": "time",
+    "gif": "assets/gifs/never.gif",
+    "hasGif": true,
+    "textGuide": "Flat hand traces\nquestion mark in air\nthen drops away"
+  },
+  {
+    "word": "Sometimes",
+    "slug": "sometimes",
+    "category": "time",
+    "gif": "assets/gifs/sometimes.gif",
+    "hasGif": true,
+    "textGuide": "Index finger taps\nflat palm slowly\n2-3 times (occasional)"
+  },
+  {
+    "word": "Male / boy",
+    "slug": "male-boy",
+    "category": "family",
+    "gif": "assets/gifs/male-boy.gif",
+    "hasGif": true,
+    "textGuide": "Flat hand at\nforehead grasps\nimaginary cap brim"
+  },
+  {
+    "word": "Female / girl",
+    "slug": "female-girl",
+    "category": "family",
+    "gif": "assets/gifs/female-girl.gif",
+    "hasGif": true,
+    "textGuide": "Thumb traces\ndown jawline\n(bonnet string)"
+  },
+  {
+    "word": "Parents / mom & dad",
+    "slug": "parents-mom-dad",
+    "category": "family",
+    "gif": "assets/gifs/parents-mom-dad.gif",
+    "hasGif": true,
+    "textGuide": "Mom sign + dad sign\n(chin then forehead)\n(compound)"
+  },
+  {
+    "word": "Twins",
+    "slug": "twins",
+    "category": "family",
+    "gif": "assets/gifs/twins.gif",
+    "hasGif": true,
+    "textGuide": "T-hand touches\nchin then moves\nto other side"
+  },
+  {
+    "word": "Sister",
+    "slug": "sister",
+    "category": "family",
+    "gif": "assets/gifs/sister.gif",
+    "hasGif": true,
+    "textGuide": "A-hand from chin\ndown to other hand\n(girl + same)"
+  },
+  {
+    "word": "Brother",
+    "slug": "brother",
+    "category": "family",
+    "gif": "assets/gifs/brother.gif",
+    "hasGif": true,
+    "textGuide": "A-hand from forehead\ndown to other hand\n(boy + same)"
+  },
+  {
+    "word": "Siblings / brother & sister",
+    "slug": "siblings-brother-sister",
+    "category": "family",
+    "gif": "assets/gifs/siblings-brother-sister.gif",
+    "hasGif": true,
+    "textGuide": "Brother sign +\nsister sign\n(compound)"
+  },
+  {
+    "word": "To become pregnant / conceive a child",
+    "slug": "to-become-pregnant-conceive-a-child",
+    "category": "relationships",
+    "gif": "assets/gifs/to-become-pregnant-conceive-a-child.gif",
+    "hasGif": true,
+    "textGuide": "Fingers interlock\nat belly level\n(conception)"
+  },
+  {
+    "word": "To be pregnant",
+    "slug": "to-be-pregnant",
+    "category": "relationships",
+    "gif": "assets/gifs/to-be-pregnant.gif",
+    "hasGif": true,
+    "textGuide": "5-hand moves\noutward from belly\n(showing belly growth)"
+  },
+  {
+    "word": "To give birth to a child",
+    "slug": "to-give-birth-to-a-child",
+    "category": "relationships",
+    "gif": "assets/gifs/to-give-birth-to-a-child.gif",
+    "hasGif": true,
+    "textGuide": "Both hands move\ndown and outward\nfrom belly area"
+  },
+  {
+    "word": "To fall in love",
+    "slug": "to-fall-in-love",
+    "category": "relationships",
+    "gif": "assets/gifs/to-fall-in-love.gif",
+    "hasGif": true,
+    "textGuide": "Both hands on chest\nthen point forward\n(heart to person)"
+  },
+  {
+    "word": "To go out on a date",
+    "slug": "to-go-out-on-a-date",
+    "category": "relationships",
+    "gif": "assets/gifs/to-go-out-on-a-date.gif",
+    "hasGif": true,
+    "textGuide": "D-hands come\ntogether and move\nforward (going out)"
+  },
+  {
+    "word": "To exclusively date one person",
+    "slug": "to-exclusively-date-one-person",
+    "category": "relationships",
+    "gif": "assets/gifs/to-exclusively-date-one-person.gif",
+    "hasGif": true,
+    "textGuide": "1-hands face each\nother, move together\n(exclusive pair)"
+  },
+  {
+    "word": "Boyfriend",
+    "slug": "boyfriend",
+    "category": "relationships",
+    "gif": "assets/gifs/boyfriend.gif",
+    "hasGif": true,
+    "textGuide": "Boy sign (forehead)\n+ friend sign\n(clasp hands)"
+  },
+  {
+    "word": "Girlfriend",
+    "slug": "girlfriend",
+    "category": "relationships",
+    "gif": "assets/gifs/girlfriend.gif",
+    "hasGif": true,
+    "textGuide": "Girl sign (chin)\n+ friend sign\n(clasp hands)"
+  },
+  {
+    "word": "Propose marriage",
+    "slug": "propose-marriage",
+    "category": "relationships",
+    "gif": "assets/gifs/propose-marriage.gif",
+    "hasGif": true,
+    "textGuide": "Open hand kneels\nonto flat palm\n(kneeling gesture)"
+  },
+  {
+    "word": "Engaged",
+    "slug": "engaged",
+    "category": "relationships",
+    "gif": "assets/gifs/engaged.gif",
+    "hasGif": true,
+    "textGuide": "E-hand circles then\nlands on ring finger\n(ring placement)"
+  },
+  {
+    "word": "To wed or marry",
+    "slug": "to-wed-or-marry",
+    "category": "relationships",
+    "gif": "assets/gifs/to-wed-or-marry.gif",
+    "hasGif": true,
+    "textGuide": "Clasp both hands\ntogether firmly\n(joining hands)"
+  },
+  {
+    "word": "In the future",
+    "slug": "in-the-future",
+    "category": "time",
+    "gif": "assets/gifs/in-the-future.gif",
+    "hasGif": true,
+    "textGuide": "Flat hand moves\nforward from cheek\n(ahead in time)"
+  },
+  {
+    "word": "To desire something / want",
+    "slug": "to-desire-something-want",
+    "category": "feelings",
+    "gif": "assets/gifs/to-desire-something-want.gif",
+    "hasGif": true,
+    "textGuide": "Both 5-hands pull\ntoward body\n(claw/desire)"
+  },
+  {
+    "word": "To not desire something / don’t want",
+    "slug": "to-not-desire-something-dont-want",
+    "category": "general",
+    "gif": "assets/gifs/to-not-desire-something-dont-want.gif",
+    "hasGif": true,
+    "textGuide": "Index + middle finger\nsnap to thumb\n(quick close)"
+  },
+  {
+    "word": "Perhaps / a possibility of",
+    "slug": "perhaps-a-possibility-of",
+    "category": "general",
+    "gif": "assets/gifs/perhaps-a-possibility-of.gif",
+    "hasGif": true,
+    "textGuide": "Both flat hands\nalternate up/down\n(weighing maybe)"
+  },
+  {
+    "word": "NOT",
+    "slug": "not",
+    "category": "general",
+    "gif": "assets/gifs/not.gif",
+    "hasGif": true,
+    "textGuide": "A-hand thumb under\nchin moves forward\n(negation)"
+  },
+  {
+    "word": "Want",
+    "slug": "want",
+    "category": "general",
+    "gif": "assets/gifs/want.gif",
+    "hasGif": true,
+    "textGuide": "Both 5-hands claw\npull toward body\n(desire/want)"
+  },
+  {
+    "word": "Older / First born among siblings",
+    "slug": "older-first-born-among-siblings",
+    "category": "family",
+    "gif": "assets/gifs/older-first-born-among-siblings.gif",
+    "hasGif": true,
+    "textGuide": "Index rises from\nfist upward\n(first/oldest)"
+  },
+  {
+    "word": "Youngest / Last / The last born among siblings",
+    "slug": "youngest-last-the-last-born-among-siblings",
+    "category": "family",
+    "gif": "assets/gifs/youngest-last-the-last-born-among-siblings.gif",
+    "hasGif": true,
+    "textGuide": "Pinky drops down\nfrom fist\n(last/youngest)"
+  },
+  {
+    "word": "The two of you",
+    "slug": "the-two-of-you",
+    "category": "family",
+    "gif": "assets/gifs/the-two-of-you.gif",
+    "hasGif": true,
+    "textGuide": "Point forward +\n2-hand between\ntwo people"
+  },
+  {
+    "word": "The two of us",
+    "slug": "the-two-of-us",
+    "category": "family",
+    "gif": "assets/gifs/the-two-of-us.gif",
+    "hasGif": true,
+    "textGuide": "Point to self +\n2-hand between\nself and other"
+  },
+  {
+    "word": "To be close / To have a strong bond",
+    "slug": "to-be-close-to-have-a-strong-bond",
+    "category": "family",
+    "gif": "assets/gifs/to-be-close-to-have-a-strong-bond.gif",
+    "hasGif": true,
+    "textGuide": "Both bent hands\nheld tight together\nclose to chest"
+  },
+  {
+    "word": "Interesting / Fascinating",
+    "slug": "interesting-fascinating",
+    "category": "feelings",
+    "gif": "assets/gifs/interesting-fascinating.gif",
+    "hasGif": true,
+    "textGuide": "Both 5-hands pull\nout from chest\n(drawing you in)"
+  },
+  {
+    "word": "6th",
+    "slug": "6th",
+    "category": "general",
+    "gif": "assets/gifs/6th.gif",
+    "hasGif": true
+  },
+  {
+    "word": "7th",
+    "slug": "7th",
+    "category": "general",
+    "gif": "assets/gifs/7th.gif",
+    "hasGif": true
+  },
+  {
+    "word": "8th",
+    "slug": "8th",
+    "category": "general",
+    "gif": "assets/gifs/8th.gif",
+    "hasGif": true
+  },
+  {
+    "word": "LESS THAN ONE YEAR OLD",
+    "slug": "less-than-one-year-old",
+    "category": "age-ranges",
+    "gif": "assets/gifs/less-than-one-year-old.gif",
+    "hasGif": true,
+    "textGuide": "Baby sign (rock arms)\n+ under + 1 + year\n(compound phrase)"
+  },
+  {
+    "word": "1-5 YEARS OLD",
+    "slug": "1-5-years-old",
+    "category": "age-ranges",
+    "gif": "assets/gifs/1-5-years-old.gif",
+    "hasGif": true,
+    "textGuide": "Show number (1-5)\n+ years-old sign\n(number + fist drops)"
+  },
+  {
+    "word": "6-9 YEARS OLD",
+    "slug": "6-9-years-old",
+    "category": "age-ranges",
+    "gif": "assets/gifs/6-9-years-old.gif",
+    "hasGif": true,
+    "textGuide": "Show number (6-9)\n+ years-old sign\n(number + fist drops)"
+  },
+  {
+    "word": "10 YEARS OLD",
+    "slug": "10-years-old",
+    "category": "age-ranges",
+    "gif": "assets/gifs/10-years-old.gif",
+    "hasGif": true,
+    "textGuide": "A-hand wiggles\n+ years-old sign\n(10 + fist drops)"
+  },
+  {
+    "word": "11-15 YEARS OLD",
+    "slug": "11-15-years-old",
+    "category": "age-ranges",
+    "gif": "assets/gifs/11-15-years-old.gif",
+    "hasGif": true,
+    "textGuide": "Show number (11-15)\n+ years-old sign\n(number + fist drops)"
+  },
+  {
+    "word": "16-19 YEARS OLD",
+    "slug": "16-19-years-old",
+    "category": "age-ranges",
+    "gif": "assets/gifs/16-19-years-old.gif",
+    "hasGif": true,
+    "textGuide": "Show number (16-19)\n+ years-old sign\n(number + fist drops)"
+  },
+  {
+    "word": "20 YEARS OLD AND OLDER",
+    "slug": "20-years-old-and-older",
+    "category": "age-ranges",
+    "gif": "assets/gifs/20-years-old-and-older.gif",
+    "hasGif": true,
+    "textGuide": "20-sign + years-old\n+ more/older sign\n(G-pinch + fist + up)"
   },
   {
     "word": "1",
     "slug": "1",
     "category": "numbers",
     "gif": "assets/gifs/1.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index finger up\nOther fingers closed\nPalm facing you"
   },
   {
     "word": "2",
     "slug": "2",
     "category": "numbers",
     "gif": "assets/gifs/2.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index + middle finger up\n(Peace sign)\nPalm facing you"
   },
   {
     "word": "3",
     "slug": "3",
     "category": "numbers",
     "gif": "assets/gifs/3.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Thumb + index +\nmiddle finger up\nPalm facing you"
   },
   {
     "word": "4",
     "slug": "4",
     "category": "numbers",
     "gif": "assets/gifs/4.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Four fingers up\nThumb tucked in\nPalm facing out"
   },
   {
     "word": "5",
     "slug": "5",
     "category": "numbers",
     "gif": "assets/gifs/5.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "All five fingers\nspread open\nPalm facing out"
   },
   {
     "word": "6",
     "slug": "6",
     "category": "numbers",
     "gif": "assets/gifs/6.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Pinky + thumb touch\nOther 3 fingers up\nPalm facing out"
   },
   {
     "word": "7",
     "slug": "7",
     "category": "numbers",
     "gif": "assets/gifs/7.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Ring finger + thumb\ntouch, others up\nPalm facing out"
   },
   {
     "word": "8",
     "slug": "8",
     "category": "numbers",
     "gif": "assets/gifs/8.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Middle + thumb touch\nOther fingers up\nPalm facing out"
   },
   {
     "word": "9",
     "slug": "9",
     "category": "numbers",
     "gif": "assets/gifs/9.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Index + thumb touch\nOther fingers up\nPalm facing out"
   },
   {
     "word": "10",
     "slug": "10",
     "category": "numbers",
     "gif": "assets/gifs/10.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Thumbs up, shake\nside to side\n(A-hand wiggle)"
   },
   {
     "word": "11",
     "slug": "11",
     "category": "numbers",
     "gif": "assets/gifs/11.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flick index finger\nup from S-hand\nPalm facing you"
   },
   {
     "word": "12",
     "slug": "12",
     "category": "numbers",
     "gif": "assets/gifs/12.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Flick index + middle\nfinger up from S\nPalm facing you"
   },
   {
     "word": "13",
     "slug": "13",
     "category": "numbers",
     "gif": "assets/gifs/13.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand wobbles\nfingers together\nPalm facing you"
   },
   {
     "word": "14",
     "slug": "14",
     "category": "numbers",
     "gif": "assets/gifs/14.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand wobbles\nfingers together\nPalm facing you"
   },
   {
     "word": "15",
     "slug": "15",
     "category": "numbers",
     "gif": "assets/gifs/15.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand wobbles\nfingers together\nPalm facing you"
   },
   {
     "word": "20",
     "slug": "20",
     "category": "numbers",
     "gif": "assets/gifs/20.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Pinch index + thumb\ntogether repeatedly\n(G-hand pinch)"
   },
   {
     "word": "21",
     "slug": "21",
     "category": "numbers",
     "gif": "assets/gifs/21.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand, thumb wiggles\ndown\nPalm facing out"
   },
   {
     "word": "22",
     "slug": "22",
     "category": "numbers",
     "gif": "assets/gifs/22.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "V-hand bounces\nto the right\nPalm facing out"
   },
   {
     "word": "23",
     "slug": "23",
     "category": "numbers",
     "gif": "assets/gifs/23.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Middle finger bends\ndown repeatedly\nFrom 5-hand"
   },
   {
     "word": "24",
     "slug": "24",
     "category": "numbers",
     "gif": "assets/gifs/24.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand → 4-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "25",
     "slug": "25",
     "category": "numbers",
     "gif": "assets/gifs/25.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "Middle finger wiggles\n5-hand shape\nPalm facing out"
   },
   {
     "word": "26",
     "slug": "26",
     "category": "numbers",
     "gif": "assets/gifs/26.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand → 6-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "27",
     "slug": "27",
     "category": "numbers",
     "gif": "assets/gifs/27.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand → 7-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "28",
     "slug": "28",
     "category": "numbers",
     "gif": "assets/gifs/28.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand → 8-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "29",
     "slug": "29",
     "category": "numbers",
     "gif": "assets/gifs/29.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "L-hand → 9-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "30",
     "slug": "30",
     "category": "numbers",
     "gif": "assets/gifs/30.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand + closed hand\nPinch fingers together\nTwo-part sign"
   },
   {
     "word": "31",
     "slug": "31",
     "category": "numbers",
     "gif": "assets/gifs/31.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand → 1-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "32",
     "slug": "32",
     "category": "numbers",
     "gif": "assets/gifs/32.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand → 2-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "33",
     "slug": "33",
     "category": "numbers",
     "gif": "assets/gifs/33.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand wiggles\nmiddle finger down\nPalm facing out"
   },
   {
     "word": "34",
     "slug": "34",
     "category": "numbers",
     "gif": "assets/gifs/34.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand → 4-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "35",
     "slug": "35",
     "category": "numbers",
     "gif": "assets/gifs/35.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand → 5-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "36",
     "slug": "36",
     "category": "numbers",
     "gif": "assets/gifs/36.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand → 6-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "37",
     "slug": "37",
     "category": "numbers",
     "gif": "assets/gifs/37.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand → 7-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "38",
     "slug": "38",
     "category": "numbers",
     "gif": "assets/gifs/38.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand → 8-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "39",
     "slug": "39",
     "category": "numbers",
     "gif": "assets/gifs/39.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "3-hand → 9-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "40",
     "slug": "40",
     "category": "numbers",
     "gif": "assets/gifs/40.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand + closed hand\nPinch fingers together\nTwo-part sign"
   },
   {
     "word": "41",
     "slug": "41",
     "category": "numbers",
     "gif": "assets/gifs/41.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand → 1-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "42",
     "slug": "42",
     "category": "numbers",
     "gif": "assets/gifs/42.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand → 2-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "43",
     "slug": "43",
     "category": "numbers",
     "gif": "assets/gifs/43.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand → 3-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "44",
     "slug": "44",
     "category": "numbers",
     "gif": "assets/gifs/44.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand wiggles\nall fingers bend\nPalm facing out"
   },
   {
     "word": "45",
     "slug": "45",
     "category": "numbers",
     "gif": "assets/gifs/45.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand → 5-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "46",
     "slug": "46",
     "category": "numbers",
     "gif": "assets/gifs/46.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand → 6-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "47",
     "slug": "47",
     "category": "numbers",
     "gif": "assets/gifs/47.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand → 7-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "48",
     "slug": "48",
     "category": "numbers",
     "gif": "assets/gifs/48.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand → 8-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "49",
     "slug": "49",
     "category": "numbers",
     "gif": "assets/gifs/49.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "4-hand → 9-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "50",
     "slug": "50",
     "category": "numbers",
     "gif": "assets/gifs/50.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand + closed hand\nPinch fingers together\nTwo-part sign"
   },
   {
     "word": "51",
     "slug": "51",
     "category": "numbers",
     "gif": "assets/gifs/51.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand → 1-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "52",
     "slug": "52",
     "category": "numbers",
     "gif": "assets/gifs/52.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand → 2-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "53",
     "slug": "53",
     "category": "numbers",
     "gif": "assets/gifs/53.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand → 3-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "54",
     "slug": "54",
     "category": "numbers",
     "gif": "assets/gifs/54.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand → 4-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "55",
     "slug": "55",
     "category": "numbers",
     "gif": "assets/gifs/55.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand wiggles\nall fingers bend\nPalm facing out"
   },
   {
     "word": "56",
     "slug": "56",
     "category": "numbers",
     "gif": "assets/gifs/56.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand → 6-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "57",
     "slug": "57",
     "category": "numbers",
     "gif": "assets/gifs/57.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand → 7-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "58",
     "slug": "58",
     "category": "numbers",
     "gif": "assets/gifs/58.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand → 8-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "59",
     "slug": "59",
     "category": "numbers",
     "gif": "assets/gifs/59.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "5-hand → 9-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "60",
     "slug": "60",
     "category": "numbers",
     "gif": "assets/gifs/60.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "6-hand + closed hand\nPinch fingers together\nTwo-part sign"
   },
   {
     "word": "61",
     "slug": "61",
     "category": "numbers",
     "gif": "assets/gifs/61.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "6-hand → 1-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "62",
     "slug": "62",
     "category": "numbers",
     "gif": "assets/gifs/62.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "6-hand → 2-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "63",
     "slug": "63",
     "category": "numbers",
     "gif": "assets/gifs/63.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "6-hand → 3-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "64",
     "slug": "64",
     "category": "numbers",
     "gif": "assets/gifs/64.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "6-hand → 4-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "65",
     "slug": "65",
     "category": "numbers",
     "gif": "assets/gifs/65.gif",
-    "hasGif": true
+    "hasGif": true,
+    "textGuide": "6-hand → 5-hand\nSmooth transition\nPalm facing out"
   },
   {
     "word": "66",
     "slug": "66",
     "category": "numbers",
     "gif": "assets/gifs/66.gif",
+    "hasGif": true,
+    "textGuide": "6-hand wiggles\npinky + thumb touch\nPalm facing out"
+  },
+  {
+    "word": "67",
+    "slug": "67",
+    "category": "numbers",
+    "gif": "assets/gifs/67.gif",
+    "hasGif": true
+  },
+  {
+    "word": "68",
+    "slug": "68",
+    "category": "numbers",
+    "gif": "assets/gifs/68.gif",
+    "hasGif": true
+  },
+  {
+    "word": "69",
+    "slug": "69",
+    "category": "numbers",
+    "gif": "assets/gifs/69.gif",
+    "hasGif": true
+  },
+  {
+    "word": "70",
+    "slug": "70",
+    "category": "numbers",
+    "gif": "assets/gifs/70.gif",
+    "hasGif": true
+  },
+  {
+    "word": "71",
+    "slug": "71",
+    "category": "numbers",
+    "gif": "assets/gifs/71.gif",
+    "hasGif": true
+  },
+  {
+    "word": "72",
+    "slug": "72",
+    "category": "numbers",
+    "gif": "assets/gifs/72.gif",
+    "hasGif": true
+  },
+  {
+    "word": "73",
+    "slug": "73",
+    "category": "numbers",
+    "gif": "assets/gifs/73.gif",
+    "hasGif": true
+  },
+  {
+    "word": "74",
+    "slug": "74",
+    "category": "numbers",
+    "gif": "assets/gifs/74.gif",
+    "hasGif": true
+  },
+  {
+    "word": "75",
+    "slug": "75",
+    "category": "numbers",
+    "gif": "assets/gifs/75.gif",
+    "hasGif": true
+  },
+  {
+    "word": "76",
+    "slug": "76",
+    "category": "numbers",
+    "gif": "assets/gifs/76.gif",
+    "hasGif": true
+  },
+  {
+    "word": "77",
+    "slug": "77",
+    "category": "numbers",
+    "gif": "assets/gifs/77.gif",
+    "hasGif": true
+  },
+  {
+    "word": "78",
+    "slug": "78",
+    "category": "numbers",
+    "gif": "assets/gifs/78.gif",
+    "hasGif": true
+  },
+  {
+    "word": "79",
+    "slug": "79",
+    "category": "numbers",
+    "gif": "assets/gifs/79.gif",
+    "hasGif": true
+  },
+  {
+    "word": "80",
+    "slug": "80",
+    "category": "numbers",
+    "gif": "assets/gifs/80.gif",
+    "hasGif": true
+  },
+  {
+    "word": "81",
+    "slug": "81",
+    "category": "numbers",
+    "gif": "assets/gifs/81.gif",
+    "hasGif": true
+  },
+  {
+    "word": "82",
+    "slug": "82",
+    "category": "numbers",
+    "gif": "assets/gifs/82.gif",
+    "hasGif": true
+  },
+  {
+    "word": "83",
+    "slug": "83",
+    "category": "numbers",
+    "gif": "assets/gifs/83.gif",
+    "hasGif": true
+  },
+  {
+    "word": "84",
+    "slug": "84",
+    "category": "numbers",
+    "gif": "assets/gifs/84.gif",
+    "hasGif": true
+  },
+  {
+    "word": "85",
+    "slug": "85",
+    "category": "numbers",
+    "gif": "assets/gifs/85.gif",
+    "hasGif": true
+  },
+  {
+    "word": "86",
+    "slug": "86",
+    "category": "numbers",
+    "gif": "assets/gifs/86.gif",
+    "hasGif": true
+  },
+  {
+    "word": "87",
+    "slug": "87",
+    "category": "numbers",
+    "gif": "assets/gifs/87.gif",
+    "hasGif": true
+  },
+  {
+    "word": "88",
+    "slug": "88",
+    "category": "numbers",
+    "gif": "assets/gifs/88.gif",
+    "hasGif": true
+  },
+  {
+    "word": "89",
+    "slug": "89",
+    "category": "numbers",
+    "gif": "assets/gifs/89.gif",
+    "hasGif": true
+  },
+  {
+    "word": "90",
+    "slug": "90",
+    "category": "numbers",
+    "gif": "assets/gifs/90.gif",
+    "hasGif": true
+  },
+  {
+    "word": "91",
+    "slug": "91",
+    "category": "numbers",
+    "gif": "assets/gifs/91.gif",
+    "hasGif": true
+  },
+  {
+    "word": "92",
+    "slug": "92",
+    "category": "numbers",
+    "gif": "assets/gifs/92.gif",
+    "hasGif": true
+  },
+  {
+    "word": "93",
+    "slug": "93",
+    "category": "numbers",
+    "gif": "assets/gifs/93.gif",
+    "hasGif": true
+  },
+  {
+    "word": "94",
+    "slug": "94",
+    "category": "numbers",
+    "gif": "assets/gifs/94.gif",
+    "hasGif": true
+  },
+  {
+    "word": "95",
+    "slug": "95",
+    "category": "numbers",
+    "gif": "assets/gifs/95.gif",
+    "hasGif": true
+  },
+  {
+    "word": "96",
+    "slug": "96",
+    "category": "numbers",
+    "gif": "assets/gifs/96.gif",
+    "hasGif": true
+  },
+  {
+    "word": "97",
+    "slug": "97",
+    "category": "numbers",
+    "gif": "assets/gifs/97.gif",
+    "hasGif": true
+  },
+  {
+    "word": "98",
+    "slug": "98",
+    "category": "numbers",
+    "gif": "assets/gifs/98.gif",
+    "hasGif": true
+  },
+  {
+    "word": "99",
+    "slug": "99",
+    "category": "numbers",
+    "gif": "assets/gifs/99.gif",
+    "hasGif": true
+  },
+  {
+    "word": "100",
+    "slug": "100",
+    "category": "numbers",
+    "gif": "assets/gifs/100.gif",
     "hasGif": true
   },
   {

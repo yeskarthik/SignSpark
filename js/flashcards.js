@@ -219,12 +219,20 @@ const FlashcardEngine = (() => {
     }
 
     function getGifPath(wordEntry) {
-        // Try GIF first, then SVG fallback
         return wordEntry.gif;
     }
 
     function getSvgFallback(wordEntry) {
         return wordEntry.gif.replace('.gif', '.svg');
+    }
+
+    function hasRealGif(wordEntry) {
+        return wordEntry.hasGif === true;
+    }
+
+    function getTextGuide(wordEntry) {
+        if (!wordEntry) return null;
+        return wordEntry.textGuide || null;
     }
 
     return {
@@ -244,6 +252,8 @@ const FlashcardEngine = (() => {
         getFilteredWordsWithGifs,
         getGifPath,
         getSvgFallback,
+        hasRealGif,
+        getTextGuide,
         toSlug
     };
 })();
