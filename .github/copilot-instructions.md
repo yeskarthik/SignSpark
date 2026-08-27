@@ -9,6 +9,7 @@ SignSpark is a mobile-friendly ASL (American Sign Language) flashcard learning w
 ```
 asl/
 ├── index.html              # Single-page app (all screens in one HTML file)
+├── staticwebapp.config.json # Azure managed API runtime declaration
 ├── css/style.css           # Mobile-first responsive styles, dark/light themes
 ├── js/
 │   ├── flashcards.js       # Core engine — word loading, weighted random, stats, custom words
@@ -33,7 +34,7 @@ asl/
 
 ## Key Technical Details
 
-- **Frontend has no build step** — `index.html`, `css/`, `js/`, `data/`, and `assets/` are staged as the app artifact. `api/` is staged separately so Azure can install its Node dependencies.
+- **Frontend has no build step** — `index.html`, `staticwebapp.config.json`, `css/`, `js/`, `data/`, and `assets/` are staged as the app artifact. `api/` is staged separately with production dependencies installed in the isolated deployment artifact.
 - **words.json** is the source of truth for vocabulary at runtime. Curated cards add a `media` object (`type`, `videoId` or `src`, source metadata, and `reviewed`) plus `textGuideReviewed` and `textGuideSource`. Unsupported cards use `mediaReviewStatus: "no-verified-source"`.
 - **Custom words** are stored in `localStorage` under key `signspark_custom_words` and merged with `words.json` at load time.
 - **Weighted random selection** — cards the user gets wrong appear more frequently. Unseen cards get weight 3; seen cards get `1 + errorRate * 4`.

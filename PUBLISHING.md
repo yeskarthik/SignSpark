@@ -64,7 +64,7 @@ $appArtifact = Join-Path $artifact "app"
 $apiArtifact = Join-Path $artifact "api"
 New-Item -ItemType Directory -Path $appArtifact, $apiArtifact | Out-Null
 
-Copy-Item "$repo\index.html" $appArtifact
+Copy-Item "$repo\index.html", "$repo\staticwebapp.config.json" $appArtifact
 foreach ($directory in @("assets", "css", "data", "js")) {
     Copy-Item "$repo\$directory" $appArtifact -Recurse
 }
@@ -78,6 +78,9 @@ Copy-Item "$repo\api\profiles" $apiArtifact -Recurse
 The SWA CLI's `swa deploy` command uses StaticSitesClient internally. For reliable deployment, invoke it directly:
 
 ```powershell
+$null = npm ci --omit=dev --prefix $apiArtifact --no-audit --no-fund
+if ($LASTEXITCODE -ne 0) { throw "API dependency installation failed." }
+
 $client = (Get-ChildItem -Path "$env:USERPROFILE\.swa\deploy" -Recurse -Filter "StaticSitesClient.exe" | Select-Object -First 1).FullName
 
 # IMPORTANT: Run from a directory OUTSIDE the app folder
@@ -89,6 +92,7 @@ cd $env:USERPROFILE
   --outputLocation "." `
   --apiToken $token `
   --skipAppBuild true `
+  --skipApiBuild true `
   --verbose
 
 Remove-Item -LiteralPath $artifact -Recurse -Force
@@ -96,7 +100,9 @@ Remove-Item -LiteralPath $artifact -Recurse -Force
 
 > **Key details**: Run the client outside both the repository and artifact
 > directories. Stage the frontend and API separately; never include `.git`,
-> local settings, or `api/node_modules`.
+> local settings, or the repository's `api/node_modules`. Run
+> `npm ci --omit=dev --prefix $apiArtifact` before upload so the isolated API
+> artifact contains its production dependencies.
 
 ### 6. Verify the deployment
 
@@ -173,15 +179,16 @@ $artifact = Join-Path $env:TEMP ("signspark-deploy-" + [guid]::NewGuid())
 $appArtifact = Join-Path $artifact "app"
 $apiArtifact = Join-Path $artifact "api"
 New-Item -ItemType Directory -Path $appArtifact, $apiArtifact | Out-Null
-Copy-Item "$repo\index.html" $appArtifact
+Copy-Item "$repo\index.html", "$repo\staticwebapp.config.json" $appArtifact
 foreach ($directory in @("assets", "css", "data", "js")) {
     Copy-Item "$repo\$directory" $appArtifact -Recurse
 }
 Copy-Item "$repo\api\host.json", "$repo\api\package.json", "$repo\api\package-lock.json" $apiArtifact
 Copy-Item "$repo\api\profiles" $apiArtifact -Recurse
+npm ci --omit=dev --prefix $apiArtifact --no-audit --no-fund
 
 $token = az staticwebapp secrets list --name signspark --resource-group signspark-rg --query "properties.apiKey" -o tsv
 $client = (Get-ChildItem -Path "$env:USERPROFILE\.swa\deploy" -Recurse -Filter "StaticSitesClient.exe" | Select-Object -First 1).FullName
-& $client upload --app $appArtifact --api $apiArtifact --outputLocation "." --apiToken $token --skipAppBuild true --verbose
+& $client upload --app $appArtifact --api $apiArtifact --outputLocation "." --apiToken $token --skipAppBuild true --skipApiBuild true --verbose
 Remove-Item -LiteralPath $artifact -Recurse -Force
 ```
