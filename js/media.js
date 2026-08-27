@@ -19,6 +19,7 @@ const MediaRenderer = (() => {
         message.textContent = '';
         message.style.display = 'none';
         container.classList.remove('is-video');
+        container.classList.remove('is-quiz-video');
         attribution.replaceChildren();
         attribution.style.display = 'none';
     }
@@ -58,6 +59,7 @@ const MediaRenderer = (() => {
         });
 
         if (purpose === 'quiz') {
+            container.classList.add('is-quiz-video');
             params.set('autoplay', '1');
             params.set('mute', '1');
             params.set('controls', '0');

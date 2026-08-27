@@ -488,6 +488,11 @@ body {
     aspect-ratio: 16 / 9;
 }
 
+.media-container.is-quiz-video .sign-media-video {
+    height: calc(100% + 128px);
+    pointer-events: none;
+}
+
 .sign-media-image,
 .sign-media-video {
     width: 100%;
@@ -557,6 +562,12 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
+}
+
+#screen-sign-to-word .media-container,
+#screen-sign-to-word .media-attribution,
+#screen-sign-to-word .text-guide-inline {
+    max-width: none;
 }
 
 .answer-mode-toggle {
