@@ -46,6 +46,6 @@ No build step, no dependencies — it's a static site.
 
 - **476 cards** have reviewed learning media: 450 curated ASL University videos and 26 byte-verified Lifeprint fingerspelling images.
 - **24 cards** have no sufficiently precise source and are excluded instead of showing incorrect legacy media.
-- **Sign → Word** mixes 363 focused YouTube clips with 26 reviewed local images. YouTube clips autoplay muted in a clipped, control-free player that hides answer-revealing title chrome.
+- **Sign → Word** mixes 363 focused YouTube clips with 26 reviewed local images. YouTube clips autoplay muted and restart automatically in a clipped player with YouTube title and control chrome masked.
 - Shared and collection videos are excluded from Sign → Word because they could correspond to more than one answer.
 - Run `python scripts/verify_media.py` to confirm that reviewed videos remain embeddable and local images still match their source.

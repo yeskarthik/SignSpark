@@ -5,11 +5,23 @@
 
 const MediaRenderer = (() => {
     const YOUTUBE_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
+    const quizPlayers = new WeakMap();
+    let youtubeApiPromise = null;
 
     function clear(container, attribution) {
         const image = container.querySelector('[data-media-image]');
-        const video = container.querySelector('[data-media-video]');
+        let video = container.querySelector('[data-media-video]');
         const message = container.querySelector('[data-media-message]');
+
+        const player = quizPlayers.get(video);
+        if (player) {
+            const replacement = video.cloneNode(false);
+            const nextSibling = video.nextSibling;
+            player.destroy();
+            quizPlayers.delete(video);
+            container.insertBefore(replacement, nextSibling);
+            video = replacement;
+        }
 
         image.onerror = null;
         image.removeAttribute('src');
@@ -66,8 +78,10 @@ const MediaRenderer = (() => {
             params.set('disablekb', '1');
             params.set('fs', '0');
             params.set('iv_load_policy', '3');
-            params.set('loop', '1');
-            params.set('playlist', media.videoId);
+            params.set('enablejsapi', '1');
+            if (/^https?:$/.test(window.location.protocol)) {
+                params.set('origin', window.location.origin);
+            }
             video.title = 'ASL sign quiz video';
         } else {
             video.title = `ASL sign for "${card.word}"`;
@@ -75,6 +89,59 @@ const MediaRenderer = (() => {
 
         video.src = `https://www.youtube-nocookie.com/embed/${media.videoId}?${params}`;
         video.style.display = '';
+
+        if (purpose === 'quiz') {
+            enableContinuousPlayback(video);
+        }
+    }
+
+    function loadYouTubeApi() {
+        if (window.YT && window.YT.Player) {
+            return Promise.resolve(window.YT);
+        }
+
+        if (!youtubeApiPromise) {
+            youtubeApiPromise = new Promise((resolve, reject) => {
+                const previousReady = window.onYouTubeIframeAPIReady;
+                window.onYouTubeIframeAPIReady = () => {
+                    if (previousReady) previousReady();
+                    resolve(window.YT);
+                };
+
+                const script = document.createElement('script');
+                script.src = 'https://www.youtube.com/iframe_api';
+                script.async = true;
+                script.onerror = () => reject(new Error('Unable to load the YouTube player API.'));
+                document.head.appendChild(script);
+            });
+        }
+
+        return youtubeApiPromise;
+    }
+
+    function enableContinuousPlayback(video) {
+        const expectedSrc = video.src;
+        loadYouTubeApi().then((YT) => {
+            if (!video.isConnected || video.src !== expectedSrc) return;
+
+            const player = new YT.Player(video, {
+                events: {
+                    onReady: (event) => {
+                        event.target.mute();
+                        event.target.playVideo();
+                    },
+                    onStateChange: (event) => {
+                        // Avoid playlist looping, which adds previous/next controls.
+                        if (event.data !== YT.PlayerState.ENDED) return;
+                        event.target.seekTo(0, true);
+                        event.target.playVideo();
+                    }
+                }
+            });
+            quizPlayers.set(video, player);
+        }).catch((error) => {
+            console.error(error);
+        });
     }
 
     function renderImage(media, card, container) {
