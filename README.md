@@ -10,12 +10,12 @@ A mobile-friendly web app for learning American Sign Language through interactiv
 - **Two quiz modes**:
   - 📝 **Word → Sign**: See a word, try to sign it, reveal reviewed sign media, self-rate
   - 🎬 **Sign → Word**: Watch sign media, then guess the word (multiple choice or free text)
-- **Hybrid sign media** — reviewed local images or privacy-enhanced YouTube embeds with source attribution
+- **Hybrid sign media** — reviewed local images or identified YouTube embeds with source attribution and player-error handling
 - **Fast quiz flow** — correct answers advance automatically while the next sign media preloads
 - **Learner profiles** — Kar, Shy, Lav, Swa, and Rah keep independent server-side progress and retry missed signs until correct; Guest stays temporary
 - **Weighted repetition** — cards you get wrong appear more often
 - **Category filtering** — focus on specific topics
-- **Dark/light mode**
+- **Dark mode by default**, with a sun button to switch to light mode
 - **Add custom words** via the UI or bulk import
 - **Mobile-first** responsive design
 

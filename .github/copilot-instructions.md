@@ -38,6 +38,7 @@ asl/
 - **words.json** is the source of truth for vocabulary at runtime. Curated cards add a `media` object (`type`, `videoId` or `src`, source metadata, and `reviewed`) plus `textGuideReviewed` and `textGuideSource`. Unsupported cards use `mediaReviewStatus: "no-verified-source"`.
 - **Custom words** are stored in `localStorage` under key `signspark_custom_words` and merged with `words.json` at load time.
 - **Weighted random selection** — cards the user gets wrong appear more frequently. Unseen cards get weight 3; seen cards get `1 + errorRate * 4`.
+- **YouTube endpoints** — learning cards use `youtube.com` with `enablejsapi` and `origin` for reliable identified playback and error reporting; Sign → Word uses `youtube-nocookie.com`.
 - **Mode 2 (Sign → Word)** uses reviewed media mapped to exactly one card. Shared/collection media is excluded; YouTube clips autoplay muted and restart automatically in a clipped player with title and control chrome masked.
 - **Quiz flow** — Sign → Word preselects and preloads the next card. Correct answers advance automatically after brief feedback; incorrect answers wait for the user to select Next.
 - **Profiles** — Kar, Shy, Lav, Swa, and Rah persist independent stats and retry queues through `/api/profiles/{profile}`. Guest data remains in memory and must never be sent to the API.

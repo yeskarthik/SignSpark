@@ -10,9 +10,7 @@ const App = (() => {
     async function init() {
         // Load theme preference
         const savedTheme = localStorage.getItem('signspark_theme');
-        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        applyTheme(savedTheme === 'light' ? 'light' : 'dark');
 
         // Load words
         await FlashcardEngine.loadWords();
@@ -187,11 +185,16 @@ const App = (() => {
     function toggleDarkMode() {
         const current = document.documentElement.getAttribute('data-theme');
         const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
+        applyTheme(next);
         localStorage.setItem('signspark_theme', next);
+    }
 
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
         const btn = document.getElementById('btn-dark-mode');
-        btn.textContent = next === 'dark' ? '☀️' : '🌙';
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        btn.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        btn.setAttribute('aria-label', btn.title);
     }
 
     // --- Word Management ---

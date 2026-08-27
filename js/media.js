@@ -5,7 +5,7 @@
 
 const MediaRenderer = (() => {
     const YOUTUBE_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
-    const quizPlayers = new WeakMap();
+    const youtubePlayers = new WeakMap();
     let youtubeApiPromise = null;
     let preloadEntry = null;
 
@@ -14,12 +14,12 @@ const MediaRenderer = (() => {
         let video = container.querySelector('[data-media-video]');
         const message = container.querySelector('[data-media-message]');
 
-        const player = quizPlayers.get(video);
+        const player = youtubePlayers.get(video);
         if (player) {
             const replacement = video.cloneNode(false);
             const nextSibling = video.nextSibling;
             player.destroy();
-            quizPlayers.delete(video);
+            youtubePlayers.delete(video);
             container.insertBefore(replacement, nextSibling);
             video = replacement;
         }
@@ -87,15 +87,14 @@ const MediaRenderer = (() => {
         }
         video.style.display = '';
 
-        if (purpose === 'quiz') {
-            enableContinuousPlayback(video);
-        }
+        enableYouTubePlayer(video, purpose, container);
     }
 
     function getYouTubeUrl(media, purpose) {
         const params = new URLSearchParams({
             playsinline: '1',
-            rel: '0'
+            rel: '0',
+            enablejsapi: '1'
         });
 
         if (purpose === 'quiz') {
@@ -105,13 +104,15 @@ const MediaRenderer = (() => {
             params.set('disablekb', '1');
             params.set('fs', '0');
             params.set('iv_load_policy', '3');
-            params.set('enablejsapi', '1');
-            if (/^https?:$/.test(window.location.protocol)) {
-                params.set('origin', window.location.origin);
-            }
+        }
+        if (/^https?:$/.test(window.location.protocol)) {
+            params.set('origin', window.location.origin);
         }
 
-        return `https://www.youtube-nocookie.com/embed/${media.videoId}?${params}`;
+        const host = purpose === 'quiz'
+            ? 'https://www.youtube-nocookie.com'
+            : 'https://www.youtube.com';
+        return `${host}/embed/${media.videoId}?${params}`;
     }
 
     function preload(card, purpose = 'quiz') {
@@ -202,7 +203,7 @@ const MediaRenderer = (() => {
         return youtubeApiPromise;
     }
 
-    function enableContinuousPlayback(video) {
+    function enableYouTubePlayer(video, purpose, container) {
         const expectedSrc = video.src;
         loadYouTubeApi().then((YT) => {
             if (!video.isConnected || video.src !== expectedSrc) return;
@@ -210,6 +211,7 @@ const MediaRenderer = (() => {
             const player = new YT.Player(video, {
                 events: {
                     onReady: (event) => {
+                        if (purpose !== 'quiz') return;
                         event.target.mute();
                         if (video.dataset.preloaded === 'true') {
                             event.target.seekTo(0, true);
@@ -218,14 +220,23 @@ const MediaRenderer = (() => {
                         event.target.playVideo();
                     },
                     onStateChange: (event) => {
+                        if (purpose !== 'quiz') return;
                         // Avoid playlist looping, which adds previous/next controls.
                         if (event.data !== YT.PlayerState.ENDED) return;
                         event.target.seekTo(0, true);
                         event.target.playVideo();
+                    },
+                    onError: (event) => {
+                        video.style.display = 'none';
+                        showMessage(
+                            container,
+                            `This sign video could not be played (YouTube error ${event.data}). ` +
+                            'Use the reviewed source link below.'
+                        );
                     }
                 }
             });
-            quizPlayers.set(video, player);
+            youtubePlayers.set(video, player);
         }).catch((error) => {
             console.error(error);
         });
