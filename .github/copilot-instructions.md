@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-SignSpark is a mobile-friendly ASL (American Sign Language) flashcard learning web app. It is a **static site** — pure HTML, CSS, and JavaScript with no server-side runtime. Python scripts in `scripts/` are used offline for data preparation only.
+SignSpark is a mobile-friendly ASL (American Sign Language) flashcard learning web app. The frontend is pure HTML, CSS, and JavaScript; a managed Azure Functions API stores learner progress in Azure Table Storage. Python scripts in `scripts/` are used offline for data preparation only.
 
 ## Architecture
 
@@ -18,6 +18,10 @@ asl/
 │   └── app.js              # App shell — routing, dark mode, category chips, word management
 ├── data/words.json         # 500 word entries and their media/description metadata
 ├── assets/gifs/            # Legacy local image library being replaced through review
+├── api/
+│   ├── profiles/           # GET/POST profile progress Azure Function
+│   ├── host.json
+│   └── package.json
 ├── scripts/                # Python data-prep scripts (offline only, not deployed)
 │   ├── prepare_data.py     # Main: clean words.txt → words.json + download GIFs
 │   ├── scrape_lifeprint.py # Scrapes Lifeprint dictionary pages for real image URLs
@@ -29,11 +33,14 @@ asl/
 
 ## Key Technical Details
 
-- **No build step** — the app is served directly from the repo root. `index.html`, `css/`, `js/`, `data/`, and `assets/` are the deployed files.
+- **Frontend has no build step** — `index.html`, `css/`, `js/`, `data/`, and `assets/` are staged as the app artifact. `api/` is staged separately so Azure can install its Node dependencies.
 - **words.json** is the source of truth for vocabulary at runtime. Curated cards add a `media` object (`type`, `videoId` or `src`, source metadata, and `reviewed`) plus `textGuideReviewed` and `textGuideSource`. Unsupported cards use `mediaReviewStatus: "no-verified-source"`.
 - **Custom words** are stored in `localStorage` under key `signspark_custom_words` and merged with `words.json` at load time.
 - **Weighted random selection** — cards the user gets wrong appear more frequently. Unseen cards get weight 3; seen cards get `1 + errorRate * 4`.
 - **Mode 2 (Sign → Word)** uses reviewed media mapped to exactly one card. Shared/collection media is excluded; YouTube clips autoplay muted and restart automatically in a clipped player with title and control chrome masked.
+- **Quiz flow** — Sign → Word preselects and preloads the next card. Correct answers advance automatically after brief feedback; incorrect answers wait for the user to select Next.
+- **Profiles** — Kar, Shy, Lav, Swa, and Rah persist independent stats and retry queues through `/api/profiles/{profile}`. Guest data remains in memory and must never be sent to the API.
+- **Profile database** — the API uses Azure Table Storage through the `PROFILE_STORAGE_CONNECTION_STRING` application setting; never commit this secret.
 - **Distractors** favor the same category, nearby numeric/time values, and explicit semantic groups while excluding equivalent labels.
 - **Text guides** are shown only when `textGuideReviewed === true`; generated or unsourced descriptions must remain hidden.
 - **Fuzzy matching** in free-text mode uses Levenshtein distance with a threshold of 25% of the target word length.

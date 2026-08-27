@@ -18,3 +18,7 @@ desktop.ini
 
 # Session state
 .copilot/
+
+# Azure Functions
+api/node_modules/
+api/local.settings.json

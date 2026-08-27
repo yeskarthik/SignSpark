@@ -9,6 +9,8 @@ SignSpark is hosted on **Azure Static Web Apps** (Free tier).
 | Region          | `westus2`                                          |
 | Hostname        | `lemon-rock-07f946f1e.7.azurestaticapps.net`       |
 | Subscription    | `0648b1a1-e377-4bc7-b768-8f3c62ed3c05`           |
+| Storage account | `signsparkdata3c05`                                |
+| Profile table   | `SignSparkProfiles`                                |
 
 ---
 
@@ -58,12 +60,17 @@ remove excluded metadata such as `.git` while preparing the artifact.
 ```powershell
 $repo = "C:\personal\projects\SignSpark"
 $artifact = Join-Path $env:TEMP ("signspark-deploy-" + [guid]::NewGuid())
-New-Item -ItemType Directory -Path $artifact | Out-Null
+$appArtifact = Join-Path $artifact "app"
+$apiArtifact = Join-Path $artifact "api"
+New-Item -ItemType Directory -Path $appArtifact, $apiArtifact | Out-Null
 
-Copy-Item "$repo\index.html" $artifact
+Copy-Item "$repo\index.html" $appArtifact
 foreach ($directory in @("assets", "css", "data", "js")) {
-    Copy-Item "$repo\$directory" $artifact -Recurse
+    Copy-Item "$repo\$directory" $appArtifact -Recurse
 }
+
+Copy-Item "$repo\api\host.json", "$repo\api\package.json", "$repo\api\package-lock.json" $apiArtifact
+Copy-Item "$repo\api\profiles" $apiArtifact -Recurse
 ```
 
 ### 5. Deploy with StaticSitesClient
@@ -77,7 +84,8 @@ $client = (Get-ChildItem -Path "$env:USERPROFILE\.swa\deploy" -Recurse -Filter "
 cd $env:USERPROFILE
 
 & $client upload `
-  --app $artifact `
+  --app $appArtifact `
+  --api $apiArtifact `
   --outputLocation "." `
   --apiToken $token `
   --skipAppBuild true `
@@ -87,7 +95,8 @@ Remove-Item -LiteralPath $artifact -Recurse -Force
 ```
 
 > **Key details**: Run the client outside both the repository and artifact
-> directories. Upload only the staged runtime artifact.
+> directories. Stage the frontend and API separately; never include `.git`,
+> local settings, or `api/node_modules`.
 
 ### 6. Verify the deployment
 
@@ -99,6 +108,7 @@ $r.Content -match "SignSpark"  # Should return True
 # Check assets are serving
 Invoke-WebRequest -Uri "https://<your-hostname>.azurestaticapps.net/data/words.json" -UseBasicParsing | Select-Object StatusCode
 Invoke-WebRequest -Uri "https://<your-hostname>.azurestaticapps.net/css/style.css" -UseBasicParsing | Select-Object StatusCode
+Invoke-WebRequest -Uri "https://<your-hostname>.azurestaticapps.net/api/profiles/Kar" -UseBasicParsing | Select-Object StatusCode
 ```
 
 ---
@@ -109,7 +119,7 @@ If StaticSitesClient.exe is not available, you can try the SWA CLI wrapper. Note
 
 ```powershell
 cd <path-to-your-repo>
-swa deploy . --deployment-token $token --env production
+swa deploy . --api-location api --deployment-token $token --env production
 ```
 
 ---
@@ -160,14 +170,18 @@ Copy-paste this for a one-command deploy:
 cd $env:USERPROFILE
 $repo = "C:\personal\projects\SignSpark"
 $artifact = Join-Path $env:TEMP ("signspark-deploy-" + [guid]::NewGuid())
-New-Item -ItemType Directory -Path $artifact | Out-Null
-Copy-Item "$repo\index.html" $artifact
+$appArtifact = Join-Path $artifact "app"
+$apiArtifact = Join-Path $artifact "api"
+New-Item -ItemType Directory -Path $appArtifact, $apiArtifact | Out-Null
+Copy-Item "$repo\index.html" $appArtifact
 foreach ($directory in @("assets", "css", "data", "js")) {
-    Copy-Item "$repo\$directory" $artifact -Recurse
+    Copy-Item "$repo\$directory" $appArtifact -Recurse
 }
+Copy-Item "$repo\api\host.json", "$repo\api\package.json", "$repo\api\package-lock.json" $apiArtifact
+Copy-Item "$repo\api\profiles" $apiArtifact -Recurse
 
 $token = az staticwebapp secrets list --name signspark --resource-group signspark-rg --query "properties.apiKey" -o tsv
 $client = (Get-ChildItem -Path "$env:USERPROFILE\.swa\deploy" -Recurse -Filter "StaticSitesClient.exe" | Select-Object -First 1).FullName
-& $client upload --app $artifact --outputLocation "." --apiToken $token --skipAppBuild true --verbose
+& $client upload --app $appArtifact --api $apiArtifact --outputLocation "." --apiToken $token --skipAppBuild true --verbose
 Remove-Item -LiteralPath $artifact -Recurse -Force
 ```

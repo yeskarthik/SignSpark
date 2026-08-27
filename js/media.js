@@ -7,6 +7,7 @@ const MediaRenderer = (() => {
     const YOUTUBE_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
     const quizPlayers = new WeakMap();
     let youtubeApiPromise = null;
+    let preloadEntry = null;
 
     function clear(container, attribution) {
         const image = container.querySelector('[data-media-image]');
@@ -63,15 +64,41 @@ const MediaRenderer = (() => {
             return;
         }
 
-        const video = container.querySelector('[data-media-video]');
+        let video = container.querySelector('[data-media-video]');
+        const preloadedVideo = takePreloadedVideo(media, purpose);
+        if (preloadedVideo) {
+            video.replaceWith(preloadedVideo);
+            video = preloadedVideo;
+            video.removeAttribute('aria-hidden');
+            video.removeAttribute('style');
+        }
+
         container.classList.add('is-video');
+
+        if (purpose === 'quiz') {
+            container.classList.add('is-quiz-video');
+            video.title = 'ASL sign quiz video';
+        } else {
+            video.title = `ASL sign for "${card.word}"`;
+        }
+
+        if (!preloadedVideo) {
+            video.src = getYouTubeUrl(media, purpose);
+        }
+        video.style.display = '';
+
+        if (purpose === 'quiz') {
+            enableContinuousPlayback(video);
+        }
+    }
+
+    function getYouTubeUrl(media, purpose) {
         const params = new URLSearchParams({
             playsinline: '1',
             rel: '0'
         });
 
         if (purpose === 'quiz') {
-            container.classList.add('is-quiz-video');
             params.set('autoplay', '1');
             params.set('mute', '1');
             params.set('controls', '0');
@@ -82,17 +109,73 @@ const MediaRenderer = (() => {
             if (/^https?:$/.test(window.location.protocol)) {
                 params.set('origin', window.location.origin);
             }
-            video.title = 'ASL sign quiz video';
-        } else {
-            video.title = `ASL sign for "${card.word}"`;
         }
 
-        video.src = `https://www.youtube-nocookie.com/embed/${media.videoId}?${params}`;
-        video.style.display = '';
+        return `https://www.youtube-nocookie.com/embed/${media.videoId}?${params}`;
+    }
 
-        if (purpose === 'quiz') {
-            enableContinuousPlayback(video);
+    function preload(card, purpose = 'quiz') {
+        cancelPreload();
+
+        const media = FlashcardEngine.getMedia(card, purpose);
+        if (!media) return;
+
+        if (media.type === 'image' && media.src) {
+            const image = new Image();
+            image.src = media.src;
+            preloadEntry = { key: getMediaKey(media, purpose), element: image };
+            return;
         }
+
+        if (media.type !== 'youtube' || !YOUTUBE_ID_PATTERN.test(media.videoId || '')) {
+            return;
+        }
+
+        const video = document.createElement('iframe');
+        video.className = 'sign-media-video';
+        video.dataset.mediaVideo = '';
+        video.title = 'ASL sign quiz video';
+        video.loading = 'eager';
+        video.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
+        video.referrerPolicy = 'strict-origin-when-cross-origin';
+        video.allowFullscreen = true;
+        video.setAttribute('aria-hidden', 'true');
+        video.dataset.preloaded = 'true';
+        Object.assign(video.style, {
+            position: 'fixed',
+            left: '-10000px',
+            top: '0',
+            width: '400px',
+            height: '353px',
+            opacity: '0',
+            pointerEvents: 'none'
+        });
+        video.src = getYouTubeUrl(media, purpose);
+        document.body.appendChild(video);
+        preloadEntry = { key: getMediaKey(media, purpose), element: video };
+    }
+
+    function takePreloadedVideo(media, purpose) {
+        if (!preloadEntry || preloadEntry.key !== getMediaKey(media, purpose)) {
+            return null;
+        }
+
+        const { element } = preloadEntry;
+        preloadEntry = null;
+        return element instanceof HTMLIFrameElement ? element : null;
+    }
+
+    function cancelPreload() {
+        if (!preloadEntry) return;
+        if (preloadEntry.element instanceof HTMLIFrameElement) {
+            preloadEntry.element.remove();
+        }
+        preloadEntry = null;
+    }
+
+    function getMediaKey(media, purpose) {
+        const identity = media.type === 'youtube' ? media.videoId : media.src;
+        return `${purpose}:${media.type}:${identity}`;
     }
 
     function loadYouTubeApi() {
@@ -128,6 +211,10 @@ const MediaRenderer = (() => {
                 events: {
                     onReady: (event) => {
                         event.target.mute();
+                        if (video.dataset.preloaded === 'true') {
+                            event.target.seekTo(0, true);
+                            delete video.dataset.preloaded;
+                        }
                         event.target.playVideo();
                     },
                     onStateChange: (event) => {
@@ -179,5 +266,5 @@ const MediaRenderer = (() => {
         attribution.style.display = '';
     }
 
-    return { clear, render };
+    return { cancelPreload, clear, preload, render };
 })();

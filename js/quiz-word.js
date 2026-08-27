@@ -4,9 +4,12 @@
  */
 
 const QuizWord = (() => {
+    const AUTO_ADVANCE_DELAY_MS = 900;
     let currentCard = null;
+    let nextCard = null;
     let answerMode = 'mc'; // 'mc' or 'text'
     let answered = false;
+    let advanceTimer = null;
 
     const elements = {};
 
@@ -49,15 +52,21 @@ const QuizWord = (() => {
     }
 
     function start() {
+        stop();
+        currentCard = null;
         loadNextCard();
     }
 
     function loadNextCard() {
+        clearTimeout(advanceTimer);
+        advanceTimer = null;
         const prevSlug = currentCard ? currentCard.slug : null;
-        currentCard = FlashcardEngine.getNextCard(prevSlug, 'quiz');
+        currentCard = nextCard || FlashcardEngine.getNextCard(prevSlug, 'quiz');
+        nextCard = null;
         answered = false;
 
         if (!currentCard) {
+            MediaRenderer.cancelPreload();
             elements.feedbackContent.textContent =
                 'No reviewed quiz-safe media is available for this category yet.';
             elements.feedbackContent.className = 'feedback-content incorrect';
@@ -74,6 +83,7 @@ const QuizWord = (() => {
 
         // Reset UI
         elements.feedback.style.display = 'none';
+        elements.nextBtn.style.display = '';
         elements.textAnswer.value = '';
 
         if (answerMode === 'mc') {
@@ -87,6 +97,26 @@ const QuizWord = (() => {
         }
 
         App.updateProgress();
+        prepareNextCard();
+    }
+
+    function prepareNextCard() {
+        nextCard = FlashcardEngine.getNextCard(currentCard.slug, 'quiz');
+        if (nextCard) {
+            MediaRenderer.preload(nextCard, 'quiz');
+        } else {
+            MediaRenderer.cancelPreload();
+        }
+    }
+
+    function stop() {
+        clearTimeout(advanceTimer);
+        advanceTimer = null;
+        nextCard = null;
+        MediaRenderer.cancelPreload();
+        if (elements.media) {
+            MediaRenderer.clear(elements.media, elements.mediaAttribution);
+        }
     }
 
     function renderMcOptions() {
@@ -116,6 +146,7 @@ const QuizWord = (() => {
 
         const isCorrect = chosen.slug === currentCard.slug;
         FlashcardEngine.recordResult(currentCard.slug, isCorrect);
+        refreshPreparedCard(isCorrect);
 
         // Highlight all options
         const allBtns = elements.mcOptions.querySelectorAll('.mc-option');
@@ -143,8 +174,15 @@ const QuizWord = (() => {
 
         const isCorrect = fuzzyMatch(input, currentCard.word);
         FlashcardEngine.recordResult(currentCard.slug, isCorrect);
+        refreshPreparedCard(isCorrect);
         showFeedback(isCorrect);
         App.updateStats();
+    }
+
+    function refreshPreparedCard(isCorrect) {
+        if (isCorrect && nextCard?.slug === currentCard.slug) {
+            prepareNextCard();
+        }
     }
 
     function fuzzyMatch(input, target) {
@@ -185,9 +223,12 @@ const QuizWord = (() => {
         elements.feedbackContent.className = 'feedback-content ' + (isCorrect ? 'correct' : 'incorrect');
 
         if (isCorrect) {
-            elements.feedbackContent.textContent = '✓ Correct!';
+            elements.feedbackContent.textContent = '✓ Correct! Next question…';
+            elements.nextBtn.style.display = 'none';
+            advanceTimer = setTimeout(loadNextCard, AUTO_ADVANCE_DELAY_MS);
         } else {
             elements.feedbackContent.textContent = `✗ The answer is: ${currentCard.word}`;
+            elements.nextBtn.style.display = '';
         }
 
         showTextGuide(currentCard);
@@ -209,5 +250,5 @@ const QuizWord = (() => {
         }
     }
 
-    return { init, start, loadNextCard, setAnswerMode };
+    return { init, start, stop, loadNextCard, setAnswerMode };
 })();

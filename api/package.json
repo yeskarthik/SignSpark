@@ -1,0 +1,11 @@
+{
+  "name": "signspark-api",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@azure/data-tables": "^13.3.1"
+  }
+}

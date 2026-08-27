@@ -52,6 +52,7 @@ const App = (() => {
         });
 
         // Render categories
+        initProfiles();
         renderCategories();
         updateStats();
 
@@ -71,6 +72,7 @@ const App = (() => {
 
         // Update stats when returning home
         if (name === 'home') {
+            QuizWord.stop();
             updateStats();
             renderCategories();
         }
@@ -126,6 +128,8 @@ const App = (() => {
 
     function updateStats() {
         const stats = FlashcardEngine.getSessionStats();
+        const profile = FlashcardEngine.getActiveProfile();
+        const pendingRetries = FlashcardEngine.getPendingRetryCount();
 
         document.getElementById('stat-studied').textContent = stats.studied;
         document.getElementById('stat-correct').textContent = stats.correct;
@@ -133,7 +137,37 @@ const App = (() => {
         document.getElementById('stat-accuracy').textContent = stats.accuracy + '%';
 
         const statsSection = document.getElementById('stats-section');
-        statsSection.style.display = stats.studied > 0 ? '' : 'none';
+        statsSection.style.display = profile !== 'Guest' || stats.studied > 0 ? '' : 'none';
+        document.getElementById('stats-heading').textContent =
+            profile === 'Guest' ? 'Guest Session Stats' : `${profile} Progress`;
+
+        const summary = document.getElementById('profile-summary');
+        summary.textContent = profile === 'Guest'
+            ? 'Guest progress is temporary.'
+            : pendingRetries > 0
+                ? `${pendingRetries} missed ${pendingRetries === 1 ? 'sign' : 'signs'} queued for retry.`
+                : 'Progress is saved on the server. No missed signs are waiting.';
+    }
+
+    function initProfiles() {
+        document.querySelectorAll('[data-profile]').forEach(button => {
+            button.addEventListener('click', () => {
+                QuizWord.stop();
+                FlashcardEngine.setActiveProfile(button.dataset.profile);
+                renderProfiles();
+                updateStats();
+            });
+        });
+        renderProfiles();
+    }
+
+    function renderProfiles() {
+        const activeProfile = FlashcardEngine.getActiveProfile();
+        document.querySelectorAll('[data-profile]').forEach(button => {
+            const isActive = button.dataset.profile === activeProfile;
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+        });
     }
 
     function updateProgress() {

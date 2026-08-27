@@ -36,6 +36,19 @@
                 <p class="subtitle">Learn ASL with interactive flashcards</p>
             </div>
 
+            <section class="profile-section" aria-labelledby="profile-heading">
+                <h3 id="profile-heading">Who is learning?</h3>
+                <div class="profile-options" role="group" aria-label="Learner profile">
+                    <button class="profile-option" data-profile="Kar" aria-pressed="false">Kar</button>
+                    <button class="profile-option" data-profile="Shy" aria-pressed="false">Shy</button>
+                    <button class="profile-option" data-profile="Lav" aria-pressed="false">Lav</button>
+                    <button class="profile-option" data-profile="Swa" aria-pressed="false">Swa</button>
+                    <button class="profile-option" data-profile="Rah" aria-pressed="false">Rah</button>
+                    <button class="profile-option" data-profile="Guest" aria-pressed="false">Guest</button>
+                </div>
+                <p class="profile-summary" id="profile-summary"></p>
+            </section>
+
             <div class="mode-cards">
                 <button class="mode-card" id="btn-mode-sign" aria-label="Start How Do You Sign This mode">
                     <span class="mode-icon">📝</span>
@@ -57,7 +70,7 @@
 
             <!-- Session Stats -->
             <div class="stats-section" id="stats-section" style="display:none;">
-                <h3>Session Stats</h3>
+                <h3 id="stats-heading">Session Stats</h3>
                 <div class="stats-grid">
                     <div class="stat-item">
                         <span class="stat-value" id="stat-studied">0</span>

@@ -6,13 +6,18 @@
 const FlashcardEngine = (() => {
     let allWords = [];
     let filteredWords = [];
-    let sessionStats = { studied: 0, correct: 0, incorrect: 0, streak: 0, bestStreak: 0 };
-    let cardStats = {}; // { slug: { seen: 0, correct: 0, incorrect: 0 } }
     let activeCategories = new Set(); // empty = all
     let customWords = [];
     let mediaUsage = new Map();
+    let activeProfile = 'Guest';
+    let profileStates = null;
+    const profileSaveQueues = new Map();
 
     const STORAGE_KEY = 'signspark_custom_words';
+    const ACTIVE_PROFILE_KEY = 'signspark_active_profile';
+    const PERSISTED_PROFILE_NAMES = ['Kar', 'Shy', 'Lav', 'Swa', 'Rah'];
+    const PROFILE_NAMES = [...PERSISTED_PROFILE_NAMES, 'Guest'];
+    profileStates = createProfileStates();
     const DISTRACTOR_GROUPS = [
         ['what', 'who', 'where', 'which'],
         ['same', 'different', 'rightcorrect', 'wrong', 'equal'],
@@ -46,6 +51,24 @@ const FlashcardEngine = (() => {
             .replace(/^-|-$/g, '');
     }
 
+    function createStats() {
+        return { studied: 0, correct: 0, incorrect: 0, streak: 0, bestStreak: 0 };
+    }
+
+    function createProfileState() {
+        return {
+            stats: createStats(),
+            cardStats: {},
+            pendingRetries: new Set()
+        };
+    }
+
+    function createProfileStates() {
+        return Object.fromEntries(
+            PROFILE_NAMES.map(profileName => [profileName, createProfileState()])
+        );
+    }
+
     async function loadWords() {
         try {
             const resp = await fetch('data/words.json');
@@ -64,6 +87,8 @@ const FlashcardEngine = (() => {
         } catch (e) {
             customWords = [];
         }
+
+        await loadProfileProgress();
 
         // Merge custom words (avoid duplicates)
         const existingSlugs = new Set(allWords.map(w => w.slug));
@@ -125,8 +150,14 @@ const FlashcardEngine = (() => {
         }
         if (pool.length === 0) return null;
 
+        const profileState = getActiveProfileState();
+        const retryPool = pool.filter(word => profileState.pendingRetries.has(word.slug));
+        if (retryPool.length > 0) {
+            pool = retryPool;
+        }
+
         const weights = pool.map(w => {
-            const stats = cardStats[w.slug];
+            const stats = profileState.cardStats[w.slug];
             if (!stats || stats.seen === 0) return 3; // unseen cards get higher weight
             const errorRate = stats.incorrect / stats.seen;
             return 1 + errorRate * 4; // more mistakes = higher weight
@@ -230,32 +261,157 @@ const FlashcardEngine = (() => {
     }
 
     function recordResult(slug, correct) {
-        if (!cardStats[slug]) {
-            cardStats[slug] = { seen: 0, correct: 0, incorrect: 0 };
+        const profileState = getActiveProfileState();
+        if (!profileState.cardStats[slug]) {
+            profileState.cardStats[slug] = { seen: 0, correct: 0, incorrect: 0 };
         }
-        cardStats[slug].seen++;
-        sessionStats.studied++;
+        profileState.cardStats[slug].seen++;
+        profileState.stats.studied++;
 
         if (correct) {
-            cardStats[slug].correct++;
-            sessionStats.correct++;
-            sessionStats.streak++;
-            if (sessionStats.streak > sessionStats.bestStreak) {
-                sessionStats.bestStreak = sessionStats.streak;
+            profileState.cardStats[slug].correct++;
+            profileState.stats.correct++;
+            profileState.stats.streak++;
+            profileState.pendingRetries.delete(slug);
+            if (profileState.stats.streak > profileState.stats.bestStreak) {
+                profileState.stats.bestStreak = profileState.stats.streak;
             }
         } else {
-            cardStats[slug].incorrect++;
-            sessionStats.incorrect++;
-            sessionStats.streak = 0;
+            profileState.cardStats[slug].incorrect++;
+            profileState.stats.incorrect++;
+            profileState.stats.streak = 0;
+            if (activeProfile !== 'Guest') {
+                profileState.pendingRetries.add(slug);
+            }
+        }
+
+        if (activeProfile !== 'Guest') {
+            queueProfileResult(activeProfile, slug, correct);
         }
     }
 
     function getSessionStats() {
-        const total = sessionStats.correct + sessionStats.incorrect;
+        const stats = getActiveProfileState().stats;
+        const total = stats.correct + stats.incorrect;
         return {
-            ...sessionStats,
-            accuracy: total > 0 ? Math.round((sessionStats.correct / total) * 100) : 0,
+            ...stats,
+            accuracy: total > 0 ? Math.round((stats.correct / total) * 100) : 0,
             totalCards: filteredWords.length
+        };
+    }
+
+    function getActiveProfileState() {
+        return profileStates[activeProfile];
+    }
+
+    function getActiveProfile() {
+        return activeProfile;
+    }
+
+    function getPendingRetryCount() {
+        return getActiveProfileState().pendingRetries.size;
+    }
+
+    function setActiveProfile(profileName) {
+        if (!PROFILE_NAMES.includes(profileName)) return false;
+        activeProfile = profileName;
+        try {
+            localStorage.setItem(ACTIVE_PROFILE_KEY, activeProfile);
+        } catch (error) {
+            console.warn('Could not save the active profile', error);
+        }
+        return true;
+    }
+
+    async function loadProfileProgress() {
+        profileStates = createProfileStates();
+
+        try {
+            const storedProfile = localStorage.getItem(ACTIVE_PROFILE_KEY);
+            if (PROFILE_NAMES.includes(storedProfile)) {
+                activeProfile = storedProfile;
+            }
+        } catch (error) {
+            console.warn('Could not load the active profile', error);
+        }
+
+        await Promise.all(PERSISTED_PROFILE_NAMES.map(async profileName => {
+            try {
+                const response = await fetch(`/api/profiles/${encodeURIComponent(profileName)}`, {
+                    headers: { Accept: 'application/json' },
+                    cache: 'no-store'
+                });
+                if (!response.ok) {
+                    throw new Error(`Profile API returned ${response.status}.`);
+                }
+                profileStates[profileName] = parseProfileState(await response.json());
+            } catch (error) {
+                console.error(`Could not load ${profileName}'s progress from the server.`, error);
+            }
+        }));
+    }
+
+    function parseProfileState(value) {
+        if (!value ||
+            typeof value.stats !== 'object' ||
+            typeof value.cardStats !== 'object' ||
+            !Array.isArray(value.pendingRetries)) {
+            throw new Error('Profile API returned invalid progress data.');
+        }
+
+        return {
+            stats: { ...createStats(), ...value.stats },
+            cardStats: value.cardStats,
+            pendingRetries: new Set(value.pendingRetries)
+        };
+    }
+
+    function queueProfileResult(profileName, slug, correct) {
+        const previousSave = profileSaveQueues.get(profileName) || Promise.resolve();
+        const nextSave = previousSave
+            .catch(() => undefined)
+            .then(async () => {
+                const response = await fetch(
+                    `/api/profiles/${encodeURIComponent(profileName)}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ slug, correct }),
+                        keepalive: true
+                    }
+                );
+                if (!response.ok) {
+                    throw new Error(`Profile API returned ${response.status}.`);
+                }
+            });
+        nextSave.catch(error => {
+            console.error(`Could not save ${profileName}'s progress to the server.`, error);
+        });
+        profileSaveQueues.set(profileName, nextSave);
+    }
+
+    function waitForProfileSaves() {
+        return Promise.allSettled(profileSaveQueues.values());
+    }
+
+    function isPersistentProfile(profileName = activeProfile) {
+        return PERSISTED_PROFILE_NAMES.includes(profileName);
+    }
+
+    function getProfileNames() {
+        return [...PROFILE_NAMES];
+    }
+
+    function getProfileProgress(profileName = activeProfile) {
+        if (!PROFILE_NAMES.includes(profileName)) return null;
+        const state = profileStates[profileName];
+        return {
+            stats: { ...state.stats },
+            cardStats: structuredClone(state.cardStats),
+            pendingRetries: [...state.pendingRetries]
         };
     }
 
@@ -403,6 +559,13 @@ const FlashcardEngine = (() => {
         getRandomDistractors,
         recordResult,
         getSessionStats,
+        getActiveProfile,
+        getProfileNames,
+        getProfileProgress,
+        getPendingRetryCount,
+        isPersistentProfile,
+        setActiveProfile,
+        waitForProfileSaves,
         addCustomWord,
         importWords,
         exportWords,
