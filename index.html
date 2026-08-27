@@ -40,12 +40,12 @@
                 <button class="mode-card" id="btn-mode-sign" aria-label="Start How Do You Sign This mode">
                     <span class="mode-icon">📝</span>
                     <span class="mode-title">How Do You Sign This?</span>
-                    <span class="mode-desc">See a word, try to sign it, then check</span>
+                    <span class="mode-desc" id="mode-sign-status">See a word, try to sign it, then check</span>
                 </button>
                 <button class="mode-card" id="btn-mode-word" aria-label="Start What Is This Sign mode">
                     <span class="mode-icon">🎬</span>
                     <span class="mode-title">What Is This Sign?</span>
-                    <span class="mode-desc">Watch a sign, guess the word</span>
+                    <span class="mode-desc" id="mode-word-status">Watch a sign, guess the word</span>
                 </button>
             </div>
 
@@ -102,11 +102,17 @@
                         </div>
                         <div class="card-back">
                             <span class="card-category" id="wts-category-back"></span>
-                            <div class="gif-container">
-                                <img id="wts-gif" class="sign-gif" alt="ASL sign" loading="lazy">
+                            <div id="wts-media" class="media-container">
+                                <img class="sign-media-image" data-media-image alt="ASL sign" loading="lazy">
+                                <iframe class="sign-media-video" data-media-video title="ASL sign video"
+                                    loading="lazy" allow="encrypted-media; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <p class="media-message" data-media-message></p>
                             </div>
+                            <div id="wts-media-attribution" class="media-attribution"></div>
                             <div id="wts-text-guide" class="text-guide-inline">
                                 <p class="text-guide-desc"></p>
+                                <a class="text-guide-source" target="_blank" rel="noopener noreferrer">Description source</a>
                             </div>
                             <h3 class="card-word-small" id="wts-word-back"></h3>
                             <div class="rate-buttons">
@@ -124,11 +130,17 @@
             <div class="quiz-container">
                 <div class="card-wrapper">
                     <div class="sign-display">
-                        <div class="gif-container">
-                            <img id="stw-gif" class="sign-gif" alt="ASL sign" loading="lazy">
+                        <div id="stw-media" class="media-container">
+                            <img class="sign-media-image" data-media-image alt="ASL sign" loading="lazy">
+                            <iframe class="sign-media-video" data-media-video title="ASL sign video"
+                                loading="lazy" allow="encrypted-media; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <p class="media-message" data-media-message></p>
                         </div>
+                        <div id="stw-media-attribution" class="media-attribution"></div>
                         <div id="stw-text-guide" class="text-guide-inline">
                             <p class="text-guide-desc"></p>
+                            <a class="text-guide-source" target="_blank" rel="noopener noreferrer">Description source</a>
                         </div>
                     </div>
                     <div class="answer-mode-toggle">
@@ -199,6 +211,7 @@
     </div>
 
     <script src="js/flashcards.js"></script>
+    <script src="js/media.js"></script>
     <script src="js/quiz-sign.js"></script>
     <script src="js/quiz-word.js"></script>
     <script src="js/app.js"></script>

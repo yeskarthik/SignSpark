@@ -98,11 +98,30 @@ const App = (() => {
 
     function updateWordCount() {
         const filtered = FlashcardEngine.getFilteredWords();
-        const withGifs = FlashcardEngine.getFilteredWordsWithGifs();
+        const withLearningMedia = FlashcardEngine.getFilteredWordsWithLearningMedia();
+        const withQuizMedia = FlashcardEngine.getFilteredWordsWithQuizMedia();
         const subtitle = document.querySelector('.subtitle');
         if (subtitle) {
-            subtitle.textContent = `${filtered.length} flashcards (${withGifs.length} with GIFs)`;
+            subtitle.textContent =
+                `${filtered.length} flashcards (${withLearningMedia.length} reviewed lessons, ` +
+                `${withQuizMedia.length} ready for Sign-to-Word)`;
         }
+
+        const quizModeButton = document.getElementById('btn-mode-word');
+        const quizModeStatus = document.getElementById('mode-word-status');
+        const hasQuizMedia = withQuizMedia.length > 0;
+        quizModeButton.disabled = !hasQuizMedia;
+        quizModeStatus.textContent = hasQuizMedia
+            ? 'Watch a reviewed sign, then guess the word'
+            : 'Waiting for reviewed quiz-safe local media';
+
+        const learningModeButton = document.getElementById('btn-mode-sign');
+        const learningModeStatus = document.getElementById('mode-sign-status');
+        const hasLearningMedia = withLearningMedia.length > 0;
+        learningModeButton.disabled = !hasLearningMedia;
+        learningModeStatus.textContent = hasLearningMedia
+            ? 'See a word, try to sign it, then check'
+            : 'No reviewed sign source is available for this filter';
     }
 
     function updateStats() {
@@ -121,7 +140,9 @@ const App = (() => {
         const stats = FlashcardEngine.getSessionStats();
         const bar = document.getElementById('progress-bar');
         const text = document.getElementById('progress-text');
-        const total = stats.totalCards;
+        const total = currentScreen === 'sign-to-word'
+            ? FlashcardEngine.getFilteredWordsWithQuizMedia().length
+            : FlashcardEngine.getFilteredWordsWithLearningMedia().length;
         const studied = stats.studied;
         const pct = total > 0 ? Math.min(100, (studied / total) * 100) : 0;
 

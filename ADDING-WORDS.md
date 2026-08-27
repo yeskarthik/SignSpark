@@ -1,6 +1,6 @@
 # Adding New Words to SignSpark
 
-There are **two ways** to add words — through the app UI (quick, no images) or through the data pipeline (full support with ASL images).
+Add temporary words through the app UI or permanent words through `data/words.json`. Media and text descriptions require a separate review step; file existence alone does not establish that a sign is correct.
 
 ---
 
@@ -25,9 +25,40 @@ Words added this way are stored in the browser's `localStorage` and won't have A
 
 ---
 
-## Option 2: Data Pipeline (Permanent, With Images)
+## Option 2: Permanent Vocabulary and Curated Media
 
-This adds words to `words.json` and downloads ASL images so they work in both quiz modes.
+Add the vocabulary through the data pipeline, then manually curate its learning and quiz media in `words.json`.
+
+```json
+{
+  "word": "Red",
+  "slug": "red",
+  "category": "colors",
+  "media": {
+    "type": "youtube",
+    "videoId": "YOUTUBE_ID",
+    "sourceName": "Source name",
+    "sourceUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID",
+    "reviewed": true
+  },
+  "quizMedia": {
+    "type": "image",
+    "src": "assets/gifs/red.gif",
+    "sourceName": "Source name",
+    "sourceUrl": "https://example.com/source",
+    "reviewed": true
+  },
+  "textGuide": "Reviewed movement description",
+  "textGuideReviewed": true,
+  "textGuideSource": "https://example.com/authoritative-entry"
+}
+```
+
+- `media` is shown after revealing a Word → Sign card. It may be a reviewed local image or a curated YouTube video.
+- `quizMedia` is used for Sign → Word. Do not use YouTube here because the player title can reveal the answer.
+- YouTube entries store only the video ID and use `youtube-nocookie.com` at runtime.
+- Text guides remain hidden unless `textGuideReviewed` is explicitly `true` and a source is recorded.
+- Verify the intended meaning, regional variant, source permission, and playback before setting `reviewed`.
 
 ### Prerequisites
 
@@ -50,12 +81,12 @@ Hospital
 python scripts/prepare_data.py
 ```
 
-This will:
+This legacy bootstrap step will:
 - Clean and deduplicate `words.txt`
 - Add numbers 1-66 and fingerspelling A-Z (if not already present)
 - Categorize each word
 - Output `data/words.json`
-- Attempt to download GIFs from Lifeprint for new words
+- Attempt to download candidate images from Lifeprint for review
 
 ### Step 3: Scrape for additional images
 
@@ -75,11 +106,11 @@ For words where no image was found, generate instructional reference cards:
 python scripts/generate_cards.py
 ```
 
-This creates images with hand position descriptions using Pillow. Requires the `Pillow` package.
+This creates reference cards with generated descriptions using Pillow. Generated cards are not reviewed sign demonstrations and must not be marked as reviewed.
 
 ### Step 5: Update hasGif flags in words.json
 
-After downloading images, update `words.json` to mark which words have real GIFs:
+After downloading candidate images, update `words.json` to mark which legacy files exist:
 
 ```python
 import json
@@ -96,11 +127,23 @@ for w in words:
 words_path.write_text(json.dumps(words, indent=2, ensure_ascii=False))
 ```
 
-> The `hasGif` flag determines whether a word appears in Mode 2 (Sign → Word). Cards without real images are excluded from that mode.
+> `hasGif` identifies legacy local media only. New reviewed quiz media should use `quizMedia`; new learning media should use `media`.
 
 ### Step 6: Deploy
 
 Follow the steps in [PUBLISHING.md](PUBLISHING.md) to push changes to Azure.
+
+Before deployment, verify every reviewed source:
+
+```bash
+python scripts/verify_media.py
+```
+
+To apply an offline-reviewed mapping, use:
+
+```bash
+python scripts/apply_reviewed_media.py path/to/mapping.json --disable-all-legacy
+```
 
 ---
 

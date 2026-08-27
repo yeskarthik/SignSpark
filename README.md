@@ -6,10 +6,11 @@ A mobile-friendly web app for learning American Sign Language through interactiv
 
 ## Features
 
-- **384 flashcards** across 16 categories (greetings, colors, family, numbers, fingerspelling, and more)
+- **500 flashcards** across 20 categories (greetings, colors, family, numbers, fingerspelling, and more)
 - **Two quiz modes**:
-  - 📝 **Word → Sign**: See a word, try to sign it, reveal the answer, self-rate
-  - 🎬 **Sign → Word**: See an ASL sign GIF, guess the word (multiple choice or free text)
+  - 📝 **Word → Sign**: See a word, try to sign it, reveal reviewed sign media, self-rate
+  - 🎬 **Sign → Word**: Watch sign media, then guess the word (multiple choice or free text)
+- **Hybrid sign media** — reviewed local images or privacy-enhanced YouTube embeds with source attribution
 - **Weighted repetition** — cards you get wrong appear more often
 - **Category filtering** — focus on specific topics
 - **Dark/light mode**
@@ -39,4 +40,11 @@ No build step, no dependencies — it's a static site.
 - **Frontend**: Vanilla HTML, CSS, JavaScript (no frameworks)
 - **Data prep**: Python 3.10+ scripts (offline only)
 - **Hosting**: Azure Static Web Apps (Free tier)
-- **ASL images**: Sourced from [Lifeprint.com](https://www.lifeprint.com)
+- **ASL media**: Curated per card with visible source attribution; legacy images are marked unreviewed
+
+## Media Review Status
+
+- **476 cards** have reviewed learning media: 450 curated ASL University videos and 26 byte-verified Lifeprint fingerspelling images.
+- **24 cards** have no sufficiently precise source and are excluded instead of showing incorrect legacy media.
+- **Sign → Word** uses only reviewed local media because YouTube player titles can reveal the answer.
+- Run `python scripts/verify_media.py` to confirm that reviewed videos remain embeddable and local images still match their source.

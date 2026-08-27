@@ -90,10 +90,12 @@ const FlashcardEngine = (() => {
     /**
      * Weighted random: cards the user gets wrong more often appear more frequently.
      */
-    function getNextCard(excludeSlug, requireGif = false) {
+    function getNextCard(excludeSlug, requiredMediaPurpose = null) {
         let pool = filteredWords;
-        if (requireGif) {
-            pool = pool.filter(w => w.hasGif);
+        if (requiredMediaPurpose === 'learning') {
+            pool = pool.filter(hasLearningMedia);
+        } else if (requiredMediaPurpose === 'quiz') {
+            pool = pool.filter(hasQuizMedia);
         }
         if (pool.length === 0) return null;
 
@@ -214,25 +216,76 @@ const FlashcardEngine = (() => {
         return filteredWords;
     }
 
-    function getFilteredWordsWithGifs() {
-        return filteredWords.filter(w => w.hasGif);
+    function getFilteredWordsWithQuizMedia() {
+        return filteredWords.filter(hasQuizMedia);
     }
 
-    function getGifPath(wordEntry) {
-        return wordEntry.gif;
+    function getFilteredWordsWithLearningMedia() {
+        return filteredWords.filter(hasLearningMedia);
     }
 
-    function getSvgFallback(wordEntry) {
-        return wordEntry.gif.replace('.gif', '.svg');
+    function isPlayableMedia(media) {
+        if (media?.type === 'youtube') {
+            return Boolean(media.videoId);
+        }
+        if (media?.type === 'image') {
+            return Boolean(media.src);
+        }
+        return false;
     }
 
-    function hasRealGif(wordEntry) {
-        return wordEntry.hasGif === true;
+    function hasLearningMedia(wordEntry) {
+        if (isPlayableMedia(wordEntry.media)) return true;
+        return wordEntry.legacyMediaDisabled !== true &&
+            wordEntry.hasGif === true &&
+            Boolean(wordEntry.gif);
+    }
+
+    function hasQuizMedia(wordEntry) {
+        if (isPlayableMedia(wordEntry.quizMedia)) return true;
+        if (wordEntry.media?.type === 'image' &&
+            wordEntry.media.reviewed === true &&
+            isPlayableMedia(wordEntry.media)) {
+            return true;
+        }
+        return wordEntry.legacyMediaDisabled !== true &&
+            wordEntry.hasGif === true &&
+            Boolean(wordEntry.gif);
+    }
+
+    function getMedia(wordEntry, purpose = 'learning') {
+        if (!wordEntry) return null;
+
+        let curatedMedia = purpose === 'quiz' ? wordEntry.quizMedia : wordEntry.media;
+        if (purpose === 'quiz' &&
+            !isPlayableMedia(curatedMedia) &&
+            wordEntry.media?.type === 'image' &&
+            wordEntry.media.reviewed === true) {
+            curatedMedia = wordEntry.media;
+        }
+        if (isPlayableMedia(curatedMedia)) {
+            return curatedMedia;
+        }
+
+        if (wordEntry.legacyMediaDisabled !== true && wordEntry.hasGif && wordEntry.gif) {
+            return {
+                type: 'image',
+                src: wordEntry.gif,
+                sourceName: 'Legacy image library',
+                reviewed: false
+            };
+        }
+        return null;
     }
 
     function getTextGuide(wordEntry) {
         if (!wordEntry) return null;
-        return wordEntry.textGuide || null;
+        return wordEntry.textGuideReviewed === true ? wordEntry.textGuide || null : null;
+    }
+
+    function getTextGuideSource(wordEntry) {
+        if (!wordEntry || wordEntry.textGuideReviewed !== true) return null;
+        return wordEntry.textGuideSource || null;
     }
 
     return {
@@ -249,11 +302,13 @@ const FlashcardEngine = (() => {
         importWords,
         exportWords,
         getFilteredWords,
-        getFilteredWordsWithGifs,
-        getGifPath,
-        getSvgFallback,
-        hasRealGif,
+        getFilteredWordsWithQuizMedia,
+        getFilteredWordsWithLearningMedia,
+        hasLearningMedia,
+        hasQuizMedia,
+        getMedia,
         getTextGuide,
+        getTextGuideSource,
         toSlug
     };
 })();

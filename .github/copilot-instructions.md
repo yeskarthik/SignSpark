@@ -12,11 +12,12 @@ asl/
 ├── css/style.css           # Mobile-first responsive styles, dark/light themes
 ├── js/
 │   ├── flashcards.js       # Core engine — word loading, weighted random, stats, custom words
-│   ├── quiz-sign.js        # Mode 1: Word → Sign (show word, reveal GIF, self-rate)
-│   ├── quiz-word.js        # Mode 2: Sign → Word (show GIF, multiple choice or free text)
+│   ├── media.js            # Local image and privacy-enhanced YouTube rendering
+│   ├── quiz-sign.js        # Mode 1: Word → Sign (show word, reveal media, self-rate)
+│   ├── quiz-word.js        # Mode 2: Sign → Word (show media, multiple choice or free text)
 │   └── app.js              # App shell — routing, dark mode, category chips, word management
-├── data/words.json         # 384 word entries [{word, slug, category, gif, hasGif}]
-├── assets/gifs/            # 384 .gif files (real ASL images + generated reference cards)
+├── data/words.json         # 500 word entries and their media/description metadata
+├── assets/gifs/            # Legacy local image library being replaced through review
 ├── scripts/                # Python data-prep scripts (offline only, not deployed)
 │   ├── prepare_data.py     # Main: clean words.txt → words.json + download GIFs
 │   ├── scrape_lifeprint.py # Scrapes Lifeprint dictionary pages for real image URLs
@@ -29,13 +30,15 @@ asl/
 ## Key Technical Details
 
 - **No build step** — the app is served directly from the repo root. `index.html`, `css/`, `js/`, `data/`, and `assets/` are the deployed files.
-- **words.json** is the source of truth for vocabulary at runtime. Each entry has: `word`, `slug`, `category`, `gif` (path), and `hasGif` (boolean).
+- **words.json** is the source of truth for vocabulary at runtime. Curated cards add a `media` object (`type`, `videoId` or `src`, source metadata, and `reviewed`) plus `textGuideReviewed` and `textGuideSource`. Unsupported cards use `mediaReviewStatus: "no-verified-source"`.
 - **Custom words** are stored in `localStorage` under key `signspark_custom_words` and merged with `words.json` at load time.
 - **Weighted random selection** — cards the user gets wrong appear more frequently. Unseen cards get weight 3; seen cards get `1 + errorRate * 4`.
-- **Mode 2 (Sign → Word)** only shows cards where `hasGif === true` to avoid showing placeholder images as quiz questions.
+- **Mode 2 (Sign → Word)** only shows cards with playable `quizMedia` or legacy local media. YouTube media is learning-only because its title can reveal the answer.
+- **Text guides** are shown only when `textGuideReviewed === true`; generated or unsourced descriptions must remain hidden.
 - **Fuzzy matching** in free-text mode uses Levenshtein distance with a threshold of 25% of the target word length.
 - **Image files** — browsers read file headers, not extensions. JPGs and PNGs saved as `.gif` work fine.
-- **GIF sources** — images come from Lifeprint.com (ASL educational site). The scraping scripts are in `scripts/`.
+- **Legacy GIF sources** — old images came from Lifeprint.com. New media must be manually reviewed, attributed, and represented by explicit metadata; do not select videos through runtime search.
+- **Media verification** — run `python scripts/verify_media.py` after changing reviewed media. It checks YouTube oEmbed availability and byte-compares reviewed local files with their recorded sources.
 
 ## Coding Conventions
 
@@ -47,7 +50,7 @@ asl/
 ## When Modifying
 
 - **Adding new words**: Edit `words.txt`, then run `python scripts/prepare_data.py`. Follow up with `scrape_lifeprint.py` and `generate_cards.py` for images. See `ADDING-WORDS.md` for full steps.
-- **Changing styles**: Edit `css/style.css`. The `.gif-container` uses a white (`#ffffff`) background to ensure transparent images are visible.
+- **Changing styles**: Edit `css/style.css`. The `.media-container` uses a white (`#ffffff`) background to ensure transparent images are visible.
 - **Adding new quiz modes**: Create a new `js/quiz-*.js` file, add a screen in `index.html`, and wire it up in `app.js`.
 - **Deploying**: This is hosted on Azure Static Web Apps. See `PUBLISHING.md` for deployment steps.
 

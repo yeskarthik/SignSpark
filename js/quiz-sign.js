@@ -1,6 +1,6 @@
 /**
  * SignSpark — Mode 1: How Do You Sign This? (Word → Sign)
- * Shows word, user attempts to sign, reveals GIF, self-rates.
+ * Shows word, user attempts to sign, reveals reviewed media, self-rates.
  */
 
 const QuizSign = (() => {
@@ -15,7 +15,8 @@ const QuizSign = (() => {
         elements.wordBack = document.getElementById('wts-word-back');
         elements.category = document.getElementById('wts-category');
         elements.categoryBack = document.getElementById('wts-category-back');
-        elements.gif = document.getElementById('wts-gif');
+        elements.media = document.getElementById('wts-media');
+        elements.mediaAttribution = document.getElementById('wts-media-attribution');
         elements.textGuide = document.getElementById('wts-text-guide');
         elements.revealBtn = document.getElementById('wts-reveal');
         elements.gotItBtn = document.getElementById('wts-got-it');
@@ -44,7 +45,7 @@ const QuizSign = (() => {
 
     function loadNextCard() {
         const prevSlug = currentCard ? currentCard.slug : null;
-        currentCard = FlashcardEngine.getNextCard(prevSlug);
+        currentCard = FlashcardEngine.getNextCard(prevSlug, 'learning');
 
         if (!currentCard) {
             elements.word.textContent = 'No cards available';
@@ -63,17 +64,8 @@ const QuizSign = (() => {
         elements.wordBack.textContent = currentCard.word;
         elements.categoryBack.textContent = formatCategory(currentCard.category);
 
-        // Load GIF
-        const gifPath = FlashcardEngine.getGifPath(currentCard);
-        elements.gif.src = '';
-        elements.gif.alt = `ASL sign for "${currentCard.word}"`;
-        elements.gif.style.display = '';
-
-        elements.gif.onerror = () => {
-            elements.gif.onerror = null;
-            elements.gif.style.display = 'none';
-        };
-        elements.gif.src = gifPath;
+        // Avoid loading third-party media until the answer is revealed.
+        MediaRenderer.clear(elements.media, elements.mediaAttribution);
 
         // Always show text guide below image
         showTextGuide(currentCard);
@@ -86,16 +78,22 @@ const QuizSign = (() => {
 
     function reveal() {
         isRevealed = true;
+        MediaRenderer.render(currentCard, elements.media, elements.mediaAttribution);
         elements.card.classList.add('flipped');
     }
 
     function showTextGuide(card) {
         const guide = FlashcardEngine.getTextGuide(card);
         const desc = elements.textGuide.querySelector('.text-guide-desc');
+        const source = elements.textGuide.querySelector('.text-guide-source');
         if (guide) {
             desc.textContent = guide;
+            const sourceUrl = FlashcardEngine.getTextGuideSource(card);
+            source.href = sourceUrl || '';
+            source.style.display = sourceUrl ? '' : 'none';
             elements.textGuide.style.display = '';
         } else {
+            source.removeAttribute('href');
             elements.textGuide.style.display = 'none';
         }
     }

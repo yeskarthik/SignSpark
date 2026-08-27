@@ -211,6 +211,18 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+.mode-card:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.mode-card:disabled:hover,
+.mode-card:disabled:active {
+    border-color: var(--border);
+    box-shadow: var(--shadow);
+    transform: none;
+}
+
 .mode-icon {
     font-size: 2.2rem;
 }
@@ -458,8 +470,8 @@ body {
     padding: 14px 16px;
 }
 
-/* --- GIF Display --- */
-.gif-container {
+/* --- Sign Media --- */
+.media-container {
     width: 100%;
     max-width: 280px;
     aspect-ratio: 1;
@@ -472,10 +484,43 @@ body {
     position: relative;
 }
 
-.sign-gif {
+.media-container.is-video {
+    aspect-ratio: 16 / 9;
+}
+
+.sign-media-image,
+.sign-media-video {
     width: 100%;
     height: 100%;
+    border: 0;
+}
+
+.sign-media-image {
     object-fit: contain;
+}
+
+.sign-media-video {
+    background: #000000;
+}
+
+.media-message {
+    padding: 20px;
+    color: #555555;
+    text-align: center;
+}
+
+.media-attribution {
+    width: 100%;
+    max-width: 280px;
+    margin: 6px auto 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.media-attribution a {
+    margin-left: 4px;
+    color: var(--accent);
 }
 
 .text-guide-inline {
@@ -498,9 +543,18 @@ body {
     font-family: monospace;
 }
 
+.text-guide-source {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--accent);
+    font-size: 0.75rem;
+}
+
 /* --- Sign Display (Mode 2) --- */
 .sign-display {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin-bottom: 16px;
 }

@@ -1,6 +1,6 @@
 /**
  * SignSpark — Mode 2: What Is This Sign? (Sign → Word)
- * Shows GIF, user guesses via multiple choice or free text.
+ * Shows sign media, user guesses via multiple choice or free text.
  */
 
 const QuizWord = (() => {
@@ -11,7 +11,8 @@ const QuizWord = (() => {
     const elements = {};
 
     function init() {
-        elements.gif = document.getElementById('stw-gif');
+        elements.media = document.getElementById('stw-media');
+        elements.mediaAttribution = document.getElementById('stw-media-attribution');
         elements.textGuide = document.getElementById('stw-text-guide');
         elements.mcSection = document.getElementById('mc-section');
         elements.textSection = document.getElementById('text-section');
@@ -53,11 +54,12 @@ const QuizWord = (() => {
 
     function loadNextCard() {
         const prevSlug = currentCard ? currentCard.slug : null;
-        currentCard = FlashcardEngine.getNextCard(prevSlug, true); // requireGif=true
+        currentCard = FlashcardEngine.getNextCard(prevSlug, 'quiz');
         answered = false;
 
         if (!currentCard) {
-            elements.feedbackContent.textContent = 'No cards with GIFs available for this category';
+            elements.feedbackContent.textContent =
+                'No reviewed quiz-safe media is available for this category yet.';
             elements.feedbackContent.className = 'feedback-content incorrect';
             elements.feedback.style.display = '';
             elements.mcSection.style.display = 'none';
@@ -65,19 +67,10 @@ const QuizWord = (() => {
             return;
         }
 
-        // Load GIF
-        const gifPath = FlashcardEngine.getGifPath(currentCard);
-        elements.gif.src = '';
-        elements.gif.alt = 'ASL sign — guess the word';
-        elements.gif.style.display = '';
-        elements.gif.onerror = () => {
-            elements.gif.onerror = null;
-            elements.gif.style.display = 'none';
-        };
-        elements.gif.src = gifPath;
+        MediaRenderer.render(currentCard, elements.media, elements.mediaAttribution, 'quiz');
 
-        // Always show text guide below image
-        showTextGuide(currentCard);
+        // A movement description would reveal the answer before the user guesses.
+        elements.textGuide.style.display = 'none';
 
         // Reset UI
         elements.feedback.style.display = 'none';
@@ -196,15 +189,22 @@ const QuizWord = (() => {
         } else {
             elements.feedbackContent.textContent = `✗ The answer is: ${currentCard.word}`;
         }
+
+        showTextGuide(currentCard);
     }
 
     function showTextGuide(card) {
         const guide = FlashcardEngine.getTextGuide(card);
         const desc = elements.textGuide.querySelector('.text-guide-desc');
+        const source = elements.textGuide.querySelector('.text-guide-source');
         if (guide) {
             desc.textContent = guide;
+            const sourceUrl = FlashcardEngine.getTextGuideSource(card);
+            source.href = sourceUrl || '';
+            source.style.display = sourceUrl ? '' : 'none';
             elements.textGuide.style.display = '';
         } else {
+            source.removeAttribute('href');
             elements.textGuide.style.display = 'none';
         }
     }
