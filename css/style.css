@@ -534,7 +534,7 @@ body {
     aspect-ratio: 16 / 9;
 }
 
-.media-container.is-quiz-video .sign-media-video {
+.media-container.is-looping-video .sign-media-video {
     /* Shrink YouTube's fixed-size overlay while retaining the full video frame. */
     flex: none;
     width: 204.0817%;
@@ -544,7 +544,7 @@ body {
     pointer-events: none;
 }
 
-.media-container.is-quiz-video::after {
+.media-container.is-looping-video::after {
     /* Cover only the scaled pause bars; the surrounding sign stays visible. */
     content: '';
     position: absolute;

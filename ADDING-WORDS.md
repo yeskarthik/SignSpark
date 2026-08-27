@@ -58,7 +58,7 @@ Add the vocabulary through the data pipeline, then manually curate its learning 
 - `quizMedia` optionally overrides the media used for Sign → Word.
 - Shared or collection media is automatically excluded from Sign → Word because it cannot identify one unambiguous answer.
 - Quiz YouTube embeds autoplay muted and restart automatically in a clipped player that masks YouTube title and control chrome.
-- YouTube entries store only the video ID. Learning cards use YouTube's standard identified embed for reliable playback; quiz cards use `youtube-nocookie.com`.
+- YouTube entries store only the video ID. Learning cards use YouTube's standard identified embed; quiz cards use `youtube-nocookie.com`. Both autoplay muted, hide controls, and loop through the player API.
 - Text guides remain hidden unless `textGuideReviewed` is explicitly `true` and a source is recorded.
 - Verify the intended meaning, regional variant, source permission, and playback before setting `reviewed`.
 

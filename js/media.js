@@ -32,7 +32,7 @@ const MediaRenderer = (() => {
         message.textContent = '';
         message.style.display = 'none';
         container.classList.remove('is-video');
-        container.classList.remove('is-quiz-video');
+        container.classList.remove('is-looping-video');
         attribution.replaceChildren();
         attribution.style.display = 'none';
     }
@@ -74,9 +74,9 @@ const MediaRenderer = (() => {
         }
 
         container.classList.add('is-video');
+        container.classList.add('is-looping-video');
 
         if (purpose === 'quiz') {
-            container.classList.add('is-quiz-video');
             video.title = 'ASL sign quiz video';
         } else {
             video.title = `ASL sign for "${card.word}"`;
@@ -94,17 +94,15 @@ const MediaRenderer = (() => {
         const params = new URLSearchParams({
             playsinline: '1',
             rel: '0',
+            autoplay: '1',
+            mute: '1',
+            controls: '0',
+            disablekb: '1',
+            fs: '0',
+            iv_load_policy: '3',
             enablejsapi: '1'
         });
 
-        if (purpose === 'quiz') {
-            params.set('autoplay', '1');
-            params.set('mute', '1');
-            params.set('controls', '0');
-            params.set('disablekb', '1');
-            params.set('fs', '0');
-            params.set('iv_load_policy', '3');
-        }
         if (/^https?:$/.test(window.location.protocol)) {
             params.set('origin', window.location.origin);
         }
@@ -211,7 +209,6 @@ const MediaRenderer = (() => {
             const player = new YT.Player(video, {
                 events: {
                     onReady: (event) => {
-                        if (purpose !== 'quiz') return;
                         event.target.mute();
                         if (video.dataset.preloaded === 'true') {
                             event.target.seekTo(0, true);
@@ -220,7 +217,6 @@ const MediaRenderer = (() => {
                         event.target.playVideo();
                     },
                     onStateChange: (event) => {
-                        if (purpose !== 'quiz') return;
                         // Avoid playlist looping, which adds previous/next controls.
                         if (event.data !== YT.PlayerState.ENDED) return;
                         event.target.seekTo(0, true);
