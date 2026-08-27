@@ -33,7 +33,8 @@ asl/
 - **words.json** is the source of truth for vocabulary at runtime. Curated cards add a `media` object (`type`, `videoId` or `src`, source metadata, and `reviewed`) plus `textGuideReviewed` and `textGuideSource`. Unsupported cards use `mediaReviewStatus: "no-verified-source"`.
 - **Custom words** are stored in `localStorage` under key `signspark_custom_words` and merged with `words.json` at load time.
 - **Weighted random selection** — cards the user gets wrong appear more frequently. Unseen cards get weight 3; seen cards get `1 + errorRate * 4`.
-- **Mode 2 (Sign → Word)** only shows cards with playable `quizMedia` or legacy local media. YouTube media is learning-only because its title can reveal the answer.
+- **Mode 2 (Sign → Word)** uses reviewed media mapped to exactly one card. Shared/collection media is excluded; YouTube clips autoplay muted with controls hidden.
+- **Distractors** favor the same category, nearby numeric/time values, and explicit semantic groups while excluding equivalent labels.
 - **Text guides** are shown only when `textGuideReviewed === true`; generated or unsourced descriptions must remain hidden.
 - **Fuzzy matching** in free-text mode uses Levenshtein distance with a threshold of 25% of the target word length.
 - **Image files** — browsers read file headers, not extensions. JPGs and PNGs saved as `.gif` work fine.

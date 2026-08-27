@@ -10,8 +10,33 @@ const FlashcardEngine = (() => {
     let cardStats = {}; // { slug: { seen: 0, correct: 0, incorrect: 0 } }
     let activeCategories = new Set(); // empty = all
     let customWords = [];
+    let mediaUsage = new Map();
 
     const STORAGE_KEY = 'signspark_custom_words';
+    const DISTRACTOR_GROUPS = [
+        ['what', 'who', 'where', 'which'],
+        ['same', 'different', 'rightcorrect', 'wrong', 'equal'],
+        ['remember', 'remember-most', 'remember-some', 'remember-a-little-bit', 'forget', 'forget-all'],
+        ['door', 'open-door', 'close-door'],
+        ['window', 'window-open', 'window-close'],
+        ['light', 'light-on', 'light-off'],
+        ['book', 'book-open', 'book-close', 'book-read', 'read'],
+        ['paper', 'paper-fold', 'paper-crumble', 'paper-throw', 'paper-look-at'],
+        ['easy', 'sort-of-easy', 'hard', 'sort-of-hard'],
+        ['movie', 'game', 'music', 'computer', 'tv']
+    ];
+    const EQUIVALENT_GROUPS = [
+        ['mom', 'mother'],
+        ['dad', 'father'],
+        ['boy-friend', 'boyfriend'],
+        ['girl-friend', 'girlfriend'],
+        ['color', 'colors'],
+        ['bike', 'bicycling'],
+        ['cook', 'cooking'],
+        ['candy', 'candy-sweets'],
+        ['want', 'to-desire-something-want'],
+        ['here', 'here-in-this-area']
+    ];
 
     function toSlug(word) {
         return word.toLowerCase().trim()
@@ -49,6 +74,7 @@ const FlashcardEngine = (() => {
             }
         }
 
+        rebuildMediaUsage();
         applyFilter();
         return allWords;
     }
@@ -124,19 +150,83 @@ const FlashcardEngine = (() => {
     }
 
     function getRandomDistractors(correctWord, count = 3) {
-        const pool = allWords.filter(w => w.slug !== correctWord.slug);
-        const distractors = [];
-        const used = new Set();
+        const filteredPool = filteredWords.filter(word =>
+            word.slug !== correctWord.slug &&
+            hasQuizMedia(word) &&
+            !arePotentiallyEquivalent(correctWord, word)
+        );
+        const fallbackPool = allWords.filter(word =>
+            word.slug !== correctWord.slug &&
+            !filteredPool.some(candidate => candidate.slug === word.slug) &&
+            hasQuizMedia(word) &&
+            !arePotentiallyEquivalent(correctWord, word)
+        );
 
-        while (distractors.length < count && distractors.length < pool.length) {
-            const idx = Math.floor(Math.random() * pool.length);
-            if (!used.has(idx)) {
-                used.add(idx);
-                distractors.push(pool[idx]);
-            }
+        return [...filteredPool, ...fallbackPool]
+            .map(word => ({
+                word,
+                score: getDistractorScore(correctWord, word) + Math.random() * 8
+            }))
+            .sort((a, b) => b.score - a.score)
+            .slice(0, count)
+            .map(candidate => candidate.word);
+    }
+
+    function getDistractorScore(correctWord, candidate) {
+        let score = correctWord.category === candidate.category ? 100 : 0;
+
+        if (inSameGroup(correctWord.slug, candidate.slug, DISTRACTOR_GROUPS)) {
+            score += 80;
         }
 
-        return distractors;
+        const correctNumber = getCardNumber(correctWord);
+        const candidateNumber = getCardNumber(candidate);
+        if (correctNumber !== null && candidateNumber !== null) {
+            score += Math.max(0, 50 - Math.abs(correctNumber - candidateNumber) * 4);
+        }
+
+        const correctUnit = getTimeUnit(correctWord.word);
+        const candidateUnit = getTimeUnit(candidate.word);
+        if (correctUnit && correctUnit === candidateUnit) {
+            score += 45;
+        }
+
+        const lengthDifference = Math.abs(correctWord.word.length - candidate.word.length);
+        score += Math.max(0, 12 - lengthDifference);
+        return score;
+    }
+
+    function getCardNumber(wordEntry) {
+        if (!['numbers', 'time', 'age-ranges'].includes(wordEntry.category)) {
+            return null;
+        }
+        const match = wordEntry.word.match(/\d+/);
+        return match ? Number(match[0]) : null;
+    }
+
+    function getTimeUnit(word) {
+        if (/\bminutes?\b/i.test(word)) return 'minute';
+        if (/\bhours?\b/i.test(word)) return 'hour';
+        if (/\byears?\b/i.test(word)) return 'year';
+        return null;
+    }
+
+    function inSameGroup(firstSlug, secondSlug, groups) {
+        return groups.some(group =>
+            group.includes(firstSlug) && group.includes(secondSlug)
+        );
+    }
+
+    function arePotentiallyEquivalent(first, second) {
+        if (inSameGroup(first.slug, second.slug, EQUIVALENT_GROUPS)) {
+            return true;
+        }
+
+        const firstTokens = new Set(toSlug(first.word).split('-').filter(Boolean));
+        const secondTokens = new Set(toSlug(second.word).split('-').filter(Boolean));
+        const firstContained = [...firstTokens].every(token => secondTokens.has(token));
+        const secondContained = [...secondTokens].every(token => firstTokens.has(token));
+        return firstContained || secondContained;
     }
 
     function recordResult(slug, correct) {
@@ -234,6 +324,22 @@ const FlashcardEngine = (() => {
         return false;
     }
 
+    function getMediaIdentity(media) {
+        if (media?.type === 'youtube') return `youtube:${media.videoId}`;
+        if (media?.type === 'image') return `image:${media.src}`;
+        return null;
+    }
+
+    function rebuildMediaUsage() {
+        mediaUsage = new Map();
+        for (const word of allWords) {
+            if (word.media?.reviewed !== true) continue;
+            const identity = getMediaIdentity(word.media);
+            if (!identity) continue;
+            mediaUsage.set(identity, (mediaUsage.get(identity) || 0) + 1);
+        }
+    }
+
     function hasLearningMedia(wordEntry) {
         if (isPlayableMedia(wordEntry.media)) return true;
         return wordEntry.legacyMediaDisabled !== true &&
@@ -243,10 +349,10 @@ const FlashcardEngine = (() => {
 
     function hasQuizMedia(wordEntry) {
         if (isPlayableMedia(wordEntry.quizMedia)) return true;
-        if (wordEntry.media?.type === 'image' &&
-            wordEntry.media.reviewed === true &&
-            isPlayableMedia(wordEntry.media)) {
-            return true;
+        if (wordEntry.media?.reviewed === true && isPlayableMedia(wordEntry.media)) {
+            const identity = getMediaIdentity(wordEntry.media);
+            return wordEntry.media.quizEligible !== false &&
+                mediaUsage.get(identity) === 1;
         }
         return wordEntry.legacyMediaDisabled !== true &&
             wordEntry.hasGif === true &&
@@ -259,8 +365,7 @@ const FlashcardEngine = (() => {
         let curatedMedia = purpose === 'quiz' ? wordEntry.quizMedia : wordEntry.media;
         if (purpose === 'quiz' &&
             !isPlayableMedia(curatedMedia) &&
-            wordEntry.media?.type === 'image' &&
-            wordEntry.media.reviewed === true) {
+            hasQuizMedia(wordEntry)) {
             curatedMedia = wordEntry.media;
         }
         if (isPlayableMedia(curatedMedia)) {

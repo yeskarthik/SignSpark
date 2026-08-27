@@ -33,7 +33,7 @@ const MediaRenderer = (() => {
         }
 
         if (media.type === 'youtube') {
-            renderYouTube(media, card, container);
+            renderYouTube(media, card, container, purpose);
         } else if (media.type === 'image') {
             renderImage(media, card, container);
         } else {
@@ -44,7 +44,7 @@ const MediaRenderer = (() => {
         renderAttribution(media, attribution);
     }
 
-    function renderYouTube(media, card, container) {
+    function renderYouTube(media, card, container, purpose) {
         if (!YOUTUBE_ID_PATTERN.test(media.videoId || '')) {
             showMessage(container, 'This sign video is unavailable.');
             return;
@@ -52,8 +52,26 @@ const MediaRenderer = (() => {
 
         const video = container.querySelector('[data-media-video]');
         container.classList.add('is-video');
-        video.title = `ASL sign for "${card.word}"`;
-        video.src = `https://www.youtube-nocookie.com/embed/${media.videoId}?playsinline=1&rel=0`;
+        const params = new URLSearchParams({
+            playsinline: '1',
+            rel: '0'
+        });
+
+        if (purpose === 'quiz') {
+            params.set('autoplay', '1');
+            params.set('mute', '1');
+            params.set('controls', '0');
+            params.set('disablekb', '1');
+            params.set('fs', '0');
+            params.set('iv_load_policy', '3');
+            params.set('loop', '1');
+            params.set('playlist', media.videoId);
+            video.title = 'ASL sign quiz video';
+        } else {
+            video.title = `ASL sign for "${card.word}"`;
+        }
+
+        video.src = `https://www.youtube-nocookie.com/embed/${media.videoId}?${params}`;
         video.style.display = '';
     }
 

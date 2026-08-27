@@ -54,8 +54,10 @@ Add the vocabulary through the data pipeline, then manually curate its learning 
 }
 ```
 
-- `media` is shown after revealing a Word → Sign card. It may be a reviewed local image or a curated YouTube video.
-- `quizMedia` is used for Sign → Word. Do not use YouTube here because the player title can reveal the answer.
+- `media` is shown after revealing a Word → Sign card. Reviewed, uniquely mapped media is also eligible for Sign → Word.
+- `quizMedia` optionally overrides the media used for Sign → Word.
+- Shared or collection media is automatically excluded from Sign → Word because it cannot identify one unambiguous answer.
+- Quiz YouTube embeds autoplay muted with controls hidden to avoid exposing the video title.
 - YouTube entries store only the video ID and use `youtube-nocookie.com` at runtime.
 - Text guides remain hidden unless `textGuideReviewed` is explicitly `true` and a source is recorded.
 - Verify the intended meaning, regional variant, source permission, and playback before setting `reviewed`.

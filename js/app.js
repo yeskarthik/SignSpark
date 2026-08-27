@@ -113,7 +113,7 @@ const App = (() => {
         quizModeButton.disabled = !hasQuizMedia;
         quizModeStatus.textContent = hasQuizMedia
             ? 'Watch a reviewed sign, then guess the word'
-            : 'Waiting for reviewed quiz-safe local media';
+            : 'No unambiguous sign media is available for this filter';
 
         const learningModeButton = document.getElementById('btn-mode-sign');
         const learningModeStatus = document.getElementById('mode-sign-status');
