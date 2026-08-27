@@ -4,11 +4,11 @@ SignSpark is hosted on **Azure Static Web Apps** (Free tier).
 
 | Setting         | Value                                              |
 |-----------------|----------------------------------------------------|
-| App name        | `<your-app-name>`                                  |
-| Resource group  | `<your-resource-group>`                            |
+| App name        | `signspark`                                        |
+| Resource group  | `signspark-rg`                                     |
 | Region          | `westus2`                                          |
-| Hostname        | `<your-hostname>.azurestaticapps.net`              |
-| Subscription    | `<your-subscription-name>`                         |
+| Hostname        | `lemon-rock-07f946f1e.7.azurestaticapps.net`       |
+| Subscription    | `0648b1a1-e377-4bc7-b768-8f3c62ed3c05`           |
 
 ---
 
@@ -50,7 +50,23 @@ az account set --subscription "<your-subscription-name>"
 $token = az staticwebapp secrets list --name <your-app-name> --resource-group <your-resource-group> --query "properties.apiKey" -o tsv
 ```
 
-### 4. Deploy with StaticSitesClient
+### 4. Create a clean deployment artifact
+
+Never pass the repository root directly to StaticSitesClient. The client can
+remove excluded metadata such as `.git` while preparing the artifact.
+
+```powershell
+$repo = "C:\personal\projects\SignSpark"
+$artifact = Join-Path $env:TEMP ("signspark-deploy-" + [guid]::NewGuid())
+New-Item -ItemType Directory -Path $artifact | Out-Null
+
+Copy-Item "$repo\index.html" $artifact
+foreach ($directory in @("assets", "css", "data", "js")) {
+    Copy-Item "$repo\$directory" $artifact -Recurse
+}
+```
+
+### 5. Deploy with StaticSitesClient
 
 The SWA CLI's `swa deploy` command uses StaticSitesClient internally. For reliable deployment, invoke it directly:
 
@@ -61,16 +77,19 @@ $client = (Get-ChildItem -Path "$env:USERPROFILE\.swa\deploy" -Recurse -Filter "
 cd $env:USERPROFILE
 
 & $client upload `
-  --app "<path-to-your-repo>" `
+  --app $artifact `
   --outputLocation "." `
   --apiToken $token `
   --skipAppBuild true `
   --verbose
+
+Remove-Item -LiteralPath $artifact -Recurse -Force
 ```
 
-> **⚠️ Key detail**: The working directory must be *different* from the app folder. If you run from inside the app folder, you'll get: `"Current directory cannot be identical to or contained within artifact folders."`
+> **Key details**: Run the client outside both the repository and artifact
+> directories. Upload only the staged runtime artifact.
 
-### 5. Verify the deployment
+### 6. Verify the deployment
 
 ```powershell
 # Check HTML loads with app content
@@ -125,7 +144,8 @@ Then follow steps 3-5 above to deploy.
 |---------|----------|
 | Site shows default Azure placeholder | Deployment didn't upload files. Re-run StaticSitesClient from a parent directory. |
 | `swa deploy` exits 0 but site unchanged | Use StaticSitesClient.exe directly instead of the SWA CLI wrapper. |
-| "Current directory cannot be identical to artifact folders" | `cd` to a different directory before running StaticSitesClient. |
+| "Current directory cannot be identical to artifact folders" | Run StaticSitesClient outside both the repository and staged artifact. |
+| Local `.git` metadata disappears | Never upload the repository root; create the clean runtime artifact in Step 4. |
 | StaticSitesClient.exe not found | Run `swa deploy` once — it downloads the client to `~/.swa/deploy/`. |
 | 404 on assets (CSS/JS/images) | Check that the deploy included all subdirectories. Re-deploy with `--verbose`. |
 | Login expired | Run `az login --use-device-code` again. |
@@ -138,7 +158,16 @@ Copy-paste this for a one-command deploy:
 
 ```powershell
 cd $env:USERPROFILE
-$token = az staticwebapp secrets list --name <your-app-name> --resource-group <your-resource-group> --query "properties.apiKey" -o tsv
+$repo = "C:\personal\projects\SignSpark"
+$artifact = Join-Path $env:TEMP ("signspark-deploy-" + [guid]::NewGuid())
+New-Item -ItemType Directory -Path $artifact | Out-Null
+Copy-Item "$repo\index.html" $artifact
+foreach ($directory in @("assets", "css", "data", "js")) {
+    Copy-Item "$repo\$directory" $artifact -Recurse
+}
+
+$token = az staticwebapp secrets list --name signspark --resource-group signspark-rg --query "properties.apiKey" -o tsv
 $client = (Get-ChildItem -Path "$env:USERPROFILE\.swa\deploy" -Recurse -Filter "StaticSitesClient.exe" | Select-Object -First 1).FullName
-& $client upload --app "<path-to-your-repo>" --outputLocation "." --apiToken $token --skipAppBuild true --verbose
+& $client upload --app $artifact --outputLocation "." --apiToken $token --skipAppBuild true --verbose
+Remove-Item -LiteralPath $artifact -Recurse -Force
 ```
