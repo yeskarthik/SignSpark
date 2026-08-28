@@ -9,6 +9,7 @@ const MediaRenderer = (() => {
     const PLAYER_START_TIMEOUT_MS = 12000;
     const youtubePlayers = new WeakMap();
     const youtubeStartupTimers = new WeakMap();
+    const reportedMedia = new Set();
     let youtubeApiPromise = null;
     let preloadEntry = null;
 
@@ -59,7 +60,7 @@ const MediaRenderer = (() => {
             return;
         }
 
-        renderAttribution(media, attribution);
+        renderAttribution(media, attribution, card, purpose);
     }
 
     function renderYouTube(media, card, container, purpose) {
@@ -302,10 +303,12 @@ const MediaRenderer = (() => {
         message.style.display = '';
     }
 
-    function renderAttribution(media, attribution) {
+    function renderAttribution(media, attribution, card, purpose) {
+        const sourceLine = document.createElement('div');
+        sourceLine.className = 'media-source-line';
         const label = document.createElement('span');
         label.textContent = media.reviewed ? 'Reviewed source: ' : 'Legacy media — not yet reviewed';
-        attribution.appendChild(label);
+        sourceLine.appendChild(label);
 
         if (media.sourceUrl && media.sourceName) {
             const link = document.createElement('a');
@@ -313,10 +316,65 @@ const MediaRenderer = (() => {
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
             link.textContent = media.sourceName;
-            attribution.appendChild(link);
+            sourceLine.appendChild(link);
+        }
+        attribution.appendChild(sourceLine);
+
+        if (media.type === 'youtube' && media.videoId) {
+            renderReportButton(media, card, purpose, attribution);
         }
 
         attribution.style.display = '';
+    }
+
+    function renderReportButton(media, card, purpose, attribution) {
+        const reportKey = [
+            FlashcardEngine.getActiveProfile(),
+            card.slug,
+            purpose,
+            media.videoId
+        ].join(':');
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'media-report-button';
+        button.textContent = reportedMedia.has(reportKey)
+            ? 'Reported — thank you'
+            : 'Report video issue';
+        button.disabled = reportedMedia.has(reportKey);
+        button.addEventListener('click', async () => {
+            button.disabled = true;
+            button.textContent = 'Sending report…';
+
+            try {
+                const response = await fetch('/api/video-reports', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        slug: card.slug,
+                        word: card.word,
+                        videoId: media.videoId,
+                        purpose,
+                        profile: FlashcardEngine.getActiveProfile(),
+                        pageUrl: window.location.href
+                    }),
+                    keepalive: true
+                });
+                if (!response.ok) {
+                    throw new Error(`Video report API returned ${response.status}.`);
+                }
+
+                reportedMedia.add(reportKey);
+                button.textContent = 'Reported — thank you';
+            } catch (error) {
+                console.error('Could not report the video issue.', error);
+                button.disabled = false;
+                button.textContent = 'Report failed — try again';
+            }
+        });
+        attribution.appendChild(button);
     }
 
     return { cancelPreload, clear, preload, render };

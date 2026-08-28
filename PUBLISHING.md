@@ -11,6 +11,7 @@ SignSpark is hosted on **Azure Static Web Apps** (Free tier).
 | Subscription    | `0648b1a1-e377-4bc7-b768-8f3c62ed3c05`           |
 | Storage account | `signsparkdata3c05`                                |
 | Profile table   | `SignSparkProfiles`                                |
+| Video reports   | `SignSparkVideoReports`                            |
 
 ---
 
@@ -71,6 +72,7 @@ foreach ($directory in @("assets", "css", "data", "js")) {
 
 Copy-Item "$repo\api\host.json", "$repo\api\package.json", "$repo\api\package-lock.json" $apiArtifact
 Copy-Item "$repo\api\profiles" $apiArtifact -Recurse
+Copy-Item "$repo\api\video-reports" $apiArtifact -Recurse
 ```
 
 ### 5. Deploy with StaticSitesClient
@@ -185,6 +187,7 @@ foreach ($directory in @("assets", "css", "data", "js")) {
 }
 Copy-Item "$repo\api\host.json", "$repo\api\package.json", "$repo\api\package-lock.json" $apiArtifact
 Copy-Item "$repo\api\profiles" $apiArtifact -Recurse
+Copy-Item "$repo\api\video-reports" $apiArtifact -Recurse
 npm ci --omit=dev --prefix $apiArtifact --no-audit --no-fund
 
 $token = az staticwebapp secrets list --name signspark --resource-group signspark-rg --query "properties.apiKey" -o tsv
