@@ -12,6 +12,7 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).parent.parent
 WORDS_JSON = PROJECT_DIR / "data" / "words.json"
 NUMBER_COMPILATION_VIDEO_ID = "M4AFC4eEjlQ"
+EXPECTED_SYLLABUS_UNITS = {1, 2, 3, 4, 5, 6}
 
 
 def verify(video_id):
@@ -59,8 +60,20 @@ def main():
     cards_by_video = {}
     image_sources = {}
     catalog_failures = []
+    syllabus_units = set()
     for word in words:
         media = word.get("media", {})
+        word_units = word.get("syllabusUnits", [])
+        if word_units != sorted(set(word_units)):
+            catalog_failures.append(
+                f"{word['slug']}: syllabus units must be sorted and unique"
+            )
+        if any(unit not in EXPECTED_SYLLABUS_UNITS for unit in word_units):
+            catalog_failures.append(
+                f"{word['slug']}: invalid syllabus unit"
+            )
+        syllabus_units.update(word_units)
+
         if (
             word.get("category") == "numbers"
             and word.get("slug") != "numbers-1-100"
@@ -69,13 +82,45 @@ def main():
             catalog_failures.append(
                 f"{word['slug']}: individual number uses the 1-100 compilation"
             )
-        if media.get("type") == "youtube" and media.get("reviewed") is True:
-            cards_by_video.setdefault(media["videoId"], []).append(word["slug"])
-        elif media.get("type") == "image" and media.get("reviewed") is True:
-            image_sources[word["slug"]] = (
-                media["sourceUrl"],
-                media["src"],
-            )
+
+        for media_field in ("media", "syllabusMedia"):
+            reviewed_media = word.get(media_field, {})
+            if reviewed_media.get("reviewed") is not True:
+                continue
+            if reviewed_media.get("type") == "youtube":
+                video_id = reviewed_media.get("videoId", "")
+                cards_by_video.setdefault(video_id, []).append(word["slug"])
+                start = reviewed_media.get("startSeconds")
+                end = reviewed_media.get("endSeconds")
+                if (start is None) != (end is None):
+                    catalog_failures.append(
+                        f"{word['slug']}: incomplete video segment"
+                    )
+                elif start is not None and (
+                    not isinstance(start, (int, float))
+                    or not isinstance(end, (int, float))
+                    or start < 0
+                    or end <= start
+                    or end - start > 15
+                ):
+                    catalog_failures.append(
+                        f"{word['slug']}: invalid video segment {start}-{end}"
+                    )
+                if video_id not in reviewed_media.get("sourceUrl", ""):
+                    catalog_failures.append(
+                        f"{word['slug']}: source URL does not match video"
+                    )
+            elif reviewed_media.get("type") == "image":
+                image_sources[word["slug"]] = (
+                    reviewed_media["sourceUrl"],
+                    reviewed_media["src"],
+                )
+
+    if syllabus_units != EXPECTED_SYLLABUS_UNITS:
+        catalog_failures.append(
+            "syllabus unit coverage is incomplete: "
+            + ", ".join(map(str, sorted(syllabus_units)))
+        )
 
     failures = []
     with ThreadPoolExecutor(max_workers=8) as executor:

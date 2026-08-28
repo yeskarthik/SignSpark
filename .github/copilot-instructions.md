@@ -17,7 +17,7 @@ asl/
 │   ├── quiz-sign.js        # Mode 1: Word → Sign (show word, reveal media, self-rate)
 │   ├── quiz-word.js        # Mode 2: Sign → Word (show media, multiple choice or free text)
 │   └── app.js              # App shell — routing, dark mode, category chips, word management
-├── data/words.json         # 500 word entries and their media/description metadata
+├── data/words.json         # 939 cards with media, syllabus units, and descriptions
 ├── assets/gifs/            # Legacy local image library being replaced through review
 ├── api/
 │   ├── profiles/           # GET/POST profile progress Azure Function
@@ -40,9 +40,11 @@ asl/
 - **Custom words** are stored in `localStorage` under key `signspark_custom_words` and merged with `words.json` at load time.
 - **Weighted random selection** — cards the user gets wrong appear more frequently. Unseen cards get weight 3; seen cards get `1 + errorRate * 4`.
 - **YouTube endpoints** — learning cards use `youtube.com` with `enablejsapi` and `origin` for reliable identified playback and error reporting; Sign → Word uses `youtube-nocookie.com`. Both autoplay muted, hide controls, and loop through the player API.
+- **Timed syllabus clips** — YouTube media can define `startSeconds` and `endSeconds`. The player seeks to the exact start and loops at the exact end; media identity includes the segment range.
+- **Signing Naturally coverage** — 772 deduplicated concepts cover Units 1–6. Cards use `syllabusUnits`; existing reviewed media is retained and the subtitle-timed source is stored as `syllabusMedia`.
 - **Playback recovery** — media.js retries YouTube startup errors/timeouts twice with a fresh iframe before showing the reviewed-source fallback.
 - **Video reports** — YouTube attribution includes a one-tap report button. `/api/video-reports` stores reports in the `SignSparkVideoReports` Azure table.
-- **Mode 2 (Sign → Word)** uses reviewed media mapped to exactly one card. Shared/collection media is excluded; YouTube clips autoplay muted and restart automatically in a clipped player with title and control chrome masked.
+- **Mode 2 (Sign → Word)** uses reviewed media identities mapped to exactly one card. A YouTube identity includes video ID plus segment boundaries, allowing distinct clips from one source lesson.
 - **Quiz flow** — Sign → Word preselects and preloads the next card. Correct answers advance automatically after brief feedback; incorrect answers wait for the user to select Next.
 - **Profiles** — Kar, Shy, Lav, Swa, and Rah persist independent stats and retry queues through `/api/profiles/{profile}`. Guest data remains in memory and must never be sent to the API.
 - **Profile database** — the API uses Azure Table Storage through the `PROFILE_STORAGE_CONNECTION_STRING` application setting; never commit this secret.

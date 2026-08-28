@@ -7,6 +7,7 @@ const FlashcardEngine = (() => {
     let allWords = [];
     let filteredWords = [];
     let activeCategories = new Set(); // empty = all
+    let activeSyllabusUnits = new Set(); // empty = all
     let customWords = [];
     let mediaUsage = new Map();
     let activeProfile = 'Guest';
@@ -105,11 +106,13 @@ const FlashcardEngine = (() => {
     }
 
     function applyFilter() {
-        if (activeCategories.size === 0) {
-            filteredWords = [...allWords];
-        } else {
-            filteredWords = allWords.filter(w => activeCategories.has(w.category));
-        }
+        filteredWords = allWords.filter(word => {
+            const categoryMatches = activeCategories.size === 0 ||
+                activeCategories.has(word.category);
+            const unitMatches = activeSyllabusUnits.size === 0 ||
+                word.syllabusUnits?.some(unit => activeSyllabusUnits.has(unit));
+            return categoryMatches && unitMatches;
+        });
     }
 
     function getCategories() {
@@ -136,6 +139,29 @@ const FlashcardEngine = (() => {
 
     function isCategoryActive(cat) {
         return activeCategories.has(cat);
+    }
+
+    function getSyllabusUnits() {
+        const units = new Set();
+        for (const word of allWords) {
+            for (const unit of word.syllabusUnits || []) {
+                units.add(unit);
+            }
+        }
+        return [...units].sort((left, right) => left - right);
+    }
+
+    function toggleSyllabusUnit(unit) {
+        if (activeSyllabusUnits.has(unit)) {
+            activeSyllabusUnits.delete(unit);
+        } else {
+            activeSyllabusUnits.add(unit);
+        }
+        applyFilter();
+    }
+
+    function isSyllabusUnitActive(unit) {
+        return activeSyllabusUnits.has(unit);
     }
 
     /**
@@ -472,7 +498,16 @@ const FlashcardEngine = (() => {
 
     function isPlayableMedia(media) {
         if (media?.type === 'youtube') {
-            return Boolean(media.videoId);
+            const hasStart = media.startSeconds !== undefined;
+            const hasEnd = media.endSeconds !== undefined;
+            return Boolean(media.videoId) &&
+                hasStart === hasEnd &&
+                (!hasStart || (
+                    Number.isFinite(media.startSeconds) &&
+                    Number.isFinite(media.endSeconds) &&
+                    media.startSeconds >= 0 &&
+                    media.endSeconds > media.startSeconds
+                ));
         }
         if (media?.type === 'image') {
             return Boolean(media.src);
@@ -481,7 +516,12 @@ const FlashcardEngine = (() => {
     }
 
     function getMediaIdentity(media) {
-        if (media?.type === 'youtube') return `youtube:${media.videoId}`;
+        if (media?.type === 'youtube') {
+            const segment = media.startSeconds === undefined
+                ? ''
+                : `:${media.startSeconds}-${media.endSeconds}`;
+            return `youtube:${media.videoId}${segment}`;
+        }
         if (media?.type === 'image') return `image:${media.src}`;
         return null;
     }
@@ -555,6 +595,9 @@ const FlashcardEngine = (() => {
         setCategories,
         toggleCategory,
         isCategoryActive,
+        getSyllabusUnits,
+        toggleSyllabusUnit,
+        isSyllabusUnitActive,
         getNextCard,
         getRandomDistractors,
         recordResult,

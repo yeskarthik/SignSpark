@@ -27,6 +27,8 @@ module.exports = async function videoReports(context, req) {
             word: report.word,
             purpose: report.purpose,
             profile: report.profile,
+            startSeconds: report.startSeconds,
+            endSeconds: report.endSeconds,
             pageUrl: report.pageUrl,
             userAgent: String(req.headers?.['user-agent'] || '').slice(0, 512),
             reportedAt: new Date().toISOString(),
@@ -63,6 +65,15 @@ function isValidReport(report) {
         return false;
     }
     if (!YOUTUBE_ID_PATTERN.test(report.videoId || '')) return false;
+    const hasStart = report.startSeconds !== undefined;
+    const hasEnd = report.endSeconds !== undefined;
+    if (hasStart !== hasEnd) return false;
+    if (hasStart && (
+        !Number.isFinite(report.startSeconds)
+        || !Number.isFinite(report.endSeconds)
+        || report.startSeconds < 0
+        || report.endSeconds <= report.startSeconds
+    )) return false;
     if (!PURPOSES.has(report.purpose)) return false;
     if (!PROFILE_NAMES.has(report.profile)) return false;
 

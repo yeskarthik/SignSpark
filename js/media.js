@@ -9,6 +9,7 @@ const MediaRenderer = (() => {
     const PLAYER_START_TIMEOUT_MS = 12000;
     const youtubePlayers = new WeakMap();
     const youtubeStartupTimers = new WeakMap();
+    const youtubeSegmentTimers = new WeakMap();
     const reportedMedia = new Set();
     let youtubeApiPromise = null;
     let preloadEntry = null;
@@ -21,6 +22,7 @@ const MediaRenderer = (() => {
         const player = youtubePlayers.get(video);
         if (player) {
             clearPlayerTimer(video);
+            clearSegmentTimer(video);
             const replacement = video.cloneNode(false);
             const nextSibling = video.nextSibling;
             player.destroy();
@@ -92,7 +94,7 @@ const MediaRenderer = (() => {
         }
         video.style.display = '';
 
-        enableYouTubePlayer(video, purpose, container);
+        enableYouTubePlayer(video, purpose, container, media);
     }
 
     function getYouTubeUrl(media, purpose) {
@@ -110,6 +112,10 @@ const MediaRenderer = (() => {
 
         if (/^https?:$/.test(window.location.protocol)) {
             params.set('origin', window.location.origin);
+        }
+        if (hasSegment(media)) {
+            params.set('start', String(Math.floor(media.startSeconds)));
+            params.set('end', String(Math.ceil(media.endSeconds)));
         }
 
         const host = purpose === 'quiz'
@@ -178,8 +184,24 @@ const MediaRenderer = (() => {
     }
 
     function getMediaKey(media, purpose) {
-        const identity = media.type === 'youtube' ? media.videoId : media.src;
+        const identity = media.type === 'youtube'
+            ? getYouTubeMediaKey(media)
+            : media.src;
         return `${purpose}:${media.type}:${identity}`;
+    }
+
+    function getYouTubeMediaKey(media) {
+        const segment = hasSegment(media)
+            ? `:${media.startSeconds}-${media.endSeconds}`
+            : '';
+        return `${media.videoId}${segment}`;
+    }
+
+    function hasSegment(media) {
+        return Number.isFinite(media.startSeconds) &&
+            Number.isFinite(media.endSeconds) &&
+            media.startSeconds >= 0 &&
+            media.endSeconds > media.startSeconds;
     }
 
     function loadYouTubeApi() {
@@ -206,7 +228,7 @@ const MediaRenderer = (() => {
         return youtubeApiPromise;
     }
 
-    function enableYouTubePlayer(video, purpose, container, attempt = 0) {
+    function enableYouTubePlayer(video, purpose, container, media, attempt = 0) {
         const expectedSrc = video.src;
         loadYouTubeApi().then((YT) => {
             if (!video.isConnected || video.src !== expectedSrc) return;
@@ -217,6 +239,7 @@ const MediaRenderer = (() => {
                 if (recovering || !video.isConnected) return;
                 recovering = true;
                 clearPlayerTimer(video);
+                clearSegmentTimer(video);
 
                 if (attempt < MAX_PLAYER_RETRIES) {
                     const replacement = video.cloneNode(false);
@@ -229,7 +252,7 @@ const MediaRenderer = (() => {
                     retryUrl.searchParams.set('retry', `${attempt + 1}-${Date.now()}`);
                     replacement.src = retryUrl.toString();
                     replacement.style.display = '';
-                    enableYouTubePlayer(replacement, purpose, container, attempt + 1);
+                    enableYouTubePlayer(replacement, purpose, container, media, attempt + 1);
                     return;
                 }
 
@@ -245,9 +268,14 @@ const MediaRenderer = (() => {
                 events: {
                     onReady: (event) => {
                         event.target.mute();
+                        const loopStart = hasSegment(media) ? media.startSeconds : 0;
                         if (video.dataset.preloaded === 'true') {
-                            event.target.seekTo(0, true);
+                            event.target.seekTo(loopStart, true);
                             delete video.dataset.preloaded;
+                        }
+                        if (hasSegment(media)) {
+                            event.target.seekTo(loopStart, true);
+                            startSegmentTimer(video, event.target, media);
                         }
                         event.target.playVideo();
                     },
@@ -257,7 +285,10 @@ const MediaRenderer = (() => {
                         }
                         // Avoid playlist looping, which adds previous/next controls.
                         if (event.data !== YT.PlayerState.ENDED) return;
-                        event.target.seekTo(0, true);
+                        event.target.seekTo(
+                            hasSegment(media) ? media.startSeconds : 0,
+                            true
+                        );
                         event.target.playVideo();
                     },
                     onError: (event) => {
@@ -283,6 +314,26 @@ const MediaRenderer = (() => {
     function clearPlayerTimer(video) {
         clearTimeout(youtubeStartupTimers.get(video));
         youtubeStartupTimers.delete(video);
+    }
+
+    function startSegmentTimer(video, player, media) {
+        clearSegmentTimer(video);
+        const timer = setInterval(() => {
+            if (!video.isConnected) {
+                clearSegmentTimer(video);
+                return;
+            }
+            if (player.getCurrentTime() >= media.endSeconds - 0.1) {
+                player.seekTo(media.startSeconds, true);
+                player.playVideo();
+            }
+        }, 100);
+        youtubeSegmentTimers.set(video, timer);
+    }
+
+    function clearSegmentTimer(video) {
+        clearInterval(youtubeSegmentTimers.get(video));
+        youtubeSegmentTimers.delete(video);
     }
 
     function renderImage(media, card, container) {
@@ -356,6 +407,8 @@ const MediaRenderer = (() => {
                         slug: card.slug,
                         word: card.word,
                         videoId: media.videoId,
+                        startSeconds: media.startSeconds,
+                        endSeconds: media.endSeconds,
                         purpose,
                         profile: FlashcardEngine.getActiveProfile(),
                         pageUrl: window.location.href

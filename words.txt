@@ -457,3 +457,443 @@ LESS THAN ONE YEAR OLD
 11-15 YEARS OLD
 16-19 YEARS OLD
 20 YEARS OLD AND OLDER
+
+Tenth
+Eleventh
+Twelfth
+Thirteenth
+Fourteenth
+Fifteenth
+First
+Second
+Third
+Fourth
+Fifth
+Ninth
+A Little Bit
+Across From
+Add
+Adopted Family Member
+Adopted Son
+Adoption
+Afternoon
+Age
+Air Force
+Airplane
+Airport
+Alcohol
+Alive
+All
+All Day
+All Night
+Almost Finished
+Animal
+April
+Argue
+Arrow
+Art
+Ask
+August
+Aunt
+Baby
+Baby care
+Babysitting
+Bad
+Bank
+Bar
+Baseball
+Basketball
+Beach
+Beautiful
+Behind
+Beside
+Best Friend
+Big Family
+Birthday
+Boat
+Bookstore
+Boring
+Brand New
+Bring
+Building
+Business Meeting
+Cafeteria
+California
+Call
+Can't
+Can't find parking
+Car
+Car broke down
+Cards
+Category / Group
+Celebrate
+Chicken
+Child
+Christmas
+Church
+Circle
+Clean
+Clean Outside
+Close
+Club
+Cold
+Comment
+Compass
+Computer Lab
+Concert
+Condo
+Copy You
+Cousin
+Cute
+Day
+Dead
+Deaf School
+December
+Dentist
+Desk
+Did you go to class this morning?
+Directions
+Distant Future
+Divide
+Divorce
+Do
+Do Not Understand
+Do You Have Siblings?
+Doctor
+Don't Like
+Dorm Room
+Downtown
+Drink Alcohol
+Drop Off
+Dry Cleaners
+Dryer
+Dust
+Easter
+Energy Drink
+Enjoy
+Evening
+Every Afternoon
+Every Friday
+Every Monday
+Every Month
+Every Morning
+Every Night
+Every Saturday
+Every Sunday
+Every Thursday
+Every Tuesday
+Every Wednesday
+Every Week
+Every Year
+Exchange
+Fair
+Fall Out of Love
+Family Reunion
+Far
+Father's Side
+February
+Feed Pets
+Feel
+Female Cousin
+Fill
+Finally
+Find
+Finished
+First Floor
+Fix
+Flat tire
+Flirt
+Fold Clothes
+Food
+Food Store
+Football
+For-For
+Foster Family
+Four of Us
+Four of You
+Fourth Floor
+Friday
+Friend
+Front Desk
+Front Door
+Gas Station
+Give
+Good
+Gorgeous
+Graduation
+Granddaughter
+Grandpa
+Grandson
+Great-Grandma
+Great-Grandpa
+Gym
+Haircut
+Half Brother
+Half Sister
+Halloween
+Hanukkah
+Happy
+Hard of Hearing
+He / Him
+Heart
+Helicopter
+Hide
+Hill
+Himself / Herself / Itself
+His / Hers / Its
+Holidays
+Home Inspection
+Horse
+Hospital
+Host
+Hot
+Hour
+How
+How Many
+How Many Siblings?
+How Much
+How Old Are You Now?
+Hungry
+I can't come to class; I must see a doctor.
+I / Me
+In
+In-Law
+Inside
+Institute
+January
+Juice
+June
+Kids
+Kiss-Fist
+Knitting
+Lake
+Last Monday
+Last Month
+Last Week
+Last Year
+Late
+Lazy
+Likewise
+Load the Dishwasher
+Local
+Long Ago
+Look
+Look Alike
+Look at
+Look Different
+Look for
+Look Good
+Look Nice
+Love
+Machine
+Make Coffee
+Male Cousin
+Map
+March
+Math
+May
+Medical
+Medical Appointment
+Middle School
+Midnight
+Minute
+Mobile Home
+Monday
+Month
+Moon
+Morning
+Most
+Mother's Side
+Mouse
+Move
+Movie Store
+Multiply
+Museum
+Must
+My
+My / Mine
+My Turn
+Myself
+Near Future
+Negative
+Nephew
+Next Month
+Next to
+Next Week
+Next Year
+Nice Family
+Niece
+Night
+No Siblings
+Noon
+Not / Don't / Didn't
+Not Finished
+Not Get Along
+Not Yet
+November
+Nurse
+October
+Often
+Okay
+On
+Once in a While
+Open
+Our / Ours
+Ourselves
+Outside
+Pack
+Parallelogram
+Park
+Parking Lot
+Part Ways
+Party
+Passed Away
+Past
+Pay Bills
+Pen
+Pencil
+Pharmacy
+Play Pool
+Play Soccer
+Play Video Games
+Playground
+Please for Me
+Pool
+Positive
+Post Office
+Prefer
+Present
+Pretty
+Rarely
+Read the Newspaper
+Relationship
+Request
+Residential School
+Rest
+Restaurant
+Retirement
+Review
+River
+Riverside
+Rock
+Roller Coaster
+RV
+Sad
+Saturday
+Scan
+Schedule
+School
+Second Floor
+Send
+Sentence
+Separate
+September
+She / Her
+Shorts
+Shot
+Should
+Show
+Single
+Sister-in-Law
+Sit
+Size
+Ski
+Slow
+Snack Machine
+Socks
+Some
+Sorry, I'm late. I overslept.
+Spin
+Stairs
+Star
+Stay Home
+Stepbrother
+Stepdaughter
+Stepfather
+Stepmother
+Stepsister
+Stepson
+Still
+Straight Ahead
+Street
+Study
+Subtract
+Subway
+Sunbathing
+Sunday
+Sweater
+Sweep
+Swim
+Take Care of
+Take Out the Trash
+Take Turns
+Take Up
+Tan
+Tell
+Tent
+Thanksgiving
+Their / Theirs
+Themselves
+They / Them
+Third Floor
+Thirsty
+Three of Us
+Three of You
+Thursday
+Tie
+Time
+Today
+Together
+Toilet
+Tomorrow
+Total
+Townhome
+Traffic
+Transportation
+Trash
+Triangle
+Trim
+Truck
+Tuesday
+Turkey
+Turn Off
+Turn on
+Uncle
+Under
+Understand
+Unicorn
+University
+Vacation
+Vending Machine
+Visit
+Volleyball
+Warm-Up
+Wash Clothes
+Wash Dishes
+Washer
+Watch a Game
+Watch a Movie
+Watch TV
+Water Fountain
+Water Plants
+We / Us
+Wedding
+Wednesday
+Week
+Weekend
+What did you do last Monday?
+What-Do
+When
+Why
+With
+Yesterday
+You
+You All
+You Are Welcome
+You Got It
+Young
+Your Name What
+Your Turn
+Yourself
+Yourselves
+Zoo

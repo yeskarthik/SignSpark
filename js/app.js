@@ -52,6 +52,7 @@ const App = (() => {
         // Render categories
         initProfiles();
         renderCategories();
+        renderSyllabusUnits();
         updateStats();
 
         initialized = true;
@@ -73,6 +74,7 @@ const App = (() => {
             QuizWord.stop();
             updateStats();
             renderCategories();
+            renderSyllabusUnits();
         }
     }
 
@@ -94,6 +96,24 @@ const App = (() => {
         }
 
         updateWordCount();
+    }
+
+    function renderSyllabusUnits() {
+        const container = document.getElementById('syllabus-unit-chips');
+        container.innerHTML = '';
+
+        for (const unit of FlashcardEngine.getSyllabusUnits()) {
+            const chip = document.createElement('button');
+            chip.className = 'chip' +
+                (FlashcardEngine.isSyllabusUnitActive(unit) ? ' active' : '');
+            chip.textContent = `Unit ${unit}`;
+            chip.addEventListener('click', () => {
+                FlashcardEngine.toggleSyllabusUnit(unit);
+                chip.classList.toggle('active');
+                updateWordCount();
+            });
+            container.appendChild(chip);
+        }
     }
 
     function updateWordCount() {

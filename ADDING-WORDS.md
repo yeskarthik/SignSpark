@@ -37,6 +37,8 @@ Add the vocabulary through the data pipeline, then manually curate its learning 
   "media": {
     "type": "youtube",
     "videoId": "YOUTUBE_ID",
+    "startSeconds": 12.5,
+    "endSeconds": 18.75,
     "sourceName": "Source name",
     "sourceUrl": "https://www.youtube.com/watch?v=YOUTUBE_ID",
     "reviewed": true
@@ -56,9 +58,10 @@ Add the vocabulary through the data pipeline, then manually curate its learning 
 
 - `media` is shown after revealing a Word → Sign card. Reviewed, uniquely mapped media is also eligible for Sign → Word.
 - `quizMedia` optionally overrides the media used for Sign → Word.
-- Shared or collection media is automatically excluded from Sign → Word because it cannot identify one unambiguous answer.
+- Full shared or collection videos are excluded from Sign → Word when they map to multiple answers. Distinct timed segments from the same video remain independently eligible.
 - Quiz YouTube embeds autoplay muted and restart automatically in a clipped player that masks YouTube title and control chrome.
-- YouTube entries store only the video ID. Learning cards use YouTube's standard identified embed; quiz cards use `youtube-nocookie.com`. Both autoplay muted, hide controls, and loop through the player API.
+- `startSeconds` and `endSeconds` are optional, but must be provided together. They define the exact segment to play and form part of media identity.
+- Learning cards use YouTube's standard identified embed; quiz cards use `youtube-nocookie.com`. Both autoplay muted, hide controls, and loop either the full video or the configured segment through the player API.
 - Text guides remain hidden unless `textGuideReviewed` is explicitly `true` and a source is recorded.
 - Verify the intended meaning, regional variant, source permission, and playback before setting `reviewed`.
 
