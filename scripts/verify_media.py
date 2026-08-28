@@ -11,6 +11,7 @@ from pathlib import Path
 
 PROJECT_DIR = Path(__file__).parent.parent
 WORDS_JSON = PROJECT_DIR / "data" / "words.json"
+NUMBER_COMPILATION_VIDEO_ID = "M4AFC4eEjlQ"
 
 
 def verify(video_id):
@@ -57,8 +58,17 @@ def main():
     words = json.loads(WORDS_JSON.read_text(encoding="utf-8"))
     cards_by_video = {}
     image_sources = {}
+    catalog_failures = []
     for word in words:
         media = word.get("media", {})
+        if (
+            word.get("category") == "numbers"
+            and word.get("slug") != "numbers-1-100"
+            and media.get("videoId") == NUMBER_COMPILATION_VIDEO_ID
+        ):
+            catalog_failures.append(
+                f"{word['slug']}: individual number uses the 1-100 compilation"
+            )
         if media.get("type") == "youtube" and media.get("reviewed") is True:
             cards_by_video.setdefault(media["videoId"], []).append(word["slug"])
         elif media.get("type") == "image" and media.get("reviewed") is True:
@@ -109,7 +119,12 @@ def main():
     for slug, error in image_failures:
         print(f"FAILED {slug}: {error}")
 
-    raise SystemExit(1 if failures or image_failures else 0)
+    for failure in catalog_failures:
+        print(f"FAILED {failure}")
+
+    raise SystemExit(
+        1 if failures or image_failures or catalog_failures else 0
+    )
 
 
 if __name__ == "__main__":
