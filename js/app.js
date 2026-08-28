@@ -120,6 +120,7 @@ const App = (() => {
         const filtered = FlashcardEngine.getFilteredWords();
         const withLearningMedia = FlashcardEngine.getFilteredWordsWithLearningMedia();
         const withQuizMedia = FlashcardEngine.getFilteredWordsWithQuizMedia();
+        updateFilteredProgress();
         const subtitle = document.querySelector('.subtitle');
         if (subtitle) {
             subtitle.textContent =
@@ -144,11 +145,19 @@ const App = (() => {
             : 'No reviewed sign source is available for this filter';
     }
 
+    function updateFilteredProgress() {
+        const progress = FlashcardEngine.getFilteredProgress();
+        document.getElementById('filter-correct').textContent = progress.correct;
+        document.getElementById('filter-remaining').textContent = progress.remaining;
+        document.getElementById('filter-total').textContent = progress.total;
+    }
+
     function updateStats() {
         const stats = FlashcardEngine.getSessionStats();
         const profile = FlashcardEngine.getActiveProfile();
         const pendingRetries = FlashcardEngine.getPendingRetryCount();
 
+        updateFilteredProgress();
         document.getElementById('stat-studied').textContent = stats.studied;
         document.getElementById('stat-correct').textContent = stats.correct;
         document.getElementById('stat-incorrect').textContent = stats.incorrect;

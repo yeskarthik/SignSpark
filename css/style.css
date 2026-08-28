@@ -289,6 +289,10 @@ body {
     margin: 20px 0;
 }
 
+.unit-filter-section {
+    margin: 8px 0 12px;
+}
+
 .category-section h3, .stats-section h3, .manage-section h3 {
     font-size: 1rem;
     color: var(--text-secondary);
@@ -320,6 +324,24 @@ body {
     background: var(--accent);
     color: #fff;
     border-color: var(--accent);
+}
+
+.filter-progress {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+}
+
+.filter-progress strong {
+    color: var(--text-primary);
+}
+
+.filter-total {
+    color: var(--text-muted);
 }
 
 /* --- Stats Grid --- */

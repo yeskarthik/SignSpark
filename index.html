@@ -49,6 +49,18 @@
                 <p class="profile-summary" id="profile-summary"></p>
             </section>
 
+            <section class="category-section unit-filter-section" aria-labelledby="unit-filter-heading">
+                <h3 id="unit-filter-heading">Filter by Unit</h3>
+                <div class="category-chips" id="syllabus-unit-chips"></div>
+                <p class="filter-progress" aria-live="polite">
+                    Current filter:
+                    <strong><span id="filter-correct">0</span> correct</strong>
+                    <span aria-hidden="true">·</span>
+                    <strong><span id="filter-remaining">0</span> remaining</strong>
+                    <span class="filter-total">of <span id="filter-total">0</span> words</span>
+                </p>
+            </section>
+
             <div class="mode-cards">
                 <button class="mode-card" id="btn-mode-sign" aria-label="Start How Do You Sign This mode">
                     <span class="mode-icon">📝</span>
@@ -66,11 +78,6 @@
             <div class="category-section">
                 <h3>Filter by Category</h3>
                 <div class="category-chips" id="category-chips"></div>
-            </div>
-
-            <div class="category-section">
-                <h3>Signing Naturally Unit</h3>
-                <div class="category-chips" id="syllabus-unit-chips"></div>
             </div>
 
             <!-- Session Stats -->

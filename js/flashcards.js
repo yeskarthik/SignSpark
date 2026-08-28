@@ -326,6 +326,19 @@ const FlashcardEngine = (() => {
         };
     }
 
+    function getFilteredProgress() {
+        const cardStats = getActiveProfileState().cardStats;
+        const correct = filteredWords.reduce(
+            (count, word) => count + (cardStats[word.slug]?.correct > 0 ? 1 : 0),
+            0
+        );
+        return {
+            correct,
+            remaining: filteredWords.length - correct,
+            total: filteredWords.length
+        };
+    }
+
     function getActiveProfileState() {
         return profileStates[activeProfile];
     }
@@ -602,6 +615,7 @@ const FlashcardEngine = (() => {
         getRandomDistractors,
         recordResult,
         getSessionStats,
+        getFilteredProgress,
         getActiveProfile,
         getProfileNames,
         getProfileProgress,
