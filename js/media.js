@@ -5,7 +5,10 @@
 
 const MediaRenderer = (() => {
     const YOUTUBE_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
+    const MAX_PLAYER_RETRIES = 2;
+    const PLAYER_START_TIMEOUT_MS = 12000;
     const youtubePlayers = new WeakMap();
+    const youtubeStartupTimers = new WeakMap();
     let youtubeApiPromise = null;
     let preloadEntry = null;
 
@@ -16,6 +19,7 @@ const MediaRenderer = (() => {
 
         const player = youtubePlayers.get(video);
         if (player) {
+            clearPlayerTimer(video);
             const replacement = video.cloneNode(false);
             const nextSibling = video.nextSibling;
             player.destroy();
@@ -201,12 +205,42 @@ const MediaRenderer = (() => {
         return youtubeApiPromise;
     }
 
-    function enableYouTubePlayer(video, purpose, container) {
+    function enableYouTubePlayer(video, purpose, container, attempt = 0) {
         const expectedSrc = video.src;
         loadYouTubeApi().then((YT) => {
             if (!video.isConnected || video.src !== expectedSrc) return;
 
-            const player = new YT.Player(video, {
+            let recovering = false;
+            let player = null;
+            const recover = (reason) => {
+                if (recovering || !video.isConnected) return;
+                recovering = true;
+                clearPlayerTimer(video);
+
+                if (attempt < MAX_PLAYER_RETRIES) {
+                    const replacement = video.cloneNode(false);
+                    const nextSibling = video.nextSibling;
+                    player.destroy();
+                    youtubePlayers.delete(video);
+                    container.insertBefore(replacement, nextSibling);
+
+                    const retryUrl = new URL(expectedSrc);
+                    retryUrl.searchParams.set('retry', `${attempt + 1}-${Date.now()}`);
+                    replacement.src = retryUrl.toString();
+                    replacement.style.display = '';
+                    enableYouTubePlayer(replacement, purpose, container, attempt + 1);
+                    return;
+                }
+
+                video.style.display = 'none';
+                showMessage(
+                    container,
+                    `This sign video could not be played after ${MAX_PLAYER_RETRIES + 1} attempts ` +
+                    `(${reason}). Use the reviewed source link below.`
+                );
+            };
+
+            player = new YT.Player(video, {
                 events: {
                     onReady: (event) => {
                         event.target.mute();
@@ -217,25 +251,37 @@ const MediaRenderer = (() => {
                         event.target.playVideo();
                     },
                     onStateChange: (event) => {
+                        if (event.data === YT.PlayerState.PLAYING) {
+                            clearPlayerTimer(video);
+                        }
                         // Avoid playlist looping, which adds previous/next controls.
                         if (event.data !== YT.PlayerState.ENDED) return;
                         event.target.seekTo(0, true);
                         event.target.playVideo();
                     },
                     onError: (event) => {
-                        video.style.display = 'none';
-                        showMessage(
-                            container,
-                            `This sign video could not be played (YouTube error ${event.data}). ` +
-                            'Use the reviewed source link below.'
-                        );
+                        recover(`YouTube error ${event.data}`);
                     }
                 }
             });
             youtubePlayers.set(video, player);
+            const startupTimer = setTimeout(() => {
+                recover('startup timeout');
+            }, PLAYER_START_TIMEOUT_MS);
+            youtubeStartupTimers.set(video, startupTimer);
         }).catch((error) => {
             console.error(error);
+            video.style.display = 'none';
+            showMessage(
+                container,
+                'The YouTube player could not be initialized. Use the reviewed source link below.'
+            );
         });
+    }
+
+    function clearPlayerTimer(video) {
+        clearTimeout(youtubeStartupTimers.get(video));
+        youtubeStartupTimers.delete(video);
     }
 
     function renderImage(media, card, container) {
