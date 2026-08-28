@@ -140,6 +140,7 @@ const MediaRenderer = (() => {
         if (media.type !== 'youtube' || !YOUTUBE_ID_PATTERN.test(media.videoId || '')) {
             return;
         }
+        if (isTouchDevice()) return;
 
         const video = document.createElement('iframe');
         video.className = 'sign-media-video';
@@ -202,6 +203,11 @@ const MediaRenderer = (() => {
             Number.isFinite(media.endSeconds) &&
             media.startSeconds >= 0 &&
             media.endSeconds > media.startSeconds;
+    }
+
+    function isTouchDevice() {
+        return navigator.maxTouchPoints > 0 ||
+            window.matchMedia?.('(pointer: coarse)').matches === true;
     }
 
     function loadYouTubeApi() {
