@@ -18,6 +18,8 @@ const FlashcardEngine = (() => {
     const ACTIVE_PROFILE_KEY = 'signspark_active_profile';
     const PERSISTED_PROFILE_NAMES = ['Kar', 'Shy', 'Lav', 'Swa', 'Rah'];
     const PROFILE_NAMES = [...PERSISTED_PROFILE_NAMES, 'Guest'];
+    const RETRY_GAP = 10;
+    const RETRY_REPETITIONS = 2;
     profileStates = createProfileStates();
     const DISTRACTOR_GROUPS = [
         ['what', 'who', 'where', 'which'],
@@ -60,7 +62,8 @@ const FlashcardEngine = (() => {
         return {
             stats: createStats(),
             cardStats: {},
-            pendingRetries: new Set()
+            pendingRetries: new Set(),
+            retrySchedules: new Map()
         };
     }
 
@@ -177,9 +180,20 @@ const FlashcardEngine = (() => {
         if (pool.length === 0) return null;
 
         const profileState = getActiveProfileState();
-        const retryPool = pool.filter(word => profileState.pendingRetries.has(word.slug));
+        const retryPool = pool.filter(word => {
+            const retry = profileState.retrySchedules.get(word.slug);
+            return retry &&
+                !retry.inFlight &&
+                profileState.stats.studied >= retry.dueAt;
+        });
         if (retryPool.length > 0) {
             pool = retryPool;
+        } else {
+            const nonRetryPool = pool.filter(
+                word => !profileState.retrySchedules.has(word.slug)
+            );
+            if (nonRetryPool.length === 0) return null;
+            pool = nonRetryPool;
         }
 
         const weights = pool.map(w => {
@@ -204,6 +218,41 @@ const FlashcardEngine = (() => {
         }
 
         return pool[pool.length - 1];
+    }
+
+    function markCardPresented(slug) {
+        const profileState = getActiveProfileState();
+        const retry = profileState.retrySchedules.get(slug);
+        if (retry && profileState.stats.studied >= retry.dueAt) {
+            retry.inFlight = true;
+        }
+    }
+
+    function releaseCardPresentation(slug) {
+        const retry = getActiveProfileState().retrySchedules.get(slug);
+        if (retry) {
+            retry.inFlight = false;
+        }
+    }
+
+    function hasDueRetry(requiredMediaPurpose = null) {
+        return filteredWords.some(word => {
+            if (requiredMediaPurpose === 'learning' && !hasLearningMedia(word)) {
+                return false;
+            }
+            if (requiredMediaPurpose === 'quiz' && !hasQuizMedia(word)) {
+                return false;
+            }
+            const profileState = getActiveProfileState();
+            const retry = profileState.retrySchedules.get(word.slug);
+            return retry &&
+                !retry.inFlight &&
+                profileState.stats.studied >= retry.dueAt;
+        });
+    }
+
+    function isRetryScheduled(slug) {
+        return getActiveProfileState().retrySchedules.has(slug);
     }
 
     function getRandomDistractors(correctWord, count = 3) {
@@ -288,6 +337,9 @@ const FlashcardEngine = (() => {
 
     function recordResult(slug, correct) {
         const profileState = getActiveProfileState();
+        const retry = profileState.retrySchedules.get(slug);
+        const isScheduledRetry = retry?.inFlight === true;
+        let retryCycleCompleted = false;
         if (!profileState.cardStats[slug]) {
             profileState.cardStats[slug] = { seen: 0, correct: 0, incorrect: 0 };
         }
@@ -298,7 +350,6 @@ const FlashcardEngine = (() => {
             profileState.cardStats[slug].correct++;
             profileState.stats.correct++;
             profileState.stats.streak++;
-            profileState.pendingRetries.delete(slug);
             if (profileState.stats.streak > profileState.stats.bestStreak) {
                 profileState.stats.bestStreak = profileState.stats.streak;
             }
@@ -306,13 +357,38 @@ const FlashcardEngine = (() => {
             profileState.cardStats[slug].incorrect++;
             profileState.stats.incorrect++;
             profileState.stats.streak = 0;
-            if (activeProfile !== 'Guest') {
+        }
+
+        if (isScheduledRetry) {
+            retry.remaining--;
+            retry.inFlight = false;
+            if (retry.remaining > 0) {
+                retry.dueAt = profileState.stats.studied + RETRY_GAP;
+            } else {
+                profileState.retrySchedules.delete(slug);
+                retryCycleCompleted = true;
+            }
+        } else if (!correct && !retry) {
+            profileState.retrySchedules.set(slug, {
+                remaining: RETRY_REPETITIONS,
+                dueAt: profileState.stats.studied + RETRY_GAP,
+                inFlight: false
+            });
+        }
+
+        if (activeProfile !== 'Guest') {
+            if (
+                (!correct && !retryCycleCompleted) ||
+                profileState.retrySchedules.has(slug)
+            ) {
                 profileState.pendingRetries.add(slug);
+            } else {
+                profileState.pendingRetries.delete(slug);
             }
         }
 
         if (activeProfile !== 'Guest') {
-            queueProfileResult(activeProfile, slug, correct);
+            queueProfileResult(activeProfile, slug, correct, isScheduledRetry);
         }
     }
 
@@ -348,7 +424,11 @@ const FlashcardEngine = (() => {
     }
 
     function getPendingRetryCount() {
-        return getActiveProfileState().pendingRetries.size;
+        const profileState = getActiveProfileState();
+        return new Set([
+            ...profileState.pendingRetries,
+            ...profileState.retrySchedules.keys()
+        ]).size;
     }
 
     function setActiveProfile(profileName) {
@@ -398,14 +478,37 @@ const FlashcardEngine = (() => {
             throw new Error('Profile API returned invalid progress data.');
         }
 
+        const stats = { ...createStats(), ...value.stats };
+        const retryCounts = value.retryCounts &&
+            typeof value.retryCounts === 'object' &&
+            !Array.isArray(value.retryCounts)
+            ? value.retryCounts
+            : {};
+        const retryDueAt = value.retryDueAt &&
+            typeof value.retryDueAt === 'object' &&
+            !Array.isArray(value.retryDueAt)
+            ? value.retryDueAt
+            : {};
         return {
-            stats: { ...createStats(), ...value.stats },
+            stats,
             cardStats: value.cardStats,
-            pendingRetries: new Set(value.pendingRetries)
+            pendingRetries: new Set(value.pendingRetries),
+            retrySchedules: new Map(value.pendingRetries.map(slug => [
+                slug,
+                {
+                    remaining: Number.isInteger(retryCounts[slug])
+                        ? Math.max(1, Math.min(RETRY_REPETITIONS, retryCounts[slug]))
+                        : RETRY_REPETITIONS,
+                    dueAt: Number.isInteger(retryDueAt[slug])
+                        ? retryDueAt[slug]
+                        : stats.studied + RETRY_GAP,
+                    inFlight: false
+                }
+            ]))
         };
     }
 
-    function queueProfileResult(profileName, slug, correct) {
+    function queueProfileResult(profileName, slug, correct, retry) {
         const previousSave = profileSaveQueues.get(profileName) || Promise.resolve();
         const nextSave = previousSave
             .catch(() => undefined)
@@ -418,7 +521,7 @@ const FlashcardEngine = (() => {
                             Accept: 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ slug, correct }),
+                        body: JSON.stringify({ slug, correct, retry }),
                         keepalive: true
                     }
                 );
@@ -612,6 +715,10 @@ const FlashcardEngine = (() => {
         toggleSyllabusUnit,
         isSyllabusUnitActive,
         getNextCard,
+        markCardPresented,
+        releaseCardPresentation,
+        hasDueRetry,
+        isRetryScheduled,
         getRandomDistractors,
         recordResult,
         getSessionStats,

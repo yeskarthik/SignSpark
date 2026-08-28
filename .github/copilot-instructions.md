@@ -46,6 +46,7 @@ asl/
 - **Video reports** — YouTube attribution includes a one-tap report button. `/api/video-reports` stores reports in the `SignSparkVideoReports` Azure table.
 - **Mode 2 (Sign → Word)** uses reviewed media identities mapped to exactly one card. A YouTube identity includes video ID plus segment boundaries, allowing distinct clips from one source lesson.
 - **Quiz flow** — Sign → Word preselects and preloads the next card. Correct answers advance automatically after brief feedback; incorrect answers wait for the user to select Next.
+- **Spaced retries** — each missed sign is scheduled for two later retries, separated by ten answered cards. Multiple-choice answers are shuffled while preventing the correct slot from repeating consecutively.
 - **Profiles** — Kar, Shy, Lav, Swa, and Rah persist independent stats and retry queues through `/api/profiles/{profile}`. Guest data remains in memory and must never be sent to the API.
 - **Profile database** — the API uses Azure Table Storage through the `PROFILE_STORAGE_CONNECTION_STRING` application setting; never commit this secret.
 - **Distractors** favor the same category, nearby numeric/time values, and explicit semantic groups while excluding equivalent labels.

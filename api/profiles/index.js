@@ -4,6 +4,8 @@ const TABLE_NAME = process.env.PROFILE_TABLE_NAME || 'SignSparkProfiles';
 const PARTITION_KEY = 'learner';
 const PROFILE_NAMES = new Set(['Kar', 'Shy', 'Lav', 'Swa', 'Rah']);
 const MAX_WRITE_ATTEMPTS = 4;
+const RETRY_GAP = 10;
+const RETRY_REPETITIONS = 2;
 
 let tableClient = null;
 let tableReady = null;
@@ -31,7 +33,13 @@ module.exports = async function profileProgress(context, req) {
             return;
         }
 
-        const state = await recordResult(client, profile, result.slug, result.correct);
+        const state = await recordResult(
+            client,
+            profile,
+            result.slug,
+            result.correct,
+            result.retry === true
+        );
         context.res = jsonResponse(200, state);
     } catch (error) {
         context.log.error('Profile storage request failed.', error);
@@ -55,7 +63,7 @@ async function getTableClient() {
     return tableClient;
 }
 
-async function recordResult(client, profile, slug, correct) {
+async function recordResult(client, profile, slug, correct, isRetry) {
     let concurrencyError = null;
 
     for (let attempt = 0; attempt < MAX_WRITE_ATTEMPTS; attempt++) {
@@ -73,14 +81,31 @@ async function recordResult(client, profile, slug, correct) {
                 state.stats.bestStreak,
                 state.stats.streak
             );
-            state.pendingRetries = state.pendingRetries.filter(item => item !== slug);
         } else {
             card.incorrect++;
             state.stats.incorrect++;
             state.stats.streak = 0;
+        }
+
+        if (isRetry && state.retryCounts[slug]) {
+            state.retryCounts[slug]--;
+            if (state.retryCounts[slug] === 0) {
+                delete state.retryCounts[slug];
+                delete state.retryDueAt[slug];
+                state.pendingRetries = state.pendingRetries.filter(item => item !== slug);
+            } else {
+                state.retryDueAt[slug] = state.stats.studied + RETRY_GAP;
+            }
+        } else if (!correct) {
+            if (!state.retryCounts[slug]) {
+                state.retryCounts[slug] = RETRY_REPETITIONS;
+                state.retryDueAt[slug] = state.stats.studied + RETRY_GAP;
+            }
             if (!state.pendingRetries.includes(slug)) {
                 state.pendingRetries.push(slug);
             }
+        } else if (!state.retryCounts[slug]) {
+            state.pendingRetries = state.pendingRetries.filter(item => item !== slug);
         }
         state.cardStats[slug] = card;
 
@@ -99,11 +124,25 @@ async function recordResult(client, profile, slug, correct) {
 async function loadState(client, profile) {
     try {
         const entity = await client.getEntity(PARTITION_KEY, profile);
+        const pendingRetries = JSON.parse(entity.pendingRetriesJson);
+        const retryCounts = entity.retryCountsJson
+            ? JSON.parse(entity.retryCountsJson)
+            : Object.fromEntries(
+                pendingRetries.map(slug => [slug, RETRY_REPETITIONS])
+            );
+        const stats = JSON.parse(entity.statsJson);
+        const retryDueAt = entity.retryDueAtJson
+            ? JSON.parse(entity.retryDueAtJson)
+            : Object.fromEntries(
+                pendingRetries.map(slug => [slug, stats.studied + RETRY_GAP])
+            );
         return {
             state: {
-                stats: JSON.parse(entity.statsJson),
+                stats,
                 cardStats: JSON.parse(entity.cardStatsJson),
-                pendingRetries: JSON.parse(entity.pendingRetriesJson)
+                pendingRetries,
+                retryCounts,
+                retryDueAt
             },
             etag: entity.etag
         };
@@ -122,6 +161,8 @@ async function saveState(client, profile, state, etag) {
         statsJson: JSON.stringify(state.stats),
         cardStatsJson: JSON.stringify(state.cardStats),
         pendingRetriesJson: JSON.stringify(state.pendingRetries),
+        retryCountsJson: JSON.stringify(state.retryCounts),
+        retryDueAtJson: JSON.stringify(state.retryDueAt),
         updatedAt: new Date().toISOString()
     };
 
@@ -142,13 +183,16 @@ function createState() {
             bestStreak: 0
         },
         cardStats: {},
-        pendingRetries: []
+        pendingRetries: [],
+        retryCounts: {},
+        retryDueAt: {}
     };
 }
 
 function isValidResult(result) {
     return result &&
         typeof result.correct === 'boolean' &&
+        (result.retry === undefined || typeof result.retry === 'boolean') &&
         typeof result.slug === 'string' &&
         result.slug.length <= 100 &&
         /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result.slug);

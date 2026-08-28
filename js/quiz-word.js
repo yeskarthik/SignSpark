@@ -10,6 +10,7 @@ const QuizWord = (() => {
     let answerMode = 'mc'; // 'mc' or 'text'
     let answered = false;
     let advanceTimer = null;
+    let lastCorrectOptionIndex = null;
 
     const elements = {};
 
@@ -39,6 +40,7 @@ const QuizWord = (() => {
     }
 
     function setAnswerMode(mode) {
+        if (!currentCard) return;
         answerMode = mode;
         elements.mcModeBtn.classList.toggle('active', mode === 'mc');
         elements.textModeBtn.classList.toggle('active', mode === 'text');
@@ -54,6 +56,7 @@ const QuizWord = (() => {
     function start() {
         stop();
         currentCard = null;
+        lastCorrectOptionIndex = null;
         loadNextCard();
     }
 
@@ -66,9 +69,14 @@ const QuizWord = (() => {
         answered = false;
 
         if (!currentCard) {
+            answered = true;
             MediaRenderer.cancelPreload();
+            elements.mcModeBtn.disabled = true;
+            elements.textModeBtn.disabled = true;
             elements.feedbackContent.textContent =
-                'No reviewed quiz-safe media is available for this category yet.';
+                FlashcardEngine.getPendingRetryCount() > 0
+                    ? 'Your retry is scheduled after ten other answers. Widen your filters to keep practicing.'
+                    : 'No reviewed quiz-safe media is available for this category yet.';
             elements.feedbackContent.className = 'feedback-content incorrect';
             elements.feedback.style.display = '';
             elements.mcSection.style.display = 'none';
@@ -76,6 +84,9 @@ const QuizWord = (() => {
             return;
         }
 
+        elements.mcModeBtn.disabled = false;
+        elements.textModeBtn.disabled = false;
+        FlashcardEngine.markCardPresented(currentCard.slug);
         MediaRenderer.render(currentCard, elements.media, elements.mediaAttribution, 'quiz');
 
         // A movement description would reveal the answer before the user guesses.
@@ -112,6 +123,10 @@ const QuizWord = (() => {
     function stop() {
         clearTimeout(advanceTimer);
         advanceTimer = null;
+        if (currentCard) {
+            FlashcardEngine.releaseCardPresentation(currentCard.slug);
+        }
+        currentCard = null;
         nextCard = null;
         MediaRenderer.cancelPreload();
         if (elements.media) {
@@ -120,16 +135,23 @@ const QuizWord = (() => {
     }
 
     function renderMcOptions() {
+        if (!currentCard) return;
         elements.mcOptions.innerHTML = '';
 
         const distractors = FlashcardEngine.getRandomDistractors(currentCard, 3);
-        const options = [currentCard, ...distractors];
-
-        // Shuffle
-        for (let i = options.length - 1; i > 0; i--) {
+        for (let i = distractors.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [options[i], options[j]] = [options[j], options[i]];
+            [distractors[i], distractors[j]] = [distractors[j], distractors[i]];
         }
+
+        const optionCount = distractors.length + 1;
+        let positions = Array.from({ length: optionCount }, (_, index) => index)
+            .filter(index => index !== lastCorrectOptionIndex);
+        if (positions.length === 0) positions = [0];
+        const correctIndex = positions[Math.floor(Math.random() * positions.length)];
+        const options = [...distractors];
+        options.splice(correctIndex, 0, currentCard);
+        lastCorrectOptionIndex = correctIndex;
 
         for (const opt of options) {
             const btn = document.createElement('button');
@@ -141,7 +163,7 @@ const QuizWord = (() => {
     }
 
     function handleMcChoice(btnEl, chosen) {
-        if (answered) return;
+        if (answered || !currentCard) return;
         answered = true;
 
         const isCorrect = chosen.slug === currentCard.slug;
@@ -166,7 +188,7 @@ const QuizWord = (() => {
     }
 
     function checkTextAnswer() {
-        if (answered) return;
+        if (answered || !currentCard) return;
         const input = elements.textAnswer.value.trim();
         if (!input) return;
 
@@ -180,7 +202,12 @@ const QuizWord = (() => {
     }
 
     function refreshPreparedCard(isCorrect) {
-        if (isCorrect && nextCard?.slug === currentCard.slug) {
+        if (
+            FlashcardEngine.hasDueRetry('quiz') ||
+            (nextCard && FlashcardEngine.isRetryScheduled(nextCard.slug)) ||
+            (isCorrect && nextCard?.slug === currentCard.slug)
+        ) {
+            MediaRenderer.cancelPreload();
             prepareNextCard();
         }
     }

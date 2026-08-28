@@ -71,6 +71,7 @@ const App = (() => {
 
         // Update stats when returning home
         if (name === 'home') {
+            QuizSign.stop();
             QuizWord.stop();
             updateStats();
             renderCategories();

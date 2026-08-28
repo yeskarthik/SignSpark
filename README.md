@@ -14,7 +14,9 @@ A mobile-friendly web app for learning American Sign Language through interactiv
 - **Syllabus clips** — longer vocabulary lessons are clipped to 2–15 second sign demonstrations and loop only that segment
 - **Video issue reporting** — learners can report a broken or incorrect video directly from its source line
 - **Fast quiz flow** — correct answers advance automatically while the next sign media preloads
-- **Learner profiles** — Kar, Shy, Lav, Swa, and Rah keep independent server-side progress and retry missed signs until correct; Guest stays temporary
+- **Learner profiles** — Kar, Shy, Lav, Swa, and Rah keep independent server-side progress; Guest stays temporary
+- **Spaced retries** — missed signs return twice after ten intervening answers instead of repeating immediately
+- **Shuffled answers** — multiple-choice options are randomized without keeping the correct answer in the same position twice in a row
 - **Weighted repetition** — cards you get wrong appear more often
 - **Category and unit filtering** — focus on a topic or any Unit 1–6
 - **Dark mode by default**, with a sun button to switch to light mode

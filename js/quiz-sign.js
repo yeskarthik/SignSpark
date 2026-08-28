@@ -40,7 +40,16 @@ const QuizSign = (() => {
     }
 
     function start() {
+        stop();
         loadNextCard();
+    }
+
+    function stop() {
+        if (currentCard) {
+            FlashcardEngine.releaseCardPresentation(currentCard.slug);
+        }
+        currentCard = null;
+        MediaRenderer.clear(elements.media, elements.mediaAttribution);
     }
 
     function loadNextCard() {
@@ -48,11 +57,16 @@ const QuizSign = (() => {
         currentCard = FlashcardEngine.getNextCard(prevSlug, 'learning');
 
         if (!currentCard) {
-            elements.word.textContent = 'No cards available';
+            isRevealed = false;
+            elements.card.classList.remove('flipped');
+            elements.word.textContent = FlashcardEngine.getPendingRetryCount() > 0
+                ? 'Retry scheduled — widen your filters to keep practicing'
+                : 'No cards available';
             elements.revealBtn.style.display = 'none';
             return;
         }
 
+        FlashcardEngine.markCardPresented(currentCard.slug);
         isRevealed = false;
         elements.card.classList.remove('flipped');
 
@@ -99,6 +113,7 @@ const QuizSign = (() => {
     }
 
     function rate(gotIt) {
+        if (!currentCard) return;
         FlashcardEngine.recordResult(currentCard.slug, gotIt);
         App.updateStats();
         loadNextCard();
@@ -108,5 +123,5 @@ const QuizSign = (() => {
         return cat.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
     }
 
-    return { init, start, loadNextCard };
+    return { init, start, stop, loadNextCard };
 })();
