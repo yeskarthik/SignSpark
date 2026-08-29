@@ -43,7 +43,7 @@ asl/
 - **Timed syllabus clips** — YouTube media can define `startSeconds` and `endSeconds`. The player seeks to the exact start and loops at the exact end; media identity includes the segment range.
 - **Unit curriculum coverage** — 772 deduplicated concepts cover Units 1–6. Cards use `syllabusUnits`; existing reviewed media is retained and the subtitle-timed source is stored as `syllabusMedia`.
 - **Playback recovery** — media.js retries YouTube startup errors/timeouts twice with a fresh iframe before showing the reviewed-source fallback.
-- **Mobile playback** — touch devices skip offscreen YouTube iframe preloading and retry stalled visible players after four seconds while retaining automatic muted looping.
+- **Mobile playback** — touch devices skip offscreen YouTube iframe preloading and iframe transforms, then retry stalled visible players after four seconds while retaining automatic muted looping.
 - **Video reports** — YouTube attribution includes a one-tap report button. `/api/video-reports` stores reports in the `SignSparkVideoReports` Azure table.
 - **Mode 2 (Sign → Word)** uses reviewed media identities mapped to exactly one card. A YouTube identity includes video ID plus segment boundaries, allowing distinct clips from one source lesson.
 - **Quiz flow** — Sign → Word preselects and preloads the next card. Correct answers advance automatically after brief feedback; incorrect answers wait for the user to select Next.

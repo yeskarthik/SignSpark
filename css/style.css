@@ -566,6 +566,12 @@ body {
     pointer-events: none;
 }
 
+.media-container.is-looping-video.is-touch-video .sign-media-video {
+    width: 100%;
+    height: 100%;
+    transform: none;
+}
+
 .media-container.is-looping-video::after {
     /* Cover only the scaled pause bars; the surrounding sign stays visible. */
     content: '';

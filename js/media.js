@@ -41,6 +41,7 @@ const MediaRenderer = (() => {
         message.style.display = 'none';
         container.classList.remove('is-video');
         container.classList.remove('is-looping-video');
+        container.classList.remove('is-touch-video');
         attribution.replaceChildren();
         attribution.style.display = 'none';
     }
@@ -83,6 +84,7 @@ const MediaRenderer = (() => {
 
         container.classList.add('is-video');
         container.classList.add('is-looping-video');
+        container.classList.toggle('is-touch-video', isTouchDevice());
 
         if (purpose === 'quiz') {
             video.title = 'ASL sign quiz video';
