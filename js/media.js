@@ -19,6 +19,7 @@ const MediaRenderer = (() => {
         const image = container.querySelector('[data-media-image]');
         let video = container.querySelector('[data-media-video]');
         const message = container.querySelector('[data-media-message]');
+        container.querySelector('[data-media-play]')?.remove();
 
         const player = youtubePlayers.get(video);
         if (player) {
@@ -93,23 +94,43 @@ const MediaRenderer = (() => {
             video.title = `ASL sign for "${card.word}"`;
         }
 
+        if (touchDevice) {
+            video.removeAttribute('src');
+            video.style.display = 'none';
+            renderTouchPlayButton(video, media, container, purpose);
+            return;
+        }
+
         if (!preloadedVideo) {
             video.src = getYouTubeUrl(media, purpose, touchDevice);
         }
         video.loading = touchDevice ? 'eager' : 'lazy';
         video.style.display = '';
 
-        // iPhone WebKit requires a visible, user-initiated standard player.
-        if (touchDevice) return;
-
         enableYouTubePlayer(video, purpose, container, media);
     }
 
-    function getYouTubeUrl(media, purpose, nativePlayback = false) {
+    function renderTouchPlayButton(video, media, container, purpose) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'media-play-button';
+        button.dataset.mediaPlay = '';
+        button.setAttribute('aria-label', 'Play sign video');
+        button.innerHTML = '<span aria-hidden="true">▶</span> Play sign';
+        button.addEventListener('click', () => {
+            button.remove();
+            video.src = getYouTubeUrl(media, purpose, true);
+            video.loading = 'eager';
+            video.style.display = '';
+        }, { once: true });
+        container.insertBefore(button, video);
+    }
+
+    function getYouTubeUrl(media, purpose, userInitiated = false) {
         const params = new URLSearchParams({
             playsinline: '1',
             rel: '0',
-            autoplay: nativePlayback ? '0' : '1',
+            autoplay: '1',
             mute: '1',
             controls: '0',
             disablekb: '1',
@@ -117,16 +138,16 @@ const MediaRenderer = (() => {
             iv_load_policy: '3'
         });
 
-        if (nativePlayback) {
+        if (userInitiated) {
             params.set('origin', window.location.origin);
         } else {
             params.set('enablejsapi', '1');
         }
-        if (nativePlayback && !hasSegment(media)) {
+        if (userInitiated && !hasSegment(media)) {
             params.set('loop', '1');
             params.set('playlist', media.videoId);
         }
-        if (!nativePlayback && /^https?:$/.test(window.location.protocol)) {
+        if (!userInitiated && /^https?:$/.test(window.location.protocol)) {
             params.set('origin', window.location.origin);
         }
         if (hasSegment(media)) {
