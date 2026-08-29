@@ -9,6 +9,7 @@ const MediaRenderer = (() => {
     const PLAYER_START_TIMEOUT_MS = 12000;
     const MOBILE_PLAYER_START_TIMEOUT_MS = 4000;
     const youtubePlayers = new WeakMap();
+    const youtubePlayerContexts = new WeakMap();
     const youtubeStartupTimers = new WeakMap();
     const youtubeSegmentTimers = new WeakMap();
     const reportedMedia = new Set();
@@ -24,18 +25,27 @@ const MediaRenderer = (() => {
         if (player) {
             clearPlayerTimer(video);
             clearSegmentTimer(video);
-            const replacement = video.cloneNode(false);
-            const nextSibling = video.nextSibling;
-            player.destroy();
-            youtubePlayers.delete(video);
-            container.insertBefore(replacement, nextSibling);
-            video = replacement;
+            if (isTouchDevice()) {
+                const context = youtubePlayerContexts.get(video);
+                if (context) context.active = false;
+                player.stopVideo();
+            } else {
+                const replacement = video.cloneNode(false);
+                const nextSibling = video.nextSibling;
+                player.destroy();
+                youtubePlayers.delete(video);
+                youtubePlayerContexts.delete(video);
+                container.insertBefore(replacement, nextSibling);
+                video = replacement;
+            }
         }
 
         image.onerror = null;
         image.removeAttribute('src');
         image.style.display = 'none';
-        video.removeAttribute('src');
+        if (!youtubePlayers.has(video)) {
+            video.removeAttribute('src');
+        }
         video.style.display = 'none';
         message.textContent = '';
         message.style.display = 'none';
@@ -90,6 +100,13 @@ const MediaRenderer = (() => {
             video.title = 'ASL sign quiz video';
         } else {
             video.title = `ASL sign for "${card.word}"`;
+        }
+
+        const existingPlayer = youtubePlayers.get(video);
+        if (existingPlayer && isTouchDevice()) {
+            reuseYouTubePlayer(video, existingPlayer, purpose, container, media);
+            video.style.display = '';
+            return;
         }
 
         if (!preloadedVideo) {
@@ -243,9 +260,36 @@ const MediaRenderer = (() => {
             let player = null;
             const recover = (reason) => {
                 if (recovering || !video.isConnected) return;
+                if (isTouchDevice() &&
+                    !youtubePlayerContexts.get(video)?.active) return;
                 recovering = true;
                 clearPlayerTimer(video);
                 clearSegmentTimer(video);
+
+                if (isTouchDevice() && player) {
+                    recovering = false;
+                    const activeMedia = youtubePlayerContexts.get(video)?.media || media;
+                    const loopStart = hasSegment(activeMedia)
+                        ? activeMedia.startSeconds
+                        : 0;
+                    player.loadVideoById({
+                        videoId: activeMedia.videoId,
+                        startSeconds: loopStart,
+                        endSeconds: hasSegment(activeMedia)
+                            ? activeMedia.endSeconds
+                            : undefined
+                    });
+                    if (hasSegment(activeMedia)) {
+                        startSegmentTimer(video, player, activeMedia);
+                    }
+                    player.playVideo();
+                    startTouchPlayerTimer(
+                        video,
+                        player,
+                        attempt + 1
+                    );
+                    return;
+                }
 
                 if (attempt < MAX_PLAYER_RETRIES) {
                     const replacement = video.cloneNode(false);
@@ -273,26 +317,34 @@ const MediaRenderer = (() => {
             player = new YT.Player(video, {
                 events: {
                     onReady: (event) => {
+                        const context = youtubePlayerContexts.get(video);
+                        if (context) context.player = event.target;
+                        const activeMedia = context?.media || media;
                         event.target.mute();
-                        const loopStart = hasSegment(media) ? media.startSeconds : 0;
+                        const loopStart = hasSegment(activeMedia)
+                            ? activeMedia.startSeconds
+                            : 0;
                         if (video.dataset.preloaded === 'true') {
                             event.target.seekTo(loopStart, true);
                             delete video.dataset.preloaded;
                         }
-                        if (hasSegment(media)) {
+                        if (hasSegment(activeMedia)) {
                             event.target.seekTo(loopStart, true);
-                            startSegmentTimer(video, event.target, media);
+                            startSegmentTimer(video, event.target, activeMedia);
                         }
                         event.target.playVideo();
                     },
                     onStateChange: (event) => {
+                        const context = youtubePlayerContexts.get(video);
+                        if (context && !context.active) return;
+                        const activeMedia = context?.media || media;
                         if (event.data === YT.PlayerState.PLAYING) {
                             clearPlayerTimer(video);
                         }
                         // Avoid playlist looping, which adds previous/next controls.
                         if (event.data !== YT.PlayerState.ENDED) return;
                         event.target.seekTo(
-                            hasSegment(media) ? media.startSeconds : 0,
+                            hasSegment(activeMedia) ? activeMedia.startSeconds : 0,
                             true
                         );
                         event.target.playVideo();
@@ -303,6 +355,13 @@ const MediaRenderer = (() => {
                 }
             });
             youtubePlayers.set(video, player);
+            youtubePlayerContexts.set(video, {
+                active: true,
+                player,
+                purpose,
+                container,
+                media
+            });
             const startupTimer = setTimeout(() => {
                 recover('startup timeout');
             }, isTouchDevice()
@@ -317,6 +376,69 @@ const MediaRenderer = (() => {
                 'The YouTube player could not be initialized. Use the reviewed source link below.'
             );
         });
+    }
+
+    function reuseYouTubePlayer(video, player, purpose, container, media) {
+        clearPlayerTimer(video);
+        clearSegmentTimer(video);
+        const context = {
+            active: true,
+            player,
+            purpose,
+            container,
+            media
+        };
+        youtubePlayerContexts.set(video, context);
+
+        const loopStart = hasSegment(media) ? media.startSeconds : 0;
+        player.mute();
+        player.loadVideoById({
+            videoId: media.videoId,
+            startSeconds: loopStart,
+            endSeconds: hasSegment(media) ? media.endSeconds : undefined
+        });
+        if (hasSegment(media)) {
+            startSegmentTimer(video, player, media);
+        }
+        player.playVideo();
+        startTouchPlayerTimer(video, player);
+    }
+
+    function startTouchPlayerTimer(video, player, attempt = 0) {
+        clearPlayerTimer(video);
+        const timer = setTimeout(() => {
+            const context = youtubePlayerContexts.get(video);
+            if (!context?.active || !video.isConnected) return;
+            clearSegmentTimer(video);
+
+            if (attempt < MAX_PLAYER_RETRIES) {
+                const activeMedia = context.media;
+                const loopStart = hasSegment(activeMedia)
+                    ? activeMedia.startSeconds
+                    : 0;
+                player.loadVideoById({
+                    videoId: activeMedia.videoId,
+                    startSeconds: loopStart,
+                    endSeconds: hasSegment(activeMedia)
+                        ? activeMedia.endSeconds
+                        : undefined
+                });
+                if (hasSegment(activeMedia)) {
+                    startSegmentTimer(video, player, activeMedia);
+                }
+                player.playVideo();
+                startTouchPlayerTimer(video, player, attempt + 1);
+                return;
+            }
+
+            video.style.display = 'none';
+            showMessage(
+                context.container,
+                `This sign video could not be played after ${MAX_PLAYER_RETRIES + 1} attempts. ` +
+                'Use the reviewed source link below.'
+            );
+        }, MOBILE_PLAYER_START_TIMEOUT_MS);
+        youtubeStartupTimers.set(video, timer);
     }
 
     function clearPlayerTimer(video) {

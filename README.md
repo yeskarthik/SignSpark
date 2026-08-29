@@ -11,7 +11,7 @@ A mobile-friendly web app for learning American Sign Language through interactiv
   - 📝 **Word → Sign**: See a word, try to sign it, reveal reviewed sign media, self-rate
   - 🎬 **Sign → Word**: Watch sign media, then guess the word (multiple choice or free text)
 - **Hybrid sign media** — reviewed local images or muted, control-free looping YouTube embeds with automatic startup retries, source attribution, and player-error handling
-- **Phone-safe playback** — mobile devices avoid competing offscreen video preloads and transformed iframe layers, use the reliable standard YouTube player host, and retry stalled playback after four seconds while retaining automatic muted looping
+- **Phone-safe playback** — mobile devices reuse one stable, untransformed YouTube player instead of repeatedly replacing iframes, with automatic muted looping and four-second recovery
 - **Syllabus clips** — longer vocabulary lessons are clipped to 2–15 second sign demonstrations and loop only that segment
 - **Video issue reporting** — learners can report a broken or incorrect video directly from its source line
 - **Fast quiz flow** — correct answers advance automatically while the next sign media preloads
