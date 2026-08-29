@@ -124,15 +124,12 @@ const MediaRenderer = (() => {
             iv_load_policy: '3'
         });
 
-        if (nativePlayback) {
-            if (!hasSegment(media)) {
-                params.set('loop', '1');
-                params.set('playlist', media.videoId);
-            }
-        } else {
-            params.set('enablejsapi', '1');
+        params.set('enablejsapi', '1');
+        if (nativePlayback && !hasSegment(media)) {
+            params.set('loop', '1');
+            params.set('playlist', media.videoId);
         }
-        if (!nativePlayback && /^https?:$/.test(window.location.protocol)) {
+        if (/^https?:$/.test(window.location.protocol)) {
             params.set('origin', window.location.origin);
         }
         if (hasSegment(media)) {
