@@ -111,9 +111,9 @@ const MediaRenderer = (() => {
             rel: '0',
             autoplay: nativePlayback ? '0' : '1',
             mute: '1',
-            controls: nativePlayback ? '1' : '0',
-            disablekb: nativePlayback ? '0' : '1',
-            fs: nativePlayback ? '1' : '0',
+            controls: '0',
+            disablekb: '1',
+            fs: '0',
             iv_load_policy: '3'
         });
 
