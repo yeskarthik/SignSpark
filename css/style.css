@@ -578,6 +578,9 @@ body {
 }
 
 .media-play-button {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
     border: 0;
@@ -586,6 +589,11 @@ body {
     color: #ffffff;
     font: 700 1rem var(--font);
     cursor: pointer;
+}
+
+.media-play-button:disabled {
+    cursor: wait;
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .media-play-button span {

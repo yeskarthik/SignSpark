@@ -43,7 +43,7 @@ asl/
 - **Timed syllabus clips** — YouTube media can define `startSeconds` and `endSeconds`. The player seeks to the exact start and loops at the exact end; media identity includes the segment range.
 - **Unit curriculum coverage** — 772 deduplicated concepts cover Units 1–6. Cards use `syllabusUnits`; existing reviewed media is retained and the subtitle-timed source is stored as `syllabusMedia`.
 - **Playback recovery** — media.js retries YouTube startup errors/timeouts twice with a fresh iframe before showing the reviewed-source fallback.
-- **Mobile playback** — touch devices initially show a SignSpark play facade instead of a YouTube iframe. Its user gesture loads an autoplaying iframe with controls hidden; iframe pointer events remain disabled so YouTube controls do not reappear.
+- **Mobile playback** — touch devices preload a visually hidden YouTube iframe behind a SignSpark facade. The button enables after iframe load and its user gesture sends `playVideo`; controls and iframe pointer events remain disabled.
 - **YouTube client identity** — the page, iframe, and Azure response use `strict-origin-when-cross-origin`. Do not restore Azure's `same-origin` default: YouTube requires the app origin in the HTTP Referer and iOS may not honor an iframe-only override.
 - **Video reports** — YouTube attribution includes a one-tap report button. `/api/video-reports` stores reports in the `SignSparkVideoReports` Azure table.
 - **Mode 2 (Sign → Word)** uses reviewed media identities mapped to exactly one card. A YouTube identity includes video ID plus segment boundaries, allowing distinct clips from one source lesson.

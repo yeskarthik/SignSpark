@@ -20,6 +20,7 @@ const MediaRenderer = (() => {
         let video = container.querySelector('[data-media-video]');
         const message = container.querySelector('[data-media-message]');
         container.querySelector('[data-media-play]')?.remove();
+        video.onload = null;
 
         const player = youtubePlayers.get(video);
         if (player) {
@@ -95,8 +96,7 @@ const MediaRenderer = (() => {
         }
 
         if (touchDevice) {
-            video.removeAttribute('src');
-            video.style.display = 'none';
+            video.loading = 'eager';
             renderTouchPlayButton(video, media, container, purpose);
             return;
         }
@@ -116,21 +116,37 @@ const MediaRenderer = (() => {
         button.className = 'media-play-button';
         button.dataset.mediaPlay = '';
         button.setAttribute('aria-label', 'Play sign video');
-        button.innerHTML = '<span aria-hidden="true">▶</span> Play sign';
+        button.disabled = true;
+        button.textContent = 'Loading sign…';
+        video.style.visibility = 'hidden';
+        video.style.display = '';
+        video.onload = () => {
+            button.disabled = false;
+            button.innerHTML = '<span aria-hidden="true">▶</span> Play sign';
+        };
+        video.src = getYouTubeUrl(media, purpose, true);
         button.addEventListener('click', () => {
             button.remove();
-            video.src = getYouTubeUrl(media, purpose, true);
-            video.loading = 'eager';
-            video.style.display = '';
+            video.style.visibility = '';
+            sendYouTubeCommand(video, 'mute');
+            sendYouTubeCommand(video, 'playVideo');
         }, { once: true });
         container.insertBefore(button, video);
     }
 
-    function getYouTubeUrl(media, purpose, userInitiated = false) {
+    function sendYouTubeCommand(video, func) {
+        video.contentWindow?.postMessage(JSON.stringify({
+            event: 'command',
+            func,
+            args: []
+        }), 'https://www.youtube.com');
+    }
+
+    function getYouTubeUrl(media, purpose, touchPlayback = false) {
         const params = new URLSearchParams({
             playsinline: '1',
             rel: '0',
-            autoplay: '1',
+            autoplay: touchPlayback ? '0' : '1',
             mute: '1',
             controls: '0',
             disablekb: '1',
@@ -138,16 +154,12 @@ const MediaRenderer = (() => {
             iv_load_policy: '3'
         });
 
-        if (userInitiated) {
-            params.set('origin', window.location.origin);
-        } else {
-            params.set('enablejsapi', '1');
-        }
-        if (userInitiated && !hasSegment(media)) {
+        params.set('enablejsapi', '1');
+        if (touchPlayback && !hasSegment(media)) {
             params.set('loop', '1');
             params.set('playlist', media.videoId);
         }
-        if (!userInitiated && /^https?:$/.test(window.location.protocol)) {
+        if (/^https?:$/.test(window.location.protocol)) {
             params.set('origin', window.location.origin);
         }
         if (hasSegment(media)) {
