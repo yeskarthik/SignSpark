@@ -11,7 +11,6 @@ const MediaRenderer = (() => {
     const youtubePlayers = new WeakMap();
     const youtubeStartupTimers = new WeakMap();
     const youtubeSegmentTimers = new WeakMap();
-    const nativeSegmentTimers = new WeakMap();
     const reportedMedia = new Set();
     let youtubeApiPromise = null;
     let preloadEntry = null;
@@ -21,8 +20,6 @@ const MediaRenderer = (() => {
         let video = container.querySelector('[data-media-video]');
         const message = container.querySelector('[data-media-message]');
 
-        clearNativeSegmentTimer(video);
-        video.onload = null;
         const player = youtubePlayers.get(video);
         if (player) {
             clearPlayerTimer(video);
@@ -97,16 +94,12 @@ const MediaRenderer = (() => {
         }
 
         if (!preloadedVideo) {
-            const sourceUrl = getYouTubeUrl(media, purpose, touchDevice);
-            if (touchDevice && hasSegment(media)) {
-                enableNativeSegmentLoop(video, sourceUrl, media);
-            }
-            video.src = sourceUrl;
+            video.src = getYouTubeUrl(media, purpose, touchDevice);
         }
         video.loading = touchDevice ? 'eager' : 'lazy';
         video.style.display = '';
 
-        // Let WebKit own the media lifecycle; its player API is unreliable on iPhone.
+        // iPhone WebKit requires a visible, user-initiated standard player.
         if (touchDevice) return;
 
         enableYouTubePlayer(video, purpose, container, media);
@@ -116,20 +109,24 @@ const MediaRenderer = (() => {
         const params = new URLSearchParams({
             playsinline: '1',
             rel: '0',
-            autoplay: '1',
+            autoplay: nativePlayback ? '0' : '1',
             mute: '1',
-            controls: '0',
-            disablekb: '1',
-            fs: '0',
+            controls: nativePlayback ? '1' : '0',
+            disablekb: nativePlayback ? '0' : '1',
+            fs: nativePlayback ? '1' : '0',
             iv_load_policy: '3'
         });
 
-        params.set('enablejsapi', '1');
+        if (nativePlayback) {
+            params.set('origin', window.location.origin);
+        } else {
+            params.set('enablejsapi', '1');
+        }
         if (nativePlayback && !hasSegment(media)) {
             params.set('loop', '1');
             params.set('playlist', media.videoId);
         }
-        if (/^https?:$/.test(window.location.protocol)) {
+        if (!nativePlayback && /^https?:$/.test(window.location.protocol)) {
             params.set('origin', window.location.origin);
         }
         if (hasSegment(media)) {
@@ -138,25 +135,6 @@ const MediaRenderer = (() => {
         }
 
         return `https://www.youtube.com/embed/${media.videoId}?${params}`;
-    }
-
-    function enableNativeSegmentLoop(video, sourceUrl, media) {
-        video.onload = () => {
-            clearNativeSegmentTimer(video);
-            const durationMs = (media.endSeconds - media.startSeconds) * 1000;
-            const timer = setTimeout(() => {
-                if (!video.isConnected || video.style.display === 'none') return;
-                const replayUrl = new URL(sourceUrl);
-                replayUrl.searchParams.set('replay', String(Date.now()));
-                video.src = replayUrl.toString();
-            }, durationMs + 1000);
-            nativeSegmentTimers.set(video, timer);
-        };
-    }
-
-    function clearNativeSegmentTimer(video) {
-        clearTimeout(nativeSegmentTimers.get(video));
-        nativeSegmentTimers.delete(video);
     }
 
     function preload(card, purpose = 'quiz') {

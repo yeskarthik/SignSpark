@@ -570,6 +570,11 @@ body {
     width: 100%;
     height: 100%;
     transform: none;
+    pointer-events: auto;
+}
+
+.media-container.is-looping-video.is-touch-video::after {
+    display: none;
 }
 
 .media-container.is-looping-video::after {
