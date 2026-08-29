@@ -7,6 +7,7 @@ const MediaRenderer = (() => {
     const YOUTUBE_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
     const MAX_PLAYER_RETRIES = 2;
     const PLAYER_START_TIMEOUT_MS = 12000;
+    const MOBILE_PLAYER_START_TIMEOUT_MS = 4000;
     const youtubePlayers = new WeakMap();
     const youtubeStartupTimers = new WeakMap();
     const youtubeSegmentTimers = new WeakMap();
@@ -118,10 +119,7 @@ const MediaRenderer = (() => {
             params.set('end', String(Math.ceil(media.endSeconds)));
         }
 
-        const host = purpose === 'quiz'
-            ? 'https://www.youtube-nocookie.com'
-            : 'https://www.youtube.com';
-        return `${host}/embed/${media.videoId}?${params}`;
+        return `https://www.youtube.com/embed/${media.videoId}?${params}`;
     }
 
     function preload(card, purpose = 'quiz') {
@@ -305,7 +303,9 @@ const MediaRenderer = (() => {
             youtubePlayers.set(video, player);
             const startupTimer = setTimeout(() => {
                 recover('startup timeout');
-            }, PLAYER_START_TIMEOUT_MS);
+            }, isTouchDevice()
+                ? MOBILE_PLAYER_START_TIMEOUT_MS
+                : PLAYER_START_TIMEOUT_MS);
             youtubeStartupTimers.set(video, startupTimer);
         }).catch((error) => {
             console.error(error);
