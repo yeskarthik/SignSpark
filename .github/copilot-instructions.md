@@ -39,11 +39,11 @@ asl/
 - **words.json** is the source of truth for vocabulary at runtime. Curated cards add a `media` object (`type`, `videoId` or `src`, source metadata, and `reviewed`) plus `textGuideReviewed` and `textGuideSource`. Unsupported cards use `mediaReviewStatus: "no-verified-source"`.
 - **Custom words** are stored in `localStorage` under key `signspark_custom_words` and merged with `words.json` at load time.
 - **Weighted random selection** — cards the user gets wrong appear more frequently. Unseen cards get weight 3; seen cards get `1 + errorRate * 4`.
-- **YouTube endpoints** — both learning and Sign → Word cards use `youtube.com` with `enablejsapi` and `origin` for reliable identified playback and error reporting. Both autoplay muted, hide controls, and loop through the player API.
+- **YouTube endpoints** — desktop cards use `youtube.com` with `enablejsapi` and `origin`; touch devices use plain iframe embeds with native `loop` and `playlist` parameters. Both autoplay muted and hide controls.
 - **Timed syllabus clips** — YouTube media can define `startSeconds` and `endSeconds`. The player seeks to the exact start and loops at the exact end; media identity includes the segment range.
 - **Unit curriculum coverage** — 772 deduplicated concepts cover Units 1–6. Cards use `syllabusUnits`; existing reviewed media is retained and the subtitle-timed source is stored as `syllabusMedia`.
-- **Playback recovery** — media.js retries YouTube startup errors/timeouts twice before showing the reviewed-source fallback; desktop creates a fresh iframe while touch devices reload the persistent player.
-- **Mobile playback** — touch devices skip offscreen preloading and iframe transforms, then reuse one stable YouTube player via `loadVideoById` with automatic muted looping and four-second recovery.
+- **Playback recovery** — media.js retries YouTube startup errors/timeouts twice with a fresh iframe before showing the reviewed-source fallback.
+- **Mobile playback** — touch devices skip offscreen preloading, iframe transforms, and the YouTube JavaScript player API. WebKit owns playback through a fresh, eager, muted inline embed for each card.
 - **Video reports** — YouTube attribution includes a one-tap report button. `/api/video-reports` stores reports in the `SignSparkVideoReports` Azure table.
 - **Mode 2 (Sign → Word)** uses reviewed media identities mapped to exactly one card. A YouTube identity includes video ID plus segment boundaries, allowing distinct clips from one source lesson.
 - **Quiz flow** — Sign → Word preselects and preloads the next card. Correct answers advance automatically after brief feedback; incorrect answers wait for the user to select Next.
