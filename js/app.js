@@ -159,6 +159,7 @@ const App = (() => {
         const pendingRetries = FlashcardEngine.getPendingRetryCount();
 
         updateFilteredProgress();
+        updateQuestionStatus();
         document.getElementById('stat-studied').textContent = stats.studied;
         document.getElementById('stat-correct').textContent = stats.correct;
         document.getElementById('stat-incorrect').textContent = stats.incorrect;
@@ -210,6 +211,27 @@ const App = (() => {
 
         bar.style.width = pct + '%';
         text.textContent = `${studied} / ${total}`;
+        updateQuestionStatus();
+    }
+
+    function updateQuestionStatus() {
+        const progress = FlashcardEngine.getFilteredProgress();
+        const remainingPercent = progress.total > 0
+            ? Math.round((progress.remaining / progress.total) * 100)
+            : 0;
+        const units = FlashcardEngine.getActiveSyllabusUnits();
+        const categories = FlashcardEngine.getActiveCategories();
+        const filterText = [
+            units.length > 0 ? `Units: ${units.join(', ')}` : 'All units',
+            categories.length > 0
+                ? `Categories: ${categories.map(formatCategory).join(', ')}`
+                : 'All categories'
+        ].join(' · ');
+
+        document.querySelectorAll('[data-quiz-filter-status]').forEach(status => {
+            status.textContent =
+                `${remainingPercent}% remaining (${progress.remaining} of ${progress.total}) · ${filterText}`;
+        });
     }
 
     function toggleDarkMode() {

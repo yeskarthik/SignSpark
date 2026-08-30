@@ -450,6 +450,17 @@ body {
     justify-content: center;
 }
 
+.quiz-filter-status {
+    align-self: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 12px;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
 .card-wrapper {
     width: 100%;
     max-width: 400px;

@@ -144,6 +144,10 @@ const FlashcardEngine = (() => {
         return activeCategories.has(cat);
     }
 
+    function getActiveCategories() {
+        return [...activeCategories].sort();
+    }
+
     function getSyllabusUnits() {
         const units = new Set();
         for (const word of allWords) {
@@ -165,6 +169,10 @@ const FlashcardEngine = (() => {
 
     function isSyllabusUnitActive(unit) {
         return activeSyllabusUnits.has(unit);
+    }
+
+    function getActiveSyllabusUnits() {
+        return [...activeSyllabusUnits].sort((left, right) => left - right);
     }
 
     /**
@@ -711,9 +719,11 @@ const FlashcardEngine = (() => {
         setCategories,
         toggleCategory,
         isCategoryActive,
+        getActiveCategories,
         getSyllabusUnits,
         toggleSyllabusUnit,
         isSyllabusUnitActive,
+        getActiveSyllabusUnits,
         getNextCard,
         markCardPresented,
         releaseCardPresentation,

@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#1a1a2e">
     <meta name="description" content="SignSpark - Learn ASL with interactive flashcards">
     <title>SignSpark — Learn ASL</title>
-    <link rel="stylesheet" href="css/style.css?v=20260828.4">
+    <link rel="stylesheet" href="css/style.css?v=20260830.2">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤟</text></svg>">
 </head>
 <body>
@@ -117,6 +117,7 @@
 
         <!-- Mode 1: Word → Sign -->
         <main id="screen-word-to-sign" class="screen">
+            <p class="quiz-filter-status" data-quiz-filter-status aria-live="polite"></p>
             <div class="quiz-container">
                 <div class="card-wrapper">
                     <div class="flashcard" id="card-wts">
@@ -153,6 +154,7 @@
 
         <!-- Mode 2: Sign → Word -->
         <main id="screen-sign-to-word" class="screen">
+            <p class="quiz-filter-status" data-quiz-filter-status aria-live="polite"></p>
             <div class="quiz-container">
                 <div class="card-wrapper">
                     <div class="sign-display">
@@ -236,10 +238,10 @@
         </div>
     </div>
 
-    <script src="js/flashcards.js?v=20260828.1"></script>
+    <script src="js/flashcards.js?v=20260830.1"></script>
     <script src="js/media.js?v=20260830.1"></script>
     <script src="js/quiz-sign.js?v=20260828.1"></script>
     <script src="js/quiz-word.js?v=20260828.1"></script>
-    <script src="js/app.js?v=20260828.1"></script>
+    <script src="js/app.js?v=20260830.1"></script>
 </body>
 </html>
