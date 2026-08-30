@@ -186,7 +186,7 @@ const FlashcardEngine = (() => {
             pool = pool.filter(hasQuizMedia);
         }
         const profileState = getActiveProfileState();
-        pool = pool.filter(word => profileState.cardStats[word.slug]?.correct !== true);
+        pool = pool.filter(word => !(profileState.cardStats[word.slug]?.correct > 0));
         if (pool.length === 0) return null;
 
         const retryPool = pool.filter(word => {
@@ -253,7 +253,7 @@ const FlashcardEngine = (() => {
                 return false;
             }
             const profileState = getActiveProfileState();
-            if (profileState.cardStats[word.slug]?.correct === true) {
+            if (profileState.cardStats[word.slug]?.correct > 0) {
                 return false;
             }
             const retry = profileState.retrySchedules.get(word.slug);
