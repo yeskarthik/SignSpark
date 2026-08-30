@@ -252,8 +252,8 @@ const MediaRenderer = (() => {
     }
 
     function isTouchDevice() {
-        return navigator.maxTouchPoints > 0 ||
-            window.matchMedia?.('(pointer: coarse)').matches === true;
+        // Touch-capable desktops should retain the direct, autoplaying desktop player.
+        return window.matchMedia?.('(hover: none) and (pointer: coarse)').matches === true;
     }
 
     function loadYouTubeApi() {
