@@ -41,6 +41,7 @@ const App = (() => {
         document.getElementById('btn-confirm-add').addEventListener('click', confirmAddWord);
         document.getElementById('btn-cancel-import').addEventListener('click', () => hideModal('modal-import'));
         document.getElementById('btn-confirm-import').addEventListener('click', confirmImport);
+        document.getElementById('btn-reset-unit-progress').addEventListener('click', resetUnitProgress);
 
         // Close modals on overlay click
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
@@ -122,6 +123,7 @@ const App = (() => {
         const withLearningMedia = FlashcardEngine.getFilteredWordsWithLearningMedia();
         const withQuizMedia = FlashcardEngine.getFilteredWordsWithQuizMedia();
         updateFilteredProgress();
+        updateUnitResetButton();
         const subtitle = document.querySelector('.subtitle');
         if (subtitle) {
             subtitle.textContent =
@@ -204,11 +206,11 @@ const App = (() => {
         const text = document.getElementById('progress-text');
         const progress = getCurrentQuestionProgress();
         const pct = progress.total > 0
-            ? (progress.answered / progress.total) * 100
+            ? (progress.completed / progress.total) * 100
             : 0;
 
         bar.style.width = pct + '%';
-        text.textContent = `${progress.answered} / ${progress.total}`;
+        text.textContent = `${progress.completed} / ${progress.total}`;
         updateQuestionStatus();
     }
 
@@ -237,6 +239,36 @@ const App = (() => {
     function getCurrentQuestionProgress() {
         const purpose = currentScreen === 'sign-to-word' ? 'quiz' : 'learning';
         return FlashcardEngine.getFilteredQuestionProgress(purpose);
+    }
+
+    function updateUnitResetButton() {
+        const button = document.getElementById('btn-reset-unit-progress');
+        const units = FlashcardEngine.getActiveSyllabusUnits();
+        button.disabled = units.length === 0;
+        button.textContent = units.length === 0
+            ? 'Reset selected unit progress'
+            : `Reset Unit${units.length > 1 ? 's' : ''} ${units.join(', ')} progress`;
+    }
+
+    async function resetUnitProgress() {
+        const units = FlashcardEngine.getActiveSyllabusUnits();
+        if (units.length === 0) return;
+
+        const unitLabel = `Unit${units.length > 1 ? 's' : ''} ${units.join(', ')}`;
+        if (!window.confirm(`Reset all saved progress for ${unitLabel}?`)) return;
+
+        const button = document.getElementById('btn-reset-unit-progress');
+        button.disabled = true;
+        button.textContent = 'Resetting progress…';
+        try {
+            await FlashcardEngine.resetProgressForUnits(units);
+            updateStats();
+            updateWordCount();
+        } catch (error) {
+            console.error('Could not reset unit progress.', error);
+            alert('Could not reset unit progress. Please try again.');
+            updateUnitResetButton();
+        }
     }
 
     function toggleDarkMode() {

@@ -344,6 +344,13 @@ body {
     color: var(--text-muted);
 }
 
+.btn-reset-unit-progress {
+    display: flex;
+    margin: 8px auto 0;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+}
+
 /* --- Stats Grid --- */
 .stats-grid {
     display: grid;

@@ -185,9 +185,10 @@ const FlashcardEngine = (() => {
         } else if (requiredMediaPurpose === 'quiz') {
             pool = pool.filter(hasQuizMedia);
         }
+        const profileState = getActiveProfileState();
+        pool = pool.filter(word => profileState.cardStats[word.slug]?.correct !== true);
         if (pool.length === 0) return null;
 
-        const profileState = getActiveProfileState();
         const retryPool = pool.filter(word => {
             const retry = profileState.retrySchedules.get(word.slug);
             return retry &&
@@ -252,6 +253,9 @@ const FlashcardEngine = (() => {
                 return false;
             }
             const profileState = getActiveProfileState();
+            if (profileState.cardStats[word.slug]?.correct === true) {
+                return false;
+            }
             const retry = profileState.retrySchedules.get(word.slug);
             return retry &&
                 !retry.inFlight &&
@@ -367,7 +371,10 @@ const FlashcardEngine = (() => {
             profileState.stats.streak = 0;
         }
 
-        if (isScheduledRetry) {
+        if (correct) {
+            profileState.retrySchedules.delete(slug);
+            profileState.pendingRetries.delete(slug);
+        } else if (isScheduledRetry) {
             retry.remaining--;
             retry.inFlight = false;
             if (retry.remaining > 0) {
@@ -431,15 +438,53 @@ const FlashcardEngine = (() => {
             words = words.filter(hasQuizMedia);
         }
         const cardStats = getActiveProfileState().cardStats;
-        const answered = words.reduce(
-            (count, word) => count + (cardStats[word.slug]?.seen > 0 ? 1 : 0),
+        const completed = words.reduce(
+            (count, word) => count + (cardStats[word.slug]?.correct > 0 ? 1 : 0),
             0
         );
         return {
-            answered,
-            remaining: words.length - answered,
+            completed,
+            remaining: words.length - completed,
             total: words.length
         };
+    }
+
+    async function resetProgressForUnits(units) {
+        const selectedUnits = new Set(units);
+        const slugs = allWords
+            .filter(word => word.syllabusUnits?.some(unit => selectedUnits.has(unit)))
+            .map(word => word.slug);
+        if (slugs.length === 0) return;
+
+        if (activeProfile === 'Guest') {
+            resetProgress(getActiveProfileState(), slugs);
+            return;
+        }
+
+        await waitForProfileSaves();
+        const response = await fetch(
+            `/api/profiles/${encodeURIComponent(activeProfile)}`,
+            {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ action: 'reset', slugs })
+            }
+        );
+        if (!response.ok) {
+            throw new Error(`Profile reset API returned ${response.status}.`);
+        }
+        profileStates[activeProfile] = parseProfileState(await response.json());
+    }
+
+    function resetProgress(profileState, slugs) {
+        for (const slug of slugs) {
+            delete profileState.cardStats[slug];
+            profileState.pendingRetries.delete(slug);
+            profileState.retrySchedules.delete(slug);
+        }
     }
 
     function getActiveProfileState() {
@@ -753,6 +798,7 @@ const FlashcardEngine = (() => {
         getSessionStats,
         getFilteredProgress,
         getFilteredQuestionProgress,
+        resetProgressForUnits,
         getActiveProfile,
         getProfileNames,
         getProfileProgress,

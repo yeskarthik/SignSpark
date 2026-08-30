@@ -26,9 +26,14 @@ module.exports = async function profileProgress(context, req) {
         }
 
         const result = req.body;
+        if (isValidReset(result)) {
+            const state = await resetProgress(client, profile, result.slugs);
+            context.res = jsonResponse(200, state);
+            return;
+        }
         if (!isValidResult(result)) {
             context.res = jsonResponse(400, {
-                error: 'A result requires a valid slug and boolean correct value.'
+                error: 'A result requires a valid slug and boolean correct value, or a reset action.'
             });
             return;
         }
@@ -87,7 +92,11 @@ async function recordResult(client, profile, slug, correct, isRetry) {
             state.stats.streak = 0;
         }
 
-        if (isRetry && state.retryCounts[slug]) {
+        if (correct) {
+            delete state.retryCounts[slug];
+            delete state.retryDueAt[slug];
+            state.pendingRetries = state.pendingRetries.filter(item => item !== slug);
+        } else if (isRetry && state.retryCounts[slug]) {
             state.retryCounts[slug]--;
             if (state.retryCounts[slug] === 0) {
                 delete state.retryCounts[slug];
@@ -104,8 +113,6 @@ async function recordResult(client, profile, slug, correct, isRetry) {
             if (!state.pendingRetries.includes(slug)) {
                 state.pendingRetries.push(slug);
             }
-        } else if (!state.retryCounts[slug]) {
-            state.pendingRetries = state.pendingRetries.filter(item => item !== slug);
         }
         state.cardStats[slug] = card;
 
@@ -116,6 +123,32 @@ async function recordResult(client, profile, slug, correct, isRetry) {
             if (![409, 412].includes(error.statusCode)) throw error;
             concurrencyError = error;
         }
+    }
+
+    async function resetProgress(client, profile, slugs) {
+        let concurrencyError = null;
+
+        for (let attempt = 0; attempt < MAX_WRITE_ATTEMPTS; attempt++) {
+            const current = await loadState(client, profile);
+            const state = current.state;
+            for (const slug of slugs) {
+                delete state.cardStats[slug];
+                delete state.retryCounts[slug];
+                delete state.retryDueAt[slug];
+            }
+            const resetSlugs = new Set(slugs);
+            state.pendingRetries = state.pendingRetries.filter(slug => !resetSlugs.has(slug));
+
+            try {
+                await saveState(client, profile, state, current.etag);
+                return state;
+            } catch (error) {
+                if (![409, 412].includes(error.statusCode)) throw error;
+                concurrencyError = error;
+            }
+        }
+
+        throw concurrencyError || new Error('Profile reset did not complete.');
     }
 
     throw concurrencyError || new Error('Profile progress update did not complete.');
@@ -196,6 +229,19 @@ function isValidResult(result) {
         typeof result.slug === 'string' &&
         result.slug.length <= 100 &&
         /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result.slug);
+}
+
+function isValidReset(result) {
+    return result &&
+        result.action === 'reset' &&
+        Array.isArray(result.slugs) &&
+        result.slugs.length > 0 &&
+        result.slugs.length <= 1000 &&
+        result.slugs.every(slug =>
+            typeof slug === 'string' &&
+            slug.length <= 100 &&
+            /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)
+        );
 }
 
 function jsonResponse(status, body) {
