@@ -215,18 +215,20 @@ const App = (() => {
     }
 
     function updateQuestionStatus() {
-        const progress = FlashcardEngine.getFilteredProgress();
+        const progress = FlashcardEngine.getFilteredQuestionProgress();
         const remainingPercent = progress.total > 0
-            ? Math.round((progress.remaining / progress.total) * 100)
+            ? Number(((progress.remaining / progress.total) * 100).toFixed(1))
             : 0;
         const units = FlashcardEngine.getActiveSyllabusUnits();
         const categories = FlashcardEngine.getActiveCategories();
-        const filterText = [
-            units.length > 0 ? `Units: ${units.join(', ')}` : 'All units',
-            categories.length > 0
-                ? `Categories: ${categories.map(formatCategory).join(', ')}`
-                : 'All categories'
-        ].join(' · ');
+        const selectedFilters = [];
+        if (units.length > 0) selectedFilters.push(`Units: ${units.join(', ')}`);
+        if (categories.length > 0) {
+            selectedFilters.push(`Categories: ${categories.map(formatCategory).join(', ')}`);
+        }
+        const filterText = selectedFilters.length > 0
+            ? selectedFilters.join(' · ')
+            : 'All words';
 
         document.querySelectorAll('[data-quiz-filter-status]').forEach(status => {
             status.textContent =

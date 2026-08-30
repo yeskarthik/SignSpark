@@ -737,6 +737,13 @@ body {
     margin-bottom: 16px;
 }
 
+.btn-previous-question {
+    display: flex;
+    margin: 0 auto 12px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+}
+
 /* --- Multiple Choice --- */
 .mc-options {
     display: grid;

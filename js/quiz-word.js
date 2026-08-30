@@ -11,6 +11,9 @@ const QuizWord = (() => {
     let answered = false;
     let advanceTimer = null;
     let lastCorrectOptionIndex = null;
+    let currentOptions = [];
+    let previousAnswer = null;
+    let reviewState = null;
 
     const elements = {};
 
@@ -26,13 +29,21 @@ const QuizWord = (() => {
         elements.feedback = document.getElementById('stw-feedback');
         elements.feedbackContent = document.getElementById('stw-feedback-content');
         elements.nextBtn = document.getElementById('stw-next');
+        elements.previousBtn = document.getElementById('stw-previous');
         elements.mcModeBtn = document.getElementById('btn-mc-mode');
         elements.textModeBtn = document.getElementById('btn-text-mode');
 
         elements.mcModeBtn.addEventListener('click', () => setAnswerMode('mc'));
         elements.textModeBtn.addEventListener('click', () => setAnswerMode('text'));
         elements.checkBtn.addEventListener('click', checkTextAnswer);
-        elements.nextBtn.addEventListener('click', loadNextCard);
+        elements.nextBtn.addEventListener('click', () => {
+            if (reviewState) {
+                returnFromReview();
+            } else {
+                loadNextCard();
+            }
+        });
+        elements.previousBtn.addEventListener('click', showPreviousQuestion);
 
         elements.textAnswer.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') checkTextAnswer();
@@ -57,6 +68,9 @@ const QuizWord = (() => {
         stop();
         currentCard = null;
         lastCorrectOptionIndex = null;
+        currentOptions = [];
+        previousAnswer = null;
+        reviewState = null;
         loadNextCard();
     }
 
@@ -81,6 +95,7 @@ const QuizWord = (() => {
             elements.feedback.style.display = '';
             elements.mcSection.style.display = 'none';
             elements.textSection.style.display = 'none';
+            elements.previousBtn.style.display = 'none';
             return;
         }
 
@@ -96,6 +111,8 @@ const QuizWord = (() => {
         elements.feedback.style.display = 'none';
         elements.nextBtn.style.display = '';
         elements.textAnswer.value = '';
+        elements.textAnswer.disabled = false;
+        elements.previousBtn.style.display = previousAnswer ? '' : 'none';
 
         if (answerMode === 'mc') {
             renderMcOptions();
@@ -128,6 +145,9 @@ const QuizWord = (() => {
         }
         currentCard = null;
         nextCard = null;
+        currentOptions = [];
+        previousAnswer = null;
+        reviewState = null;
         MediaRenderer.cancelPreload();
         if (elements.media) {
             MediaRenderer.clear(elements.media, elements.mediaAttribution);
@@ -152,6 +172,7 @@ const QuizWord = (() => {
         const options = [...distractors];
         options.splice(correctIndex, 0, currentCard);
         lastCorrectOptionIndex = correctIndex;
+        currentOptions = options;
 
         for (const opt of options) {
             const btn = document.createElement('button');
@@ -167,6 +188,13 @@ const QuizWord = (() => {
         answered = true;
 
         const isCorrect = chosen.slug === currentCard.slug;
+        previousAnswer = {
+            card: currentCard,
+            answerMode: 'mc',
+            options: currentOptions,
+            selectedSlug: chosen.slug,
+            isCorrect
+        };
         FlashcardEngine.recordResult(currentCard.slug, isCorrect);
         refreshPreparedCard(isCorrect);
 
@@ -195,6 +223,12 @@ const QuizWord = (() => {
         answered = true;
 
         const isCorrect = fuzzyMatch(input, currentCard.word);
+        previousAnswer = {
+            card: currentCard,
+            answerMode: 'text',
+            selectedText: input,
+            isCorrect
+        };
         FlashcardEngine.recordResult(currentCard.slug, isCorrect);
         refreshPreparedCard(isCorrect);
         showFeedback(isCorrect);
@@ -246,6 +280,7 @@ const QuizWord = (() => {
     }
 
     function showFeedback(isCorrect) {
+        elements.previousBtn.style.display = 'none';
         elements.feedback.style.display = '';
         elements.feedbackContent.className = 'feedback-content ' + (isCorrect ? 'correct' : 'incorrect');
 
@@ -259,6 +294,92 @@ const QuizWord = (() => {
         }
 
         showTextGuide(currentCard);
+    }
+
+    function showPreviousQuestion() {
+        if (!previousAnswer || reviewState || !currentCard) return;
+
+        clearTimeout(advanceTimer);
+        advanceTimer = null;
+        reviewState = { ...previousAnswer, returnCard: currentCard };
+        currentCard = previousAnswer.card;
+        answered = true;
+        MediaRenderer.cancelPreload();
+        MediaRenderer.render(currentCard, elements.media, elements.mediaAttribution, 'quiz');
+        elements.textGuide.style.display = 'none';
+        elements.mcModeBtn.disabled = true;
+        elements.textModeBtn.disabled = true;
+        elements.previousBtn.style.display = 'none';
+
+        if (reviewState.answerMode === 'mc') {
+            answerMode = 'mc';
+            elements.mcModeBtn.classList.add('active');
+            elements.textModeBtn.classList.remove('active');
+            elements.mcSection.style.display = '';
+            elements.textSection.style.display = 'none';
+            renderReviewOptions();
+        } else {
+            answerMode = 'text';
+            elements.mcModeBtn.classList.remove('active');
+            elements.textModeBtn.classList.add('active');
+            elements.mcSection.style.display = 'none';
+            elements.textSection.style.display = '';
+            elements.textAnswer.value = reviewState.selectedText;
+            elements.textAnswer.disabled = true;
+        }
+
+        elements.feedback.style.display = '';
+        elements.feedbackContent.className =
+            'feedback-content ' + (reviewState.isCorrect ? 'correct' : 'incorrect');
+        elements.feedbackContent.textContent = reviewState.isCorrect
+            ? '✓ Correct! Review only — score unchanged.'
+            : `✗ The answer is: ${currentCard.word}. Review only — score unchanged.`;
+        elements.nextBtn.textContent = 'Back to current question';
+        elements.nextBtn.style.display = '';
+    }
+
+    function renderReviewOptions() {
+        elements.mcOptions.innerHTML = '';
+        for (const option of reviewState.options) {
+            const button = document.createElement('button');
+            button.className = 'mc-option disabled';
+            button.textContent = option.word;
+            if (option.slug === currentCard.slug) {
+                button.classList.add('correct');
+            }
+            if (option.slug === reviewState.selectedSlug && !reviewState.isCorrect) {
+                button.classList.add('incorrect');
+            }
+            elements.mcOptions.appendChild(button);
+        }
+    }
+
+    function returnFromReview() {
+        const returnCard = reviewState?.returnCard;
+        if (!returnCard) return;
+
+        reviewState = null;
+        currentCard = returnCard;
+        answered = false;
+        elements.mcModeBtn.disabled = false;
+        elements.textModeBtn.disabled = false;
+        elements.nextBtn.textContent = 'Next →';
+        elements.textAnswer.disabled = false;
+        MediaRenderer.render(currentCard, elements.media, elements.mediaAttribution, 'quiz');
+        elements.textGuide.style.display = 'none';
+        elements.feedback.style.display = 'none';
+        elements.textAnswer.value = '';
+        elements.previousBtn.style.display = previousAnswer ? '' : 'none';
+
+        if (answerMode === 'mc') {
+            renderMcOptions();
+            elements.mcSection.style.display = '';
+            elements.textSection.style.display = 'none';
+        } else {
+            elements.mcSection.style.display = 'none';
+            elements.textSection.style.display = '';
+            elements.textAnswer.focus();
+        }
     }
 
     function showTextGuide(card) {

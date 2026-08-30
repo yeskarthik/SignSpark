@@ -423,6 +423,19 @@ const FlashcardEngine = (() => {
         };
     }
 
+    function getFilteredQuestionProgress() {
+        const cardStats = getActiveProfileState().cardStats;
+        const answered = filteredWords.reduce(
+            (count, word) => count + (cardStats[word.slug]?.seen > 0 ? 1 : 0),
+            0
+        );
+        return {
+            answered,
+            remaining: filteredWords.length - answered,
+            total: filteredWords.length
+        };
+    }
+
     function getActiveProfileState() {
         return profileStates[activeProfile];
     }
@@ -733,6 +746,7 @@ const FlashcardEngine = (() => {
         recordResult,
         getSessionStats,
         getFilteredProgress,
+        getFilteredQuestionProgress,
         getActiveProfile,
         getProfileNames,
         getProfileProgress,
