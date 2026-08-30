@@ -57,12 +57,7 @@ const QuizSign = (() => {
         currentCard = FlashcardEngine.getNextCard(prevSlug, 'learning');
 
         if (!currentCard) {
-            isRevealed = false;
-            elements.card.classList.remove('flipped');
-            elements.word.textContent = FlashcardEngine.getPendingRetryCount() > 0
-                ? 'Retry scheduled — widen your filters to keep practicing'
-                : 'No cards available';
-            elements.revealBtn.style.display = 'none';
+            App.showScreen('home');
             return;
         }
 

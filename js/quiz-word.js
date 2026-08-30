@@ -83,19 +83,7 @@ const QuizWord = (() => {
         answered = false;
 
         if (!currentCard) {
-            answered = true;
-            MediaRenderer.cancelPreload();
-            elements.mcModeBtn.disabled = true;
-            elements.textModeBtn.disabled = true;
-            elements.feedbackContent.textContent =
-                FlashcardEngine.getPendingRetryCount() > 0
-                    ? 'Your retry is scheduled after ten other answers. Widen your filters to keep practicing.'
-                    : 'No reviewed quiz-safe media is available for this category yet.';
-            elements.feedbackContent.className = 'feedback-content incorrect';
-            elements.feedback.style.display = '';
-            elements.mcSection.style.display = 'none';
-            elements.textSection.style.display = 'none';
-            elements.previousBtn.style.display = 'none';
+            App.showScreen('home');
             return;
         }
 

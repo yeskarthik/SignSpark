@@ -201,8 +201,12 @@ const FlashcardEngine = (() => {
             const nonRetryPool = pool.filter(
                 word => !profileState.retrySchedules.has(word.slug)
             );
-            if (nonRetryPool.length === 0) return null;
-            pool = nonRetryPool;
+            if (nonRetryPool.length > 0) {
+                pool = nonRetryPool;
+            } else {
+                pool = pool.filter(word => !profileState.retrySchedules.get(word.slug)?.inFlight);
+                if (pool.length === 0) return null;
+            }
         }
 
         const weights = pool.map(w => {
