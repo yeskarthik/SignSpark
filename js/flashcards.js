@@ -423,16 +423,22 @@ const FlashcardEngine = (() => {
         };
     }
 
-    function getFilteredQuestionProgress() {
+    function getFilteredQuestionProgress(requiredMediaPurpose = null) {
+        let words = filteredWords;
+        if (requiredMediaPurpose === 'learning') {
+            words = words.filter(hasLearningMedia);
+        } else if (requiredMediaPurpose === 'quiz') {
+            words = words.filter(hasQuizMedia);
+        }
         const cardStats = getActiveProfileState().cardStats;
-        const answered = filteredWords.reduce(
+        const answered = words.reduce(
             (count, word) => count + (cardStats[word.slug]?.seen > 0 ? 1 : 0),
             0
         );
         return {
             answered,
-            remaining: filteredWords.length - answered,
-            total: filteredWords.length
+            remaining: words.length - answered,
+            total: words.length
         };
     }
 

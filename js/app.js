@@ -200,22 +200,20 @@ const App = (() => {
     }
 
     function updateProgress() {
-        const stats = FlashcardEngine.getSessionStats();
         const bar = document.getElementById('progress-bar');
         const text = document.getElementById('progress-text');
-        const total = currentScreen === 'sign-to-word'
-            ? FlashcardEngine.getFilteredWordsWithQuizMedia().length
-            : FlashcardEngine.getFilteredWordsWithLearningMedia().length;
-        const studied = stats.studied;
-        const pct = total > 0 ? Math.min(100, (studied / total) * 100) : 0;
+        const progress = getCurrentQuestionProgress();
+        const pct = progress.total > 0
+            ? (progress.answered / progress.total) * 100
+            : 0;
 
         bar.style.width = pct + '%';
-        text.textContent = `${studied} / ${total}`;
+        text.textContent = `${progress.answered} / ${progress.total}`;
         updateQuestionStatus();
     }
 
     function updateQuestionStatus() {
-        const progress = FlashcardEngine.getFilteredQuestionProgress();
+        const progress = getCurrentQuestionProgress();
         const remainingPercent = progress.total > 0
             ? Number(((progress.remaining / progress.total) * 100).toFixed(1))
             : 0;
@@ -234,6 +232,11 @@ const App = (() => {
             status.textContent =
                 `${remainingPercent}% remaining (${progress.remaining} of ${progress.total}) · ${filterText}`;
         });
+    }
+
+    function getCurrentQuestionProgress() {
+        const purpose = currentScreen === 'sign-to-word' ? 'quiz' : 'learning';
+        return FlashcardEngine.getFilteredQuestionProgress(purpose);
     }
 
     function toggleDarkMode() {

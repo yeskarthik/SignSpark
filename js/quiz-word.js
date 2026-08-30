@@ -213,6 +213,7 @@ const QuizWord = (() => {
 
         showFeedback(isCorrect);
         App.updateStats();
+        App.updateProgress();
     }
 
     function checkTextAnswer() {
@@ -233,6 +234,7 @@ const QuizWord = (() => {
         refreshPreparedCard(isCorrect);
         showFeedback(isCorrect);
         App.updateStats();
+        App.updateProgress();
     }
 
     function refreshPreparedCard(isCorrect) {
